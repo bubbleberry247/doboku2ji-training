@@ -2,7 +2,7 @@
   "timeZone": "Asia/Tokyo",
   "dependencies": {},
   "webapp": {
-    "access": "ANYONE_ANONYMOUS",
+    "access": "ANYONE",
     "executeAs": "USER_DEPLOYING"
   },
   "executionApi": {

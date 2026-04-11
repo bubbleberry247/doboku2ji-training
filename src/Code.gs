@@ -4,6 +4,12 @@ function doGet(e) {
   var action = (e && e.parameter && e.parameter.action) ? e.parameter.action : '';
 
   // Admin/diagnostic endpoints
+  if (action === 'setup') {
+    setup_();
+    return ContentService.createTextOutput(JSON.stringify({ ok: true, dbId: getDbId_() }))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+
   if (action === 'setupDb') {
     var dbId = e.parameter.dbId || '';
     if (dbId) {
