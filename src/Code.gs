@@ -1,6 +1,9 @@
 // Code.gs — entry point for doboku2ji-training GAS webapp
 
 function doGet(e) {
+  // Auto-setup on first access
+  if (!getDbId_()) { setup_(); }
+
   var action = (e && e.parameter && e.parameter.action) ? e.parameter.action : '';
 
   // Admin/diagnostic endpoints
