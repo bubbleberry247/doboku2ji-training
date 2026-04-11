@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>土木2次 過去問学習</title>
+<style>
+:root{--bg:#f5f4f0;--surface:#fff;--surface-2:#f9f8f5;--border:#dedad4;--border-2:#c4bfb8;--text-1:#1a1916;--text-2:#6b6560;--text-3:#a09b95;--accent:#5c4f3d;--accent-lt:#ede9e3;--btn:#3c3530;--ok:#4a7c59;--ok-lt:#e4ede6;--ng:#7c4a4a;--ng-lt:#ede4e4;--warn:#7c6a3a;--warn-lt:#edead8}
+*{box-sizing:border-box}html{font-size:5.8vw}
+body{font-family:"Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;margin:0;background:var(--bg);color:var(--text-1);font-size:1rem;line-height:1.65;-webkit-text-size-adjust:100%}
+header{background:var(--surface);color:var(--text-1);padding:3vw 2.5vw;font-size:.85rem;position:sticky;top:0;z-index:100;text-align:center;font-weight:500;letter-spacing:.1em;border-bottom:1px solid var(--border)}
+main{padding:0 0 12px}
+h2{font-size:1rem;margin:0 0 12px;font-weight:500;letter-spacing:.03em}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:2px;padding:3.7vw 2.6vw;margin:2vw 1vw}
+.btn{background:var(--btn);color:#fff;border:none;padding:3.5vw 4vw;border-radius:2px;cursor:pointer;font-size:.9rem;font-weight:500;letter-spacing:.05em;min-height:13.5vw;width:100%;text-align:center;display:block}
+.btn.secondary{background:transparent;color:var(--text-2);border:1px solid var(--border-2)}
+.btn-sm{padding:2vw 3.5vw;font-size:.85rem;min-height:auto;width:auto;display:inline-block}
+.tag{display:inline-block;background:var(--accent-lt);color:var(--accent);padding:4px 12px;margin:3px;border-radius:2px;font-size:.8rem;letter-spacing:.03em}
+.small{font-size:.8rem;color:var(--text-2)}
+.loading-overlay{position:fixed;inset:0;background:rgba(245,244,240,.88);display:flex;align-items:center;justify-content:center;z-index:9999}
+.spinner{width:8vw;height:8vw;border:2px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.year-card{background:var(--surface);border:1px solid var(--border);border-radius:2px;padding:4vw 3vw;margin:2vw 1vw;cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:border-color .15s}
+.year-card:active{border-color:var(--accent)}
+.year-label{font-size:1.1rem;font-weight:500;letter-spacing:.05em}
+.year-count{font-size:.78rem;color:var(--text-2)}
+.q-row{padding:3.5vw 2.5vw;border-bottom:1px solid var(--border);background:var(--surface);display:flex;align-items:flex-start;gap:2.5vw;cursor:pointer}
+.q-num{font-size:.78rem;color:var(--text-2);white-space:nowrap;padding-top:2px}
+.q-stem{font-size:.85rem;color:var(--text-1);line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.stem-box{background:var(--surface-2);border:1px solid var(--border);border-radius:2px;padding:3.5vw 2.5vw;margin:2vw 1vw;font-size:.9rem;line-height:1.8;white-space:pre-wrap}
+.answer-section{margin:2vw 1vw}
+.answer-toggle{width:100%;padding:3vw;background:var(--accent-lt);color:var(--accent);border:1px solid var(--border-2);border-radius:2px;font-size:.85rem;font-weight:500;cursor:pointer;letter-spacing:.05em;text-align:center}
+.answer-box{display:none;background:var(--ok-lt);border:1px solid var(--ok);border-radius:2px;padding:3.5vw 2.5vw;margin-top:1.5vw;font-size:.85rem;line-height:1.8;white-space:pre-wrap}
+.answer-box.visible{display:block}
+.note-area{width:100%;border:1px solid var(--border);border-radius:2px;padding:2.5vw;font-size:.85rem;font-family:inherit;resize:vertical;min-height:24vw;background:var(--surface);color:var(--text-1);line-height:1.6}
+.self-score{display:flex;gap:1.5vw;flex-wrap:wrap;margin:2vw 0}
+.score-btn{padding:2vw 3vw;border:1px solid var(--border-2);border-radius:2px;font-size:.8rem;background:var(--surface);color:var(--text-2);cursor:pointer;transition:border-color .15s,background .15s}
+.score-btn.active{border-color:var(--accent);background:var(--accent-lt);color:var(--accent)}
+.section-label{font-size:.72rem;color:var(--text-2);letter-spacing:.1em;padding:3vw 2.5vw 1vw;font-weight:500}
+.raw-text{background:var(--surface-2);border:1px solid var(--border);border-radius:2px;padding:3.5vw 2.5vw;margin:2vw 1vw;font-size:.82rem;line-height:1.9;white-space:pre-wrap;color:var(--text-2)}
+.auth-input{width:100%;border:1px solid var(--border);border-radius:2px;padding:2.5vw;font-size:.9rem;font-family:inherit;background:var(--surface);color:var(--text-1);margin-bottom:2.5vw}
+.error-msg{color:var(--ng);font-size:.82rem;margin:1vw 0}
+.recovery-code-display{background:var(--accent-lt);border:1px solid var(--accent);border-radius:2px;padding:3vw;margin:2vw 0;text-align:center;font-size:1.3rem;font-weight:700;letter-spacing:.15em;color:var(--accent)}
+.back-btn{background:none;border:none;color:var(--text-2);font-size:.85rem;cursor:pointer;padding:2.5vw 2.5vw 0;display:flex;align-items:center;gap:1vw}
+</style>
+</head>
+<body>
+
+<header id="app-header">土木2次</header>
+<main id="app-main"></main>
+
+<div class="loading-overlay" id="loading" style="display:none">
+  <div class="spinner"></div>
+</div>
+
+<script>
+// ============================================================
+// State
+// ============================================================
+var USER_KEY = localStorage.getItem('doboku2ji_userKey') || '';
+var DISPLAY_NAME = localStorage.getItem('doboku2ji_displayName') || '';
+var RECOVERY_CODE = localStorage.getItem('doboku2ji_recoveryCode') || '';
+
+var state = {
+  screen: 'home',   // home | year | question | auth | restore
+  years: [],
+  questions: [],
+  currentYear: '',
+  currentQ: null,
+  currentNote: '',
+  currentScore: '',
+  answerVisible: false,
+  noteChanged: false
+};
+
+// ============================================================
+// Utility
+// ============================================================
+function showLoading() { document.getElementById('loading').style.display = 'flex'; }
+function hideLoading() { document.getElementById('loading').style.display = 'none'; }
+
+function setHeader(text) { document.getElementById('app-header').textContent = text; }
+
+function render() {
+  switch (state.screen) {
+    case 'home':     renderHome(); break;
+    case 'year':     renderYear(); break;
+    case 'question': renderQuestion(); break;
+    case 'auth':     renderAuth(); break;
+    case 'restore':  renderRestore(); break;
+  }
+}
+
+function callApi(funcName, args) {
+  return new Promise(function(resolve, reject) {
+    var allArgs = args.concat([USER_KEY]);
+    google.script.run
+      .withSuccessHandler(function(res) {
+        if (res && res._error) {
+          reject(new Error(res.message || 'APIエラー'));
+        } else {
+          resolve(res);
+        }
+      })
+      .withFailureHandler(function(err) {
+        reject(err);
+      })
+      [funcName].apply(null, allArgs);
+  });
+}
+
+// ============================================================
+// Auth screen
+// ============================================================
+function renderAuth() {
+  setHeader('土木2次');
+  var html = '<div class="card">' +
+    '<h2>名前を入力してください</h2>' +
+    '<p class="small">メモや自己採点を保存するために使います。</p>' +
+    '<input class="auth-input" id="auth-name" type="text" placeholder="例: 鈴木 太郎" maxlength="40">' +
+    '<div class="error-msg" id="auth-err"></div>' +
+    '<button class="btn" onclick="doRegister()">はじめる</button>' +
+    '<div style="margin-top:3vw;text-align:center">' +
+    '<button class="btn secondary btn-sm" onclick="showScreen(\'restore\')">復元コードがある方はこちら</button>' +
+    '</div>' +
+    '</div>';
+  document.getElementById('app-main').innerHTML = html;
+  var inp = document.getElementById('auth-name');
+  if (inp) inp.focus();
+}
+
+function doRegister() {
+  var name = (document.getElementById('auth-name').value || '').trim();
+  if (!name) { document.getElementById('auth-err').textContent = '名前を入力してください'; return; }
+  showLoading();
+  google.script.run
+    .withSuccessHandler(function(res) {
+      hideLoading();
+      if (res && res._error) {
+        document.getElementById('auth-err').textContent = res.message;
+        return;
+      }
+      saveUser(res.userKey, res.displayName, res.recoveryCode);
+      showRecoveryCode(res.recoveryCode);
+    })
+    .withFailureHandler(function(err) {
+      hideLoading();
+      document.getElementById('auth-err').textContent = '登録エラー: ' + (err.message || err);
+    })
+    .apiRegister(name, USER_KEY);
+}
+
+function showRecoveryCode(code) {
+  var html = '<div class="card">' +
+    '<h2>復元コードを保存してください</h2>' +
+    '<p class="small">別のデバイスでデータを引き継ぐときに使います。</p>' +
+    '<div class="recovery-code-display">' + code + '</div>' +
+    '<p class="small" style="margin-bottom:3vw">このコードはいつでも設定から確認できます。</p>' +
+    '<button class="btn" onclick="goHome()">学習をはじめる</button>' +
+    '</div>';
+  document.getElementById('app-main').innerHTML = html;
+}
+
+function renderRestore() {
+  setHeader('土木2次');
+  var html = '<button class="back-btn" onclick="showScreen(\'auth\')">← 戻る</button>' +
+    '<div class="card">' +
+    '<h2>復元コードで引き継ぎ</h2>' +
+    '<input class="auth-input" id="restore-code" type="text" placeholder="6文字のコード" maxlength="6" style="text-transform:uppercase;letter-spacing:.1em">' +
+    '<div class="error-msg" id="restore-err"></div>' +
+    '<button class="btn" onclick="doRestore()">引き継ぐ</button>' +
+    '</div>';
+  document.getElementById('app-main').innerHTML = html;
+  var inp = document.getElementById('restore-code');
+  if (inp) inp.focus();
+}
+
+function doRestore() {
+  var code = (document.getElementById('restore-code').value || '').trim().toUpperCase();
+  if (!code) { document.getElementById('restore-err').textContent = 'コードを入力してください'; return; }
+  showLoading();
+  google.script.run
+    .withSuccessHandler(function(res) {
+      hideLoading();
+      if (res && res._error) {
+        document.getElementById('restore-err').textContent = res.message;
+        return;
+      }
+      saveUser(res.userKey, res.displayName, res.recoveryCode);
+      goHome();
+    })
+    .withFailureHandler(function(err) {
+      hideLoading();
+      document.getElementById('restore-err').textContent = '復元エラー: ' + (err.message || err);
+    })
+    .apiRestoreByCode(code, USER_KEY);
+}
+
+function saveUser(userKey, displayName, recoveryCode) {
+  USER_KEY = userKey;
+  DISPLAY_NAME = displayName;
+  RECOVERY_CODE = recoveryCode;
+  localStorage.setItem('doboku2ji_userKey', userKey);
+  localStorage.setItem('doboku2ji_displayName', displayName);
+  localStorage.setItem('doboku2ji_recoveryCode', recoveryCode);
+}
+
+// ============================================================
+// Home screen: year list
+// ============================================================
+function showScreen(name) {
+  state.screen = name;
+  render();
+}
+
+function goHome() {
+  state.screen = 'home';
+  state.currentYear = '';
+  state.questions = [];
+  loadHome();
+}
+
+function loadHome() {
+  setHeader('土木2次');
+  showLoading();
+  callApi('apiGetHome', [])
+    .then(function(res) {
+      hideLoading();
+      state.years = res.years || [];
+      renderHome();
+    })
+    .catch(function(err) {
+      hideLoading();
+      document.getElementById('app-main').innerHTML =
+        '<div class="card"><p class="error-msg">読み込みエラー: ' + (err.message || err) + '</p>' +
+        '<button class="btn secondary" onclick="goHome()">再読み込み</button></div>';
+    });
+}
+
+function renderHome() {
+  setHeader('土木施工管理技士 2次');
+
+  if (!USER_KEY) {
+    showScreen('auth');
+    return;
+  }
+
+  var html = '<div class="section-label">年度を選択</div>';
+  if (state.years.length === 0) {
+    html += '<div class="card"><p class="small">問題データがありません。<br>管理者に問い合わせてください。</p></div>';
+  } else {
+    var years = state.years.slice().reverse(); // newest first
+    for (var i = 0; i < years.length; i++) {
+      var y = years[i];
+      html += '<div class="year-card" onclick="loadYear(\'' + y.year + '\')">' +
+        '<span class="year-label">' + y.year + '年度</span>' +
+        '<span class="year-count">' + y.count + '問</span>' +
+        '</div>';
+    }
+  }
+  html += '<div class="card" style="margin-top:4vw">' +
+    '<div class="small" style="color:var(--text-2)">ユーザー: ' + escapeHtml(DISPLAY_NAME) + '</div>' +
+    '<div class="small" style="margin-top:1vw">復元コード: <span style="font-weight:700;letter-spacing:.1em">' + escapeHtml(RECOVERY_CODE) + '</span></div>' +
+    '</div>';
+
+  document.getElementById('app-main').innerHTML = html;
+}
+
+// ============================================================
+// Year screen: question list
+// ============================================================
+function loadYear(year) {
+  state.currentYear = year;
+  setHeader(year + '年度');
+  showLoading();
+  callApi('apiGetQuestionsByYear', [year])
+    .then(function(res) {
+      hideLoading();
+      state.questions = res.questions || [];
+      state.screen = 'year';
+      renderYear();
+    })
+    .catch(function(err) {
+      hideLoading();
+      alert('問題一覧の取得に失敗しました: ' + (err.message || err));
+    });
+}
+
+function renderYear() {
+  setHeader(state.currentYear + '年度');
+  var html = '<button class="back-btn" onclick="goHome()">← 年度一覧</button>';
+  if (state.questions.length === 0) {
+    html += '<div class="card"><p class="small">問題がありません。</p></div>';
+  } else {
+    for (var i = 0; i < state.questions.length; i++) {
+      var q = state.questions[i];
+      var stemPreview = String(q.stem || '').replace(/[\r\n]+/g, ' ').substring(0, 80);
+      html += '<div class="q-row" onclick="loadQuestion(\'' + q.qId + '\')">' +
+        '<span class="q-num">問題' + q.number + '</span>' +
+        '<span class="q-stem">' + escapeHtml(stemPreview) + '</span>' +
+        '</div>';
+    }
+  }
+  document.getElementById('app-main').innerHTML = html;
+}
+
+// ============================================================
+// Question detail screen
+// ============================================================
+function loadQuestion(qId) {
+  showLoading();
+  callApi('apiGetQuestion', [qId])
+    .then(function(res) {
+      hideLoading();
+      state.currentQ = res.question;
+      state.currentNote = res.note || '';
+      state.currentScore = res.selfScore || '';
+      state.answerVisible = false;
+      state.noteChanged = false;
+      state.screen = 'question';
+      renderQuestion();
+    })
+    .catch(function(err) {
+      hideLoading();
+      alert('問題の取得に失敗しました: ' + (err.message || err));
+    });
+}
+
+function renderQuestion() {
+  var q = state.currentQ;
+  if (!q) { goHome(); return; }
+  setHeader(state.currentYear + '年度 問題' + q.number);
+
+  var tagsHtml = '';
+  if (q.tags) {
+    var tagList = String(q.tags).split(/[,、]/);
+    for (var t = 0; t < tagList.length; t++) {
+      var tag = tagList[t].trim();
+      if (tag) tagsHtml += '<span class="tag">' + escapeHtml(tag) + '</span>';
+    }
+  }
+
+  var answerHtml = '';
+  if (q.modelAnswer && String(q.modelAnswer).trim()) {
+    answerHtml = '<div class="answer-section">' +
+      '<button class="answer-toggle" onclick="toggleAnswer()">模範解答を' + (state.answerVisible ? '隠す' : '表示する') + '</button>' +
+      '<div class="answer-box' + (state.answerVisible ? ' visible' : '') + '" id="answer-box">' +
+      escapeHtml(String(q.modelAnswer)) +
+      '</div></div>';
+  } else {
+    answerHtml = '<div class="card" style="background:var(--surface-2)">' +
+      '<p class="small">模範解答はまだ登録されていません。</p></div>';
+  }
+
+  var scoreHtml = '<div class="section-label">自己採点</div><div class="card">' +
+    '<div class="self-score" id="self-score-row">' +
+    renderScoreButtons(state.currentScore) +
+    '</div></div>';
+
+  var noteHtml = '<div class="section-label">メモ</div><div class="card">' +
+    '<textarea class="note-area" id="note-area" placeholder="ここにメモを書いてください...">' +
+    escapeHtml(state.currentNote) + '</textarea>' +
+    '<button class="btn" style="margin-top:2vw" onclick="saveNote()">メモを保存</button>' +
+    '<div class="small" id="note-status" style="margin-top:1vw;color:var(--ok)"></div>' +
+    '</div>';
+
+  var html = '<button class="back-btn" onclick="backToYear()">← ' + state.currentYear + '年度</button>' +
+    '<div class="section-label">' + escapeHtml(q.year) + '年度 問題' + q.number + '</div>' +
+    (tagsHtml ? '<div style="padding:0 2.5vw 2vw">' + tagsHtml + '</div>' : '') +
+    '<div class="stem-box">' + escapeHtml(String(q.stem || '')) + '</div>' +
+    answerHtml +
+    scoreHtml +
+    noteHtml;
+
+  document.getElementById('app-main').innerHTML = html;
+}
+
+function renderScoreButtons(current) {
+  var scores = ['◎', '○', '△', '×'];
+  var labels = { '◎': 'よくできた', '○': 'できた', '△': 'あいまい', '×': 'できなかった' };
+  var html = '';
+  for (var i = 0; i < scores.length; i++) {
+    var s = scores[i];
+    var active = (s === current) ? ' active' : '';
+    html += '<button class="score-btn' + active + '" onclick="selectScore(\'' + s + '\')">' +
+      s + '<br><span style="font-size:.7rem">' + labels[s] + '</span></button>';
+  }
+  return html;
+}
+
+function toggleAnswer() {
+  state.answerVisible = !state.answerVisible;
+  var box = document.getElementById('answer-box');
+  var btn = document.querySelector('.answer-toggle');
+  if (box) {
+    if (state.answerVisible) { box.classList.add('visible'); }
+    else { box.classList.remove('visible'); }
+  }
+  if (btn) btn.textContent = '模範解答を' + (state.answerVisible ? '隠す' : '表示する');
+}
+
+function selectScore(score) {
+  state.currentScore = score;
+  var row = document.getElementById('self-score-row');
+  if (row) row.innerHTML = renderScoreButtons(score);
+  // Auto-save score
+  if (!USER_KEY) return;
+  callApi('apiSaveSelfScore', [state.currentQ.qId, score])
+    .catch(function(err) { console.error('score save error:', err); });
+}
+
+function saveNote() {
+  if (!USER_KEY) { alert('ログインが必要です'); return; }
+  var textarea = document.getElementById('note-area');
+  var text = textarea ? textarea.value : '';
+  showLoading();
+  callApi('apiSaveNote', [state.currentQ.qId, text])
+    .then(function() {
+      hideLoading();
+      state.currentNote = text;
+      var st = document.getElementById('note-status');
+      if (st) { st.textContent = '保存しました'; setTimeout(function(){ st.textContent = ''; }, 2000); }
+    })
+    .catch(function(err) {
+      hideLoading();
+      alert('メモの保存に失敗しました: ' + (err.message || err));
+    });
+}
+
+function backToYear() {
+  state.screen = 'year';
+  renderYear();
+}
+
+// ============================================================
+// Helpers
+// ============================================================
+function escapeHtml(str) {
+  return String(str || '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+// ============================================================
+// Boot
+// ============================================================
+if (!USER_KEY) {
+  state.screen = 'auth';
+  render();
+} else {
+  loadHome();
+}
+</script>
+</body>
+</html>
