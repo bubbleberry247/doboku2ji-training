@@ -6,9 +6,10 @@
 <title>土木2次 過去問学習</title>
 <style>
 :root{--bg:#f5f4f0;--surface:#fff;--surface-2:#f9f8f5;--border:#dedad4;--border-2:#c4bfb8;--text-1:#1a1916;--text-2:#6b6560;--text-3:#a09b95;--accent:#5c4f3d;--accent-lt:#ede9e3;--btn:#3c3530;--ok:#4a7c59;--ok-lt:#e4ede6;--ng:#7c4a4a;--ng-lt:#ede4e4;--warn:#7c6a3a;--warn-lt:#edead8}
-*{box-sizing:border-box}html{font-size:5.8vw}
+*{box-sizing:border-box}html{font-size:min(5.8vw,16px)}
 body{font-family:"Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;margin:0;background:var(--bg);color:var(--text-1);font-size:1rem;line-height:1.65;-webkit-text-size-adjust:100%}
-header{background:var(--surface);color:var(--text-1);padding:3vw 2.5vw;font-size:.85rem;position:sticky;top:0;z-index:100;text-align:center;font-weight:500;letter-spacing:.1em;border-bottom:1px solid var(--border)}
+header{background:var(--surface);color:var(--text-1);padding:3vw 2.5vw;font-size:.85rem;position:sticky;top:0;z-index:100;text-align:center;font-weight:500;letter-spacing:.1em;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:center;gap:2vw}
+.header-user{font-size:.75rem;color:var(--text-2);font-weight:400}
 main{padding:0 0 12px}
 h2{font-size:1rem;margin:0 0 12px;font-weight:500;letter-spacing:.03em}
 .card{background:var(--surface);border:1px solid var(--border);border-radius:2px;padding:3.7vw 2.6vw;margin:2vw 1vw}
@@ -37,16 +38,16 @@ h2{font-size:1rem;margin:0 0 12px;font-weight:500;letter-spacing:.03em}
 .score-btn{padding:2vw 3vw;border:1px solid var(--border-2);border-radius:2px;font-size:.8rem;background:var(--surface);color:var(--text-2);cursor:pointer;transition:border-color .15s,background .15s}
 .score-btn.active{border-color:var(--accent);background:var(--accent-lt);color:var(--accent)}
 .section-label{font-size:.72rem;color:var(--text-2);letter-spacing:.1em;padding:3vw 2.5vw 1vw;font-weight:500}
-.raw-text{background:var(--surface-2);border:1px solid var(--border);border-radius:2px;padding:3.5vw 2.5vw;margin:2vw 1vw;font-size:.82rem;line-height:1.9;white-space:pre-wrap;color:var(--text-2)}
-.auth-input{width:100%;border:1px solid var(--border);border-radius:2px;padding:2.5vw;font-size:.9rem;font-family:inherit;background:var(--surface);color:var(--text-1);margin-bottom:2.5vw}
-.error-msg{color:var(--ng);font-size:.82rem;margin:1vw 0}
-.recovery-code-display{background:var(--accent-lt);border:1px solid var(--accent);border-radius:2px;padding:3vw;margin:2vw 0;text-align:center;font-size:1.3rem;font-weight:700;letter-spacing:.15em;color:var(--accent)}
 .back-btn{background:none;border:none;color:var(--text-2);font-size:.85rem;cursor:pointer;padding:2.5vw 2.5vw 0;display:flex;align-items:center;gap:1vw}
+.login-icon{font-size:2.5rem;margin-bottom:4vw;text-align:center}
 </style>
 </head>
 <body>
 
-<header id="app-header">土木2次</header>
+<header id="app-header">
+  <span>土木2次</span>
+  <span class="header-user" id="header-user"></span>
+</header>
 <main id="app-main"></main>
 
 <div class="loading-overlay" id="loading" style="display:none">
@@ -55,14 +56,23 @@ h2{font-size:1rem;margin:0 0 12px;font-weight:500;letter-spacing:.03em}
 
 <script>
 // ============================================================
+// Server-injected auth result (set after Google OAuth callback)
+// ============================================================
+var _serverAuth = null;
+try {
+  var _raw = '<?= serverAuthResult ?>';
+  if (_raw && _raw !== '') { _serverAuth = JSON.parse(_raw); }
+} catch(e) {}
+var _appExecUrl = '<?= appExecUrl ?>';
+
+// ============================================================
 // State
 // ============================================================
-var USER_KEY = localStorage.getItem('doboku2ji_userKey') || '';
-var DISPLAY_NAME = localStorage.getItem('doboku2ji_displayName') || '';
-var RECOVERY_CODE = localStorage.getItem('doboku2ji_recoveryCode') || '';
+var USER_KEY = '';
+var DISPLAY_NAME = '';
 
 var state = {
-  screen: 'home',   // home | year | question | auth | restore
+  screen: 'home',   // home | year | question | login
   years: [],
   questions: [],
   currentYear: '',
@@ -79,15 +89,20 @@ var state = {
 function showLoading() { document.getElementById('loading').style.display = 'flex'; }
 function hideLoading() { document.getElementById('loading').style.display = 'none'; }
 
-function setHeader(text) { document.getElementById('app-header').textContent = text; }
+function setHeader(text) {
+  document.getElementById('app-header').querySelector('span').textContent = text;
+}
+function setHeaderUser(name) {
+  var el = document.getElementById('header-user');
+  if (el) el.textContent = name ? name : '';
+}
 
 function render() {
   switch (state.screen) {
     case 'home':     renderHome(); break;
     case 'year':     renderYear(); break;
     case 'question': renderQuestion(); break;
-    case 'auth':     renderAuth(); break;
-    case 'restore':  renderRestore(); break;
+    case 'login':    renderLogin(); break;
   }
 }
 
@@ -110,99 +125,56 @@ function callApi(funcName, args) {
 }
 
 // ============================================================
-// Auth screen
+// Auth (Google OAuth)
 // ============================================================
-function renderAuth() {
+function initAuth() {
+  // 1. Check server-injected auth result (post-OAuth redirect)
+  if (_serverAuth && _serverAuth.userKey) {
+    USER_KEY = _serverAuth.userKey;
+    DISPLAY_NAME = _serverAuth.displayName || _serverAuth.email || '';
+    localStorage.setItem('doboku2ji_userKey', USER_KEY);
+    localStorage.setItem('doboku2ji_displayName', DISPLAY_NAME);
+    setHeaderUser(DISPLAY_NAME);
+    loadHome();
+    return;
+  }
+
+  // 2. Check localStorage (returning user)
+  var storedKey = localStorage.getItem('doboku2ji_userKey');
+  var storedName = localStorage.getItem('doboku2ji_displayName');
+  if (storedKey) {
+    USER_KEY = storedKey;
+    DISPLAY_NAME = storedName || '';
+    setHeaderUser(DISPLAY_NAME);
+    loadHome();
+    return;
+  }
+
+  // 3. No auth -> show login screen
+  state.screen = 'login';
+  render();
+}
+
+function renderLogin() {
   setHeader('土木2次');
-  var html = '<div class="card">' +
-    '<h2>名前を入力してください</h2>' +
-    '<p class="small">メモや自己採点を保存するために使います。</p>' +
-    '<input class="auth-input" id="auth-name" type="text" placeholder="例: 鈴木 太郎" maxlength="40">' +
-    '<div class="error-msg" id="auth-err"></div>' +
-    '<button class="btn" onclick="doRegister()">はじめる</button>' +
-    '<div style="margin-top:3vw;text-align:center">' +
-    '<button class="btn secondary btn-sm" onclick="showScreen(\'restore\')">復元コードがある方はこちら</button>' +
-    '</div>' +
-    '</div>';
-  document.getElementById('app-main').innerHTML = html;
-  var inp = document.getElementById('auth-name');
-  if (inp) inp.focus();
-}
-
-function doRegister() {
-  var name = (document.getElementById('auth-name').value || '').trim();
-  if (!name) { document.getElementById('auth-err').textContent = '名前を入力してください'; return; }
-  showLoading();
-  google.script.run
-    .withSuccessHandler(function(res) {
-      hideLoading();
-      if (res && res._error) {
-        document.getElementById('auth-err').textContent = res.message;
-        return;
-      }
-      saveUser(res.userKey, res.displayName, res.recoveryCode);
-      showRecoveryCode(res.recoveryCode);
-    })
-    .withFailureHandler(function(err) {
-      hideLoading();
-      document.getElementById('auth-err').textContent = '登録エラー: ' + (err.message || err);
-    })
-    .apiRegister(name, USER_KEY);
-}
-
-function showRecoveryCode(code) {
-  var html = '<div class="card">' +
-    '<h2>復元コードを保存してください</h2>' +
-    '<p class="small">別のデバイスでデータを引き継ぐときに使います。</p>' +
-    '<div class="recovery-code-display">' + code + '</div>' +
-    '<p class="small" style="margin-bottom:3vw">このコードはいつでも設定から確認できます。</p>' +
-    '<button class="btn" onclick="goHome()">学習をはじめる</button>' +
+  setHeaderUser('');
+  var loginUrl = _appExecUrl ? (_appExecUrl + '?oauthStart=1') : '#';
+  var html = '<div class="card" style="margin-top:8vw;text-align:center">' +
+    '<div class="login-icon">&#128274;</div>' +
+    '<h2>Googleアカウントでログイン</h2>' +
+    '<p class="small" style="margin-bottom:6vw">Googleのログイン画面に移動します。</p>' +
+    '<a target="_top" href="' + escapeHtml(loginUrl) + '" class="btn" style="text-decoration:none;display:inline-block;width:auto;padding:3vw 8vw">Googleでログイン</a>' +
     '</div>';
   document.getElementById('app-main').innerHTML = html;
 }
 
-function renderRestore() {
-  setHeader('土木2次');
-  var html = '<button class="back-btn" onclick="showScreen(\'auth\')">← 戻る</button>' +
-    '<div class="card">' +
-    '<h2>復元コードで引き継ぎ</h2>' +
-    '<input class="auth-input" id="restore-code" type="text" placeholder="6文字のコード" maxlength="6" style="text-transform:uppercase;letter-spacing:.1em">' +
-    '<div class="error-msg" id="restore-err"></div>' +
-    '<button class="btn" onclick="doRestore()">引き継ぐ</button>' +
-    '</div>';
-  document.getElementById('app-main').innerHTML = html;
-  var inp = document.getElementById('restore-code');
-  if (inp) inp.focus();
-}
-
-function doRestore() {
-  var code = (document.getElementById('restore-code').value || '').trim().toUpperCase();
-  if (!code) { document.getElementById('restore-err').textContent = 'コードを入力してください'; return; }
-  showLoading();
-  google.script.run
-    .withSuccessHandler(function(res) {
-      hideLoading();
-      if (res && res._error) {
-        document.getElementById('restore-err').textContent = res.message;
-        return;
-      }
-      saveUser(res.userKey, res.displayName, res.recoveryCode);
-      goHome();
-    })
-    .withFailureHandler(function(err) {
-      hideLoading();
-      document.getElementById('restore-err').textContent = '復元エラー: ' + (err.message || err);
-    })
-    .apiRestoreByCode(code, USER_KEY);
-}
-
-function saveUser(userKey, displayName, recoveryCode) {
-  USER_KEY = userKey;
-  DISPLAY_NAME = displayName;
-  RECOVERY_CODE = recoveryCode;
-  localStorage.setItem('doboku2ji_userKey', userKey);
-  localStorage.setItem('doboku2ji_displayName', displayName);
-  localStorage.setItem('doboku2ji_recoveryCode', recoveryCode);
+function logout_() {
+  USER_KEY = '';
+  DISPLAY_NAME = '';
+  localStorage.removeItem('doboku2ji_userKey');
+  localStorage.removeItem('doboku2ji_displayName');
+  state.screen = 'login';
+  render();
 }
 
 // ============================================================
@@ -227,21 +199,23 @@ function loadHome() {
     .then(function(res) {
       hideLoading();
       state.years = res.years || [];
+      state.screen = 'home';
       renderHome();
     })
     .catch(function(err) {
       hideLoading();
       document.getElementById('app-main').innerHTML =
-        '<div class="card"><p class="error-msg">読み込みエラー: ' + (err.message || err) + '</p>' +
-        '<button class="btn secondary" onclick="goHome()">再読み込み</button></div>';
+        '<div class="card"><p style="color:var(--ng);font-size:.82rem">読み込みエラー: ' + escapeHtml(err.message || String(err)) + '</p>' +
+        '<button class="btn secondary" style="margin-top:2vw" onclick="goHome()">再読み込み</button></div>';
     });
 }
 
 function renderHome() {
   setHeader('土木施工管理技士 2次');
+  setHeaderUser(DISPLAY_NAME);
 
   if (!USER_KEY) {
-    showScreen('auth');
+    showScreen('login');
     return;
   }
 
@@ -249,18 +223,18 @@ function renderHome() {
   if (state.years.length === 0) {
     html += '<div class="card"><p class="small">問題データがありません。<br>管理者に問い合わせてください。</p></div>';
   } else {
-    var years = state.years.slice().reverse(); // newest first
+    var years = state.years.slice().reverse();
     for (var i = 0; i < years.length; i++) {
       var y = years[i];
-      html += '<div class="year-card" onclick="loadYear(\'' + y.year + '\')">' +
-        '<span class="year-label">' + y.year + '年度</span>' +
-        '<span class="year-count">' + y.count + '問</span>' +
+      html += '<div class="year-card" onclick="loadYear(\'' + escapeHtml(String(y.year)) + '\')">' +
+        '<span class="year-label">' + escapeHtml(String(y.year)) + '年度</span>' +
+        '<span class="year-count">' + escapeHtml(String(y.count)) + '問</span>' +
         '</div>';
     }
   }
   html += '<div class="card" style="margin-top:4vw">' +
-    '<div class="small" style="color:var(--text-2)">ユーザー: ' + escapeHtml(DISPLAY_NAME) + '</div>' +
-    '<div class="small" style="margin-top:1vw">復元コード: <span style="font-weight:700;letter-spacing:.1em">' + escapeHtml(RECOVERY_CODE) + '</span></div>' +
+    '<div class="small" style="color:var(--text-2)">' + escapeHtml(DISPLAY_NAME) + '</div>' +
+    '<button class="btn secondary btn-sm" style="margin-top:2vw" onclick="logout_()">ログアウト</button>' +
     '</div>';
 
   document.getElementById('app-main').innerHTML = html;
@@ -295,8 +269,8 @@ function renderYear() {
     for (var i = 0; i < state.questions.length; i++) {
       var q = state.questions[i];
       var stemPreview = String(q.stem || '').replace(/[\r\n]+/g, ' ').substring(0, 80);
-      html += '<div class="q-row" onclick="loadQuestion(\'' + q.qId + '\')">' +
-        '<span class="q-num">問題' + q.number + '</span>' +
+      html += '<div class="q-row" onclick="loadQuestion(\'' + escapeHtml(String(q.qId)) + '\')">' +
+        '<span class="q-num">問題' + escapeHtml(String(q.number)) + '</span>' +
         '<span class="q-stem">' + escapeHtml(stemPreview) + '</span>' +
         '</div>';
     }
@@ -364,8 +338,8 @@ function renderQuestion() {
     '<div class="small" id="note-status" style="margin-top:1vw;color:var(--ok)"></div>' +
     '</div>';
 
-  var html = '<button class="back-btn" onclick="backToYear()">← ' + state.currentYear + '年度</button>' +
-    '<div class="section-label">' + escapeHtml(q.year) + '年度 問題' + q.number + '</div>' +
+  var html = '<button class="back-btn" onclick="backToYear()">← ' + escapeHtml(String(state.currentYear)) + '年度</button>' +
+    '<div class="section-label">' + escapeHtml(String(q.year)) + '年度 問題' + escapeHtml(String(q.number)) + '</div>' +
     (tagsHtml ? '<div style="padding:0 2.5vw 2vw">' + tagsHtml + '</div>' : '') +
     '<div class="stem-box">' + escapeHtml(String(q.stem || '')) + '</div>' +
     answerHtml +
@@ -403,7 +377,6 @@ function selectScore(score) {
   state.currentScore = score;
   var row = document.getElementById('self-score-row');
   if (row) row.innerHTML = renderScoreButtons(score);
-  // Auto-save score
   if (!USER_KEY) return;
   callApi('apiSaveSelfScore', [state.currentQ.qId, score])
     .catch(function(err) { console.error('score save error:', err); });
@@ -447,12 +420,7 @@ function escapeHtml(str) {
 // ============================================================
 // Boot
 // ============================================================
-if (!USER_KEY) {
-  state.screen = 'auth';
-  render();
-} else {
-  loadHome();
-}
+initAuth();
 </script>
 </body>
 </html>

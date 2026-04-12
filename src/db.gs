@@ -113,6 +113,15 @@ function appendRows_(sheet, rows) {
 // ============================================================
 // Config helpers
 // ============================================================
+
+function getConfigMap_() {
+  return getCachedConfig_();
+}
+
+function getConfigValue_(map, key, defVal) {
+  return map.hasOwnProperty(key) ? map[key] : defVal;
+}
+
 var _configCache = null;
 var _configCacheTs = 0;
 var CONFIG_CACHE_TTL = 300000; // 5 minutes in ms
