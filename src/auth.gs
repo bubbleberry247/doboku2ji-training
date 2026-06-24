@@ -1,4 +1,4 @@
-// auth.gs — Google OAuth 2.0 認可コードフロー（UserAccess ホワイトリストなし）
+// auth.gs — Google OAuth 2.0 認可コードフロー（UserAccess ホワイトリストあり）
 
 var APP_TITLE_ = '土木2次 過去問学習';
 var __clientUserKey = '';
@@ -73,6 +73,15 @@ function generateOAuthStartPage_() {
     .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
 }
 
+function toSafeTemplateJson_(value) {
+  return JSON.stringify(value)
+    .replace(/</g, String.fromCharCode(92) + 'u003c')
+    .replace(/>/g, String.fromCharCode(92) + 'u003e')
+    .replace(/&/g, String.fromCharCode(92) + 'u0026')
+    .replace(/\u2028/g, String.fromCharCode(92) + 'u2028')
+    .replace(/\u2029/g, String.fromCharCode(92) + 'u2029');
+}
+
 function handleOAuthCallback_(code, state) {
   try {
     var cache = CacheService.getScriptCache();
@@ -130,6 +139,8 @@ function handleOAuthCallback_(code, state) {
       return errorPage_('Googleアカウントからメールアドレスを取得できませんでした');
     }
 
+    ensureScriptOwnerInUserAccess_();
+
     var idPayload = JSON.parse(
       Utilities.newBlob(
         Utilities.base64DecodeWebSafe(idToken.split('.')[1])
@@ -142,13 +153,23 @@ function handleOAuthCallback_(code, state) {
 
     cache.put('oauth_done_' + state, '1', 300);
 
-    var user = ensureUser_(email, email, name);
+    var access = getUserAccessByEmail_(email);
+    if (!access || !access.active) {
+      Logger.log('[AUTH] blocked: email=' + email);
+      return errorPage_('このアカウントは登録されていません。管理者にお問い合わせください。');
+    }
 
-    var authResult = JSON.stringify({
+    var displayName = access.displayName || name;
+    var user = ensureUser_(email, email, displayName);
+
+    var authResult = {
       userKey: user.userKey,
-      displayName: user.displayName || name,
-      email: email
-    }).replace(/</g, '\\u003c');
+      displayName: displayName,
+      email: email,
+      role: access.role || 'user',
+      isAdmin: access.role === 'admin',
+      isManager: access.role === 'admin' || access.role === 'manager'
+    };
 
     Logger.log('[AUTH] success: email=' + email);
     return serveSpa_(authResult);
@@ -160,8 +181,9 @@ function handleOAuthCallback_(code, state) {
 
 function serveSpa_(authResult) {
   var template = HtmlService.createTemplateFromFile('index');
-  template.serverAuthResult = authResult || '';
-  template.appExecUrl = getAppExecUrl_();
+  var hasAuth = authResult && typeof authResult === 'object' && authResult.userKey;
+  template.serverAuthResult = hasAuth ? toSafeTemplateJson_(authResult) : '';
+  template.appExecUrl = toSafeTemplateJson_(getAppExecUrl_());
   return template.evaluate()
     .setTitle(APP_TITLE_)
     .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL)

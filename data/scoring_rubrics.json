@@ -1,0 +1,406 @@
+[
+  {
+    "qId": "Q_R7_01",
+    "responseType": "experience_essay",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "criteria": [
+        {
+          "name": "工事概要の明確性",
+          "maxScore": 2,
+          "description": "工事名、立場、発注者、場所、工期、工種、施工量が具体的"
+        },
+        {
+          "name": "品質管理の課題・検討・処置・評価",
+          "maxScore": 4,
+          "description": "現場状況、技術的課題、検討項目、対応処置、評価が対応"
+        },
+        {
+          "name": "環境対策の課題・検討・処置・評価",
+          "maxScore": 3,
+          "description": "環境対策の課題、検討、処置、評価が具体的"
+        },
+        {
+          "name": "施工管理者としての表現",
+          "maxScore": 1,
+          "description": "自分の立場で判断・周知・確認している"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ]
+    }
+  },
+  {
+    "qId": "Q_R7_02",
+    "responseType": "cloze_or_numeric",
+    "sourceQuality": "answer_key_available",
+    "scoreMode": "deterministic",
+    "maxScore": 10,
+    "reviewStatus": "ready",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "correctAnswers": {
+        "イ": "10",
+        "ロ": "構造",
+        "ハ": "組立図",
+        "ニ": "3.5",
+        "ホ": "通路"
+      },
+      "acceptedAnswers": {
+        "ニ": [
+          "3.5",
+          "3.5m",
+          "3.5メートル"
+        ]
+      },
+      "displayNotice": "正答キーに基づく採点です。",
+      "excludeFromTotal": false
+    }
+  },
+  {
+    "qId": "Q_R7_03",
+    "responseType": "technical_short_answer",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "criteria": [
+        {
+          "name": "設問要求の充足",
+          "maxScore": 2,
+          "description": "指定された個数・項目・条件に答えている"
+        },
+        {
+          "name": "必須概念の理解",
+          "maxScore": 3,
+          "description": "土木施工管理上の主要概念を正しく扱う"
+        },
+        {
+          "name": "具体性と施工妥当性",
+          "maxScore": 3,
+          "description": "施工手順、管理値、確認方法、是正が具体的で妥当"
+        },
+        {
+          "name": "因果関係と表現",
+          "maxScore": 2,
+          "description": "課題、処置、効果が対応し読みやすい"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ]
+    }
+  },
+  {
+    "qId": "Q_R7_04",
+    "responseType": "cloze_or_numeric",
+    "sourceQuality": "answer_key_available",
+    "scoreMode": "deterministic",
+    "maxScore": 10,
+    "reviewStatus": "ready",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "correctAnswers": {
+        "イ": "横断",
+        "ロ": "浸透",
+        "ハ": "側方",
+        "ニ": "腹付け",
+        "ホ": "動態観測"
+      },
+      "acceptedAnswers": {
+        "ロ": [
+          "浸透",
+          "雨水浸透"
+        ],
+        "ハ": [
+          "側方",
+          "側方流動"
+        ],
+        "ホ": [
+          "動態観測",
+          "計測管理"
+        ]
+      },
+      "displayNotice": "正答キーに基づく採点です。",
+      "excludeFromTotal": false
+    }
+  },
+  {
+    "qId": "Q_R7_05",
+    "responseType": "cloze_or_numeric",
+    "sourceQuality": "answer_key_available",
+    "scoreMode": "deterministic",
+    "maxScore": 10,
+    "reviewStatus": "ready",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "correctAnswers": {
+        "イ": "3次元データ",
+        "ロ": "熱",
+        "ハ": "かぶり",
+        "ニ": "防錆",
+        "ホ": "超音波"
+      },
+      "acceptedAnswers": {
+        "イ": [
+          "3次元データ",
+          "三次元データ",
+          "3Dデータ"
+        ],
+        "ホ": [
+          "超音波",
+          "超音波探傷検査"
+        ]
+      },
+      "displayNotice": "正答キーに基づく採点です。",
+      "excludeFromTotal": false
+    }
+  },
+  {
+    "qId": "Q_R7_06",
+    "responseType": "cloze_or_numeric",
+    "sourceQuality": "answer_key_available",
+    "scoreMode": "deterministic",
+    "maxScore": 10,
+    "reviewStatus": "ready",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "correctAnswers": {
+        "イ": "台帳",
+        "ロ": "試掘",
+        "ハ": "表示板",
+        "ニ": "立会い",
+        "ホ": "防護"
+      },
+      "acceptedAnswers": {
+        "ニ": [
+          "立会い",
+          "立会"
+        ]
+      },
+      "displayNotice": "正答キーに基づく採点です。",
+      "excludeFromTotal": false
+    }
+  },
+  {
+    "qId": "Q_R7_07",
+    "responseType": "cloze_or_numeric",
+    "sourceQuality": "answer_key_available",
+    "scoreMode": "deterministic",
+    "maxScore": 10,
+    "reviewStatus": "ready",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "correctAnswers": {
+        "イ": "調査",
+        "ロ": "協議",
+        "ハ": "制約",
+        "ニ": "公衆",
+        "ホ": "指揮命令"
+      },
+      "acceptedAnswers": {
+        "ハ": [
+          "制約",
+          "制約条件"
+        ],
+        "ニ": [
+          "公衆",
+          "公衆災害"
+        ],
+        "ホ": [
+          "指揮命令",
+          "指揮命令系統"
+        ]
+      },
+      "displayNotice": "正答キーに基づく採点です。",
+      "excludeFromTotal": false
+    }
+  },
+  {
+    "qId": "Q_R7_08",
+    "responseType": "technical_short_answer",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "criteria": [
+        {
+          "name": "設問要求の充足",
+          "maxScore": 2,
+          "description": "指定された個数・項目・条件に答えている"
+        },
+        {
+          "name": "必須概念の理解",
+          "maxScore": 3,
+          "description": "土木施工管理上の主要概念を正しく扱う"
+        },
+        {
+          "name": "具体性と施工妥当性",
+          "maxScore": 3,
+          "description": "施工手順、管理値、確認方法、是正が具体的で妥当"
+        },
+        {
+          "name": "因果関係と表現",
+          "maxScore": 2,
+          "description": "課題、処置、効果が対応し読みやすい"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ]
+    }
+  },
+  {
+    "qId": "Q_R7_09",
+    "responseType": "mixed",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "criteria": [
+        {
+          "name": "設問要求の充足",
+          "maxScore": 2,
+          "description": "指定された個数・項目・条件に答えている"
+        },
+        {
+          "name": "必須概念の理解",
+          "maxScore": 3,
+          "description": "土木施工管理上の主要概念を正しく扱う"
+        },
+        {
+          "name": "具体性と施工妥当性",
+          "maxScore": 3,
+          "description": "施工手順、管理値、確認方法、是正が具体的で妥当"
+        },
+        {
+          "name": "因果関係と表現",
+          "maxScore": 2,
+          "description": "課題、処置、効果が対応し読みやすい"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ]
+    }
+  },
+  {
+    "qId": "Q_R7_10",
+    "responseType": "technical_short_answer",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "criteria": [
+        {
+          "name": "設問要求の充足",
+          "maxScore": 2,
+          "description": "指定された個数・項目・条件に答えている"
+        },
+        {
+          "name": "必須概念の理解",
+          "maxScore": 3,
+          "description": "土木施工管理上の主要概念を正しく扱う"
+        },
+        {
+          "name": "具体性と施工妥当性",
+          "maxScore": 3,
+          "description": "施工手順、管理値、確認方法、是正が具体的で妥当"
+        },
+        {
+          "name": "因果関係と表現",
+          "maxScore": 2,
+          "description": "課題、処置、効果が対応し読みやすい"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ]
+    }
+  },
+  {
+    "qId": "Q_R7_11",
+    "responseType": "mixed",
+    "sourceQuality": "reference_only",
+    "scoreMode": "ai_estimate",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": true,
+      "criteria": [
+        {
+          "name": "設問要求の充足",
+          "maxScore": 2,
+          "description": "指定された個数・項目・条件に答えている"
+        },
+        {
+          "name": "必須概念の理解",
+          "maxScore": 3,
+          "description": "土木施工管理上の主要概念を正しく扱う"
+        },
+        {
+          "name": "具体性と施工妥当性",
+          "maxScore": 3,
+          "description": "施工手順、管理値、確認方法、是正が具体的で妥当"
+        },
+        {
+          "name": "因果関係と表現",
+          "maxScore": 2,
+          "description": "課題、処置、効果が対応し読みやすい"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ]
+    }
+  }
+]

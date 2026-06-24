@@ -1,0 +1,183 @@
+{
+  "policyVersion": "2026-06-23-r7-curated-reference-v1",
+  "project": "doboku2ji-training",
+  "exam": "1級土木施工管理技術検定 第二次検定",
+  "year": "R7",
+  "contentPolicy": {
+    "thirdPartyOriginalStored": false,
+    "storeVerbatimAnswersInRepo": false,
+    "publicDisplayLabel": "学習用参考答案",
+    "internalReferenceStatus": "curated_reference",
+    "notice": "この参考答案は公式解答ではありません。公開問題、民間解答例、一般的な施工管理知識を参考に、学習用に独自作成したものです。"
+  },
+  "officialSources": [
+    {
+      "sourceId": "jctc_problem_page",
+      "name": "全国建設研修センター 試験問題・正答肢",
+      "url": "https://www.jctc.jp/mondai/",
+      "usage": "official_problem_text_and_publication_scope",
+      "note": "令和7年度 1級土木施工管理技術検定 第二次検定の試験問題を確認する。"
+    },
+    {
+      "sourceId": "dobokujira_pdf_links",
+      "name": "どぼくじら 1級土木施工管理技士 過去問PDFリンク集",
+      "url": "https://dobokujira.com/1doboku-pastproblems/",
+      "usage": "official_pdf_link_locator",
+      "note": "公式PDFへの補助導線として扱い、正答根拠としては扱わない。"
+    }
+  ],
+  "referenceSourceCandidates": [
+    {
+      "sourceId": "ias_r7_doboku速報",
+      "name": "地域開発研究所 令和7年度 1級土木二次検定 解答速報",
+      "url": "https://www.ias.or.jp/topic/2025/1021_1113.html",
+      "usage": "reference_only_no_verbatim_storage",
+      "coverageEstimate": "R7 answer example page"
+    },
+    {
+      "sourceId": "tac_r7_doboku",
+      "name": "TAC 1級土木施工管理技士 試験速報",
+      "url": "https://www.tac-school.co.jp/kouza_doboku/doboku_shikenkouhyou.html",
+      "usage": "commentary_and_reference_only",
+      "coverageEstimate": "R7 commentary and guidance"
+    },
+    {
+      "sourceId": "nikken_r7_doboku",
+      "name": "日建学院 1級土木施工管理技士 二次検定解答試案・総評",
+      "url": "https://www.ksknet.co.jp/nikken/guidance/engineering1q/road/shian/",
+      "usage": "reference_request_or_summary_only",
+      "coverageEstimate": "R7 answer draft and summary by request/page"
+    },
+    {
+      "sourceId": "kyushu_r7_doboku_pdf",
+      "name": "九州建設専門学院 令和7年度 1級土木施工管理技術検定 2次試験 解答試案",
+      "url": "https://s3-us-west-1.amazonaws.com/static.l-mate.net/pdf/answer_doboku/2025-01_02.pdf",
+      "usage": "reference_only_no_verbatim_storage",
+      "coverageEstimate": "R7 question 2-11 answer draft"
+    },
+    {
+      "sourceId": "kensetsu_data_r7_doboku",
+      "name": "建設データ 令和7年度1級土木施工管理技士第二次検定の解説",
+      "url": "https://kensetsu-data.co.jp/journal/post-6051/",
+      "usage": "overview_and_question_structure_reference",
+      "coverageEstimate": "R7 structure and trend"
+    },
+    {
+      "sourceId": "ias_book_2026_doboku",
+      "name": "地域開発研究所 1級土木施工管理第二次検定問題解説集 2026年版",
+      "url": "https://prtimes.jp/main/html/rd/p/000000081.000157640.html",
+      "usage": "purchased_book_reference_only_no_verbatim_storage",
+      "coverageEstimate": "H28-R7 all 110 questions"
+    }
+  ],
+  "estimatedCoverage": {
+    "officialProblemQuestions": 11,
+    "officialDeterministicAnswerQuestions": 0,
+    "curatedReferenceCandidateQuestions": 11,
+    "currentlyPublishedQuestions": 1,
+    "currentlyNeedsModelAnswerQuestions": 10,
+    "imageRequiredQuestions": 1
+  },
+  "targetQuestions": [
+    {
+      "qId": "Q_R7_01",
+      "questionNumber": 1,
+      "currentQuestionType": "essay",
+      "currentStatus": "published",
+      "targetStatus": "curated_reference",
+      "priority": "high",
+      "referencePlan": "経験記述として、工事概要、品質管理、環境対策、検討項目、対応処置、評価の型を整理する。"
+    },
+    {
+      "qId": "Q_R7_02",
+      "questionNumber": 2,
+      "currentQuestionType": "essay",
+      "currentStatus": "needs_model_answer",
+      "targetStatus": "curated_reference_candidate",
+      "priority": "high",
+      "referencePlan": "必須問題として、正答キー又は論点が確認できるまで公開採点対象にしない。"
+    },
+    {
+      "qId": "Q_R7_03",
+      "questionNumber": 3,
+      "currentQuestionType": "essay",
+      "currentStatus": "needs_model_answer",
+      "targetStatus": "curated_reference_candidate",
+      "priority": "high",
+      "referencePlan": "必須記述問題として、設問要求、除外条件、施工管理上の妥当性を整理する。"
+    },
+    {
+      "qId": "Q_R7_04",
+      "questionNumber": 4,
+      "currentQuestionType": "essay",
+      "currentStatus": "needs_model_answer",
+      "targetStatus": "curated_reference_candidate",
+      "priority": "medium",
+      "referencePlan": "選択問題(1)の穴埋め又は短答として、正答キー確認後に採点方式を決める。"
+    },
+    {
+      "qId": "Q_R7_05",
+      "questionNumber": 5,
+      "currentQuestionType": "essay",
+      "currentStatus": "needs_model_answer",
+      "targetStatus": "curated_reference_candidate",
+      "priority": "medium",
+      "referencePlan": "選択問題(1)の穴埋め又は短答として、正答キー確認後に採点方式を決める。"
+    },
+    {
+      "qId": "Q_R7_06",
+      "questionNumber": 6,
+      "currentQuestionType": "essay",
+      "currentStatus": "needs_model_answer",
+      "targetStatus": "curated_reference_candidate",
+      "priority": "medium",
+      "referencePlan": "選択問題(1)の穴埋め又は短答として、正答キー確認後に採点方式を決める。"
+    },
+    {
+      "qId": "Q_R7_07",
+      "questionNumber": 7,
+      "currentQuestionType": "essay",
+      "currentStatus": "needs_model_answer",
+      "targetStatus": "curated_reference_candidate",
+      "priority": "medium",
+      "referencePlan": "選択問題(1)の穴埋め又は短答として、正答キー確認後に採点方式を決める。"
+    },
+    {
+      "qId": "Q_R7_08",
+      "questionNumber": 8,
+      "currentQuestionType": "essay",
+      "currentStatus": "needs_model_answer",
+      "targetStatus": "curated_reference_candidate",
+      "priority": "medium",
+      "referencePlan": "選択問題(2)の記述問題として、施工条件、管理項目、理由、具体的処置を整理する。"
+    },
+    {
+      "qId": "Q_R7_09",
+      "questionNumber": 9,
+      "currentQuestionType": "essay",
+      "currentStatus": "needs_model_answer",
+      "targetStatus": "curated_reference_candidate",
+      "priority": "medium",
+      "referencePlan": "選択問題(2)の記述問題として、施工条件、管理項目、理由、具体的処置を整理する。"
+    },
+    {
+      "qId": "Q_R7_10",
+      "questionNumber": 10,
+      "currentQuestionType": "essay",
+      "currentStatus": "needs_model_answer",
+      "targetStatus": "curated_reference_candidate",
+      "priority": "medium",
+      "referencePlan": "選択問題(2)の記述問題として、施工条件、管理項目、理由、具体的処置を整理する。"
+    },
+    {
+      "qId": "Q_R7_11",
+      "questionNumber": 11,
+      "currentQuestionType": "essay",
+      "currentStatus": "needs_model_answer",
+      "targetStatus": "curated_reference_candidate_needs_figure",
+      "priority": "medium",
+      "imageRequired": true,
+      "referencePlan": "図表が必要な問題として、図表画像登録後に論点整理と採点方式を決める。"
+    }
+  ]
+}

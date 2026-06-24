@@ -5,7 +5,11 @@ var SHEETS = {
   Users: 'Users',
   QuestionBank: 'QuestionBank',
   Notes: 'Notes',
-  SelfScores: 'SelfScores'
+  AnswerDrafts: 'AnswerDrafts',
+  ScoringRubrics: 'ScoringRubrics',
+  AiGradings: 'AiGradings',
+  SelfScores: 'SelfScores',
+  UserAccess: 'UserAccess'
 };
 
 var HEADERS = {};
@@ -13,14 +17,30 @@ HEADERS[SHEETS.Config] = ['key', 'value'];
 HEADERS[SHEETS.Users] = ['userKey', 'email', 'displayName', 'createdAt', 'recoveryCode'];
 HEADERS[SHEETS.QuestionBank] = [
   'qId', 'year', 'number', 'questionType',
-  'stem', 'modelAnswer', 'tags', 'status', 'updatedAt'
+  'stem', 'modelAnswer', 'tags', 'status', 'imageRequired', 'imageUrls', 'updatedAt'
 ];
 HEADERS[SHEETS.Notes] = [
-  'noteId', 'userKey', 'qId', 'noteText', 'updatedAt'
+  'noteId', 'userKey', 'qId', 'noteText', 'selfScore', 'createdAt', 'updatedAt'
+];
+HEADERS[SHEETS.AnswerDrafts] = [
+  'userKey', 'qId', 'draftText', 'updatedAt'
+];
+HEADERS[SHEETS.ScoringRubrics] = [
+  'qId', 'responseType', 'sourceQuality', 'scoreMode',
+  'maxScore', 'rubricJson', 'reviewStatus', 'updatedAt'
+];
+HEADERS[SHEETS.AiGradings] = [
+  'gradingId', 'userKey', 'qId', 'answerText', 'answerHash',
+  'score', 'maxScore', 'scoreMode', 'sourceQuality', 'reviewStatus',
+  'overallComment', 'criteriaJson', 'flagsJson', 'rawJson', 'model',
+  'createdAt', 'inputTokens', 'outputTokens', 'totalTokens',
+  'cachedInputTokens', 'reasoningTokens', 'estimatedCostUsd',
+  'estimatedCostJpy', 'pricingJson'
 ];
 HEADERS[SHEETS.SelfScores] = [
   'scoreId', 'userKey', 'qId', 'score', 'updatedAt'
 ];
+HEADERS[SHEETS.UserAccess] = ['email', 'role', 'managerEmail', 'active', 'updatedAt', 'displayName', 'showInDashboard'];
 
 // ============================================================
 // DB ID management
@@ -67,6 +87,24 @@ function ensureSheet_(ss, name) {
 
 function setHeaders_(sheet, headers) {
   sheet.getRange(1, 1, 1, headers.length).setValues([headers]);
+  sheet.setFrozenRows(1);
+}
+
+function ensureSheetColumns_(sheet, headers) {
+  var lastCol = Math.max(sheet.getLastColumn(), 1);
+  var existing = sheet.getRange(1, 1, 1, lastCol).getValues()[0]
+    .map(function(h, i) { return normalizeHeader_(h, i); })
+    .filter(function(h) { return h; });
+  if (!existing.length) {
+    setHeaders_(sheet, headers);
+    return;
+  }
+  var missing = [];
+  headers.forEach(function(h) {
+    if (existing.indexOf(h) < 0) missing.push(h);
+  });
+  if (!missing.length) return;
+  sheet.getRange(1, existing.length + 1, 1, missing.length).setValues([missing]);
   sheet.setFrozenRows(1);
 }
 
@@ -122,6 +160,25 @@ function getConfigValue_(map, key, defVal) {
   return map.hasOwnProperty(key) ? map[key] : defVal;
 }
 
+function setConfigValue_(key, value) {
+  var sh = getSheet_(SHEETS.Config);
+  var values = sh.getDataRange().getValues();
+  for (var i = 1; i < values.length; i++) {
+    if (String(values[i][0] || '').trim() === String(key)) {
+      sh.getRange(i + 1, 2).setValue(value);
+      _configCache = null;
+      return;
+    }
+  }
+  sh.appendRow([key, value]);
+  _configCache = null;
+}
+
+function ensureDoboku2jiScheduleConfig_() {
+  setConfigValue_('PROGRAM_START_DATE', '2026-07-01');
+  setConfigValue_('EXAM_DATE', '2026-10-04');
+}
+
 var _configCache = null;
 var _configCacheTs = 0;
 var CONFIG_CACHE_TTL = 300000; // 5 minutes in ms
@@ -168,7 +225,25 @@ function findUserByRecoveryCode_(code) {
 
 function ensureUser_(userKey, email, displayName) {
   var existing = findUserByKey_(userKey);
-  if (existing) return existing;
+  if (existing) {
+    if (displayName && existing.displayName !== displayName) {
+      var sh0 = getSheet_(SHEETS.Users);
+      var values0 = sh0.getDataRange().getValues();
+      var headers0 = values0[0].map(function(h, i) { return normalizeHeader_(h, i); });
+      var keyIdx0 = headers0.indexOf('userKey');
+      var nameIdx0 = headers0.indexOf('displayName');
+      if (keyIdx0 >= 0 && nameIdx0 >= 0) {
+        for (var i0 = 1; i0 < values0.length; i0++) {
+          if (String(values0[i0][keyIdx0]) === String(userKey)) {
+            sh0.getRange(i0 + 1, nameIdx0 + 1).setValue(displayName);
+            existing.displayName = displayName;
+            break;
+          }
+        }
+      }
+    }
+    return existing;
+  }
   var now = new Date().toISOString();
   var code = generateRecoveryCode_();
   var sh = getSheet_(SHEETS.Users);
@@ -244,6 +319,7 @@ function getNoteByUserAndQ_(userKey, qId) {
 
 function upsertNote_(userKey, qId, noteText) {
   var sh = getSheet_(SHEETS.Notes);
+  ensureSheetColumns_(sh, HEADERS[SHEETS.Notes]);
   var values = sh.getDataRange().getValues();
   if (values.length > 1) {
     var headers = values[0].map(function(h, i) { return normalizeHeader_(h, i); });
@@ -251,11 +327,15 @@ function upsertNote_(userKey, qId, noteText) {
     var qIdx = headers.indexOf('qId');
     var txtIdx = headers.indexOf('noteText');
     var tsIdx = headers.indexOf('updatedAt');
+    var createdIdx = headers.indexOf('createdAt');
     for (var i = 1; i < values.length; i++) {
       if (String(values[i][ukIdx]) === String(userKey) &&
           String(values[i][qIdx]) === String(qId)) {
         sh.getRange(i + 1, txtIdx + 1).setValue(noteText);
         sh.getRange(i + 1, tsIdx + 1).setValue(new Date().toISOString());
+        if (createdIdx >= 0 && !values[i][createdIdx]) {
+          sh.getRange(i + 1, createdIdx + 1).setValue(new Date().toISOString());
+        }
         return;
       }
     }
@@ -263,7 +343,7 @@ function upsertNote_(userKey, qId, noteText) {
   // Insert new
   var noteId = 'N_' + userKey + '_' + qId + '_' + Date.now();
   var now = new Date().toISOString();
-  appendRows_(sh, [[noteId, userKey, qId, noteText, now]]);
+  appendRows_(sh, [[noteId, userKey, qId, noteText, 0, now, now]]);
 }
 
 // ============================================================
