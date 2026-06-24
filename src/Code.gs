@@ -1,6 +1,6 @@
 // Code.gs — entry point for doboku2ji-training GAS webapp
 
-var DOBOKU2JI_BUILD_VERSION_ = '2026-06-24-answer-flow-v4';
+var DOBOKU2JI_BUILD_VERSION_ = '2026-06-24-answer-flow-v5';
 
 function doGet(e) {
   // Auto-setup on first access
