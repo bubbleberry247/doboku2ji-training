@@ -1274,7 +1274,7 @@ function applyLoadedQuestion_(res, qId) {
   state.submissionHistory = res.submissionHistory || [];
   state.rubricStatus = res.rubricStatus || null;
   state.latestAiGrading = res.latestAiGrading || null;
-  state.aiGrading = selectCurrentAnswerAiGrading_(state.latestAiGrading, state.draftAnswer);
+  state.aiGrading = isMiniPractice_() ? null : selectCurrentAnswerAiGrading_(state.latestAiGrading, state.draftAnswer);
   state.answerVisible = false;
   state.noteChanged = false;
   state.screen = 'question';
@@ -1399,7 +1399,8 @@ function isMiniPractice_() {
 }
 
 function syncCurrentQuestionGrading_(answerText) {
-  var next = selectCurrentAnswerAiGrading_(state.latestAiGrading, answerText);
+  var source = state.aiGrading || (isMiniPractice_() ? null : state.latestAiGrading);
+  var next = selectCurrentAnswerAiGrading_(source, answerText);
   if (state.aiGrading === next) return;
   state.aiGrading = next;
   refreshAiPanel_();
