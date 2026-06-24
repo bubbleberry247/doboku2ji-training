@@ -610,6 +610,7 @@ function apiGetPracticeResult(qIds, title, clientUserKey) {
         includeAiScore: !!includeAiScore
       };
     });
+    var practiceSummary = buildDobokuPracticeSummary_(rows, scoreSum, maxScoreSum, aiGradedCount);
     return toSerializable_({
       title: String(title || '演習結果'),
       total: ids.length,
@@ -621,11 +622,104 @@ function apiGetPracticeResult(qIds, title, clientUserKey) {
       aiScorePct: maxScoreSum > 0 ? Math.round(scoreSum / maxScoreSum * 1000) / 10 : 0,
       estimatedCostUsd: roundDobokuCost_(estimatedCostUsdSum, 6),
       estimatedCostJpy: roundDobokuCost_(estimatedCostJpySum, 2),
+      practiceSummary: practiceSummary,
       rows: rows
     });
   } catch (e) {
     return { _error: true, message: String(e.message || e) };
   }
+}
+
+function buildDobokuPracticeSummary_(rows, scoreSum, maxScoreSum, aiGradedCount) {
+  var gradedRows = (rows || []).filter(function(row) {
+    return row && row.includeAiScore && row.aiGrading;
+  });
+  if (!gradedRows.length) {
+    return {
+      headline: 'AI採点済みの答案がまだありません。',
+      scoreComment: '結果を見る前に、各問題の答案を入力してAI採点してください。',
+      weakTags: [],
+      strengths: [],
+      nextActions: []
+    };
+  }
+  var pct = maxScoreSum > 0 ? Math.round(scoreSum / maxScoreSum * 1000) / 10 : 0;
+  var headline = pct >= 90
+    ? '高得点圏です。課題、対応処置、評価のつながりを保てています。'
+    : (pct >= 75
+      ? '合格圏に近い答案です。現場条件と評価の具体性をもう一段足しましょう。'
+      : '骨子はあります。現場状況、技術的課題、検討項目、対応処置の対応を優先して補強しましょう。');
+
+  var improvementTexts = [];
+  var strengthTexts = [];
+  gradedRows.forEach(function(row) {
+    var grading = row.aiGrading || {};
+    var flags = grading.flags || {};
+    collectDobokuSummaryTexts_(strengthTexts, flags.strengths, 4);
+    collectDobokuSummaryTexts_(strengthTexts, grading.overallComment ? [grading.overallComment] : [], 2);
+    collectDobokuSummaryTexts_(improvementTexts, flags.improvements, 5);
+    collectDobokuSummaryTexts_(improvementTexts, flags.fullScoreHints, 5);
+    collectDobokuSummaryTexts_(improvementTexts, flags.addableExamples, 4);
+    collectDobokuSummaryTexts_(improvementTexts, flags.warnings, 4);
+    (grading.criteria || []).forEach(function(c) {
+      if (Number(c.score || 0) < Number(c.maxScore || 0)) {
+        collectDobokuSummaryTexts_(improvementTexts, [c.comment || c.name], 4);
+      }
+    });
+  });
+
+  var tags = buildDobokuPracticeWeakTags_(improvementTexts.join(' '));
+  return {
+    headline: headline,
+    scoreComment: 'AI推定合計は ' + (Math.round(scoreSum * 10) / 10) + ' / ' + (Math.round(maxScoreSum * 10) / 10) + ' 点です。採点済み ' + aiGradedCount + ' 問をもとに整理しています。',
+    weakTags: tags,
+    strengths: uniqueDobokuSummaryTexts_(strengthTexts).slice(0, 3),
+    nextActions: uniqueDobokuSummaryTexts_(improvementTexts).slice(0, 5)
+  };
+}
+
+function collectDobokuSummaryTexts_(target, items, limit) {
+  if (!Array.isArray(items)) return;
+  items.forEach(function(item) {
+    if (target.length >= limit) return;
+    var text = String(item || '').trim();
+    if (text) target.push(text);
+  });
+}
+
+function uniqueDobokuSummaryTexts_(items) {
+  var seen = {};
+  var out = [];
+  (items || []).forEach(function(item) {
+    var text = String(item || '').trim();
+    if (!text || seen[text]) return;
+    seen[text] = true;
+    out.push(text);
+  });
+  return out;
+}
+
+function buildDobokuPracticeWeakTags_(text) {
+  var src = String(text || '');
+  var defs = [
+    { tag: '工事概要不足', words: ['工事概要', '立場', '施工量', '発注者', '工期'] },
+    { tag: '現場条件不足', words: ['現場状況', '周辺', '条件', '制約', '具体'] },
+    { tag: '技術的課題不足', words: ['技術的課題', '課題', '品質管理上', '環境対策上'] },
+    { tag: '検討項目不足', words: ['検討項目', '検討した項目', '検討'] },
+    { tag: '対応処置不足', words: ['対応処置', '処置', '対策', '管理方法'] },
+    { tag: '評価不足', words: ['評価', '結果', '効果', '確認結果'] },
+    { tag: '記録・基準不足', words: ['記録', '基準値', '試験値', '管理値', '頻度'] },
+    { tag: '図表読み取り不足', words: ['図表', '施工手順', '番号', '工種名'] },
+    { tag: '条件違反注意', words: ['条件違反', '除く', '不可', '安全管理'] }
+  ];
+  var tags = [];
+  defs.forEach(function(def) {
+    if (tags.length >= 4) return;
+    var hit = def.words.some(function(w) { return src.indexOf(w) >= 0; });
+    if (hit) tags.push(def.tag);
+  });
+  if (!tags.length) tags.push('具体性の追加');
+  return tags;
 }
 
 function apiSaveDraft(qId, draftText, clientUserKey) {

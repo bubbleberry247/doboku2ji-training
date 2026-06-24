@@ -1,6 +1,6 @@
 // Code.gs — entry point for doboku2ji-training GAS webapp
 
-var DOBOKU2JI_BUILD_VERSION_ = '2026-06-24-mini-grade-state-v9';
+var DOBOKU2JI_BUILD_VERSION_ = '2026-06-24-practice-summary-v1';
 
 function doGet(e) {
   // Auto-setup on first access
