@@ -293,6 +293,7 @@ function setHeaderUser(name) {
 }
 
 function render() {
+  setHeaderUser(state.screen === 'home' ? DISPLAY_NAME : '');
   switch (state.screen) {
     case 'home':     renderHome(); break;
     case 'year':     renderYear(); break;
@@ -642,7 +643,7 @@ function renderHomeNav_(active) {
 
 function renderHome() {
   setHeader(APP_TITLE_);
-  setHeaderUser('');
+  setHeaderUser(DISPLAY_NAME);
 
   if (!USER_KEY) {
     showScreen('login');
@@ -1561,15 +1562,6 @@ function renderQuestion() {
   if (!q) { goHome(); return; }
   setHeader(formatListTitle_(state.currentYear) + ' 問題' + q.number);
 
-  var tagsHtml = '';
-  if (q.tags) {
-    var tagList = String(q.tags).split(/[,、]/);
-    for (var t = 0; t < tagList.length; t++) {
-      var tag = tagList[t].trim();
-      if (tag) tagsHtml += '<span class="tag">' + escapeHtml(tag) + '</span>';
-    }
-  }
-
   var mediaHtml = renderQuestionMedia_(q);
   var mobileMediaHtml = mediaHtml ? '<div class="question-media-mobile">' + mediaHtml + '</div>' : '';
   var desktopMediaHtml = mediaHtml ? '<aside class="question-media-desktop">' + mediaHtml + '</aside>' : '';
@@ -1612,7 +1604,6 @@ function renderQuestion() {
 
   var html = '<button class="back-btn" onclick="backToYear()">← ' + escapeHtml(formatListTitle_(state.currentYear)) + '</button>' +
     '<div class="section-label">' + escapeHtml(String(q.year)) + '年度 問題' + escapeHtml(String(q.number)) + '</div>' +
-    (tagsHtml ? '<div style="padding:0 2.5vw 2vw">' + tagsHtml + '</div>' : '') +
     detailHtml;
 
   document.getElementById('app-main').innerHTML = html;
