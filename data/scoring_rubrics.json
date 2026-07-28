@@ -64,7 +64,7 @@
           "3.5メートル"
         ]
       },
-      "displayNotice": "正答キーに基づく採点です。",
+      "displayNotice": "学習用正答キーに基づく採点です。公式解答ではありません。",
       "excludeFromTotal": false
     }
   },
@@ -140,7 +140,7 @@
           "計測管理"
         ]
       },
-      "displayNotice": "正答キーに基づく採点です。",
+      "displayNotice": "学習用正答キーに基づく採点です。公式解答ではありません。",
       "excludeFromTotal": false
     }
   },
@@ -171,7 +171,7 @@
           "超音波探傷検査"
         ]
       },
-      "displayNotice": "正答キーに基づく採点です。",
+      "displayNotice": "学習用正答キーに基づく採点です。公式解答ではありません。",
       "excludeFromTotal": false
     }
   },
@@ -197,7 +197,7 @@
           "立会"
         ]
       },
-      "displayNotice": "正答キーに基づく採点です。",
+      "displayNotice": "学習用正答キーに基づく採点です。公式解答ではありません。",
       "excludeFromTotal": false
     }
   },
@@ -231,7 +231,7 @@
           "指揮命令系統"
         ]
       },
-      "displayNotice": "正答キーに基づく採点です。",
+      "displayNotice": "学習用正答キーに基づく採点です。公式解答ではありません。",
       "excludeFromTotal": false
     }
   },
@@ -401,6 +401,5814 @@
         "10点に近づく追記例",
         "条件違反があれば警告"
       ]
+    }
+  },
+  {
+    "qId": "Q_R6_01",
+    "responseType": "experience_essay",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "criteria": [
+        {
+          "name": "工事概要の明確性",
+          "maxScore": 2,
+          "description": "工事名、立場、発注者、場所、工期、工種、施工量が具体的"
+        },
+        {
+          "name": "安全管理の課題・検討・処置・評価",
+          "maxScore": 4,
+          "description": "現場状況、安全管理上の技術的課題、検討項目、対応処置、評価が対応している"
+        },
+        {
+          "name": "施工計画の事前調査・反映・評価",
+          "maxScore": 3,
+          "description": "事前調査で判明した施工上の課題、施工計画への反映、評価が具体的で、設問1と重複しない"
+        },
+        {
+          "name": "施工管理者としての表現",
+          "maxScore": 1,
+          "description": "自分の立場で判断、周知、確認、是正している"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ]
+    }
+  },
+  {
+    "qId": "Q_R6_02",
+    "responseType": "cloze_or_numeric",
+    "sourceQuality": "answer_key_available",
+    "scoreMode": "deterministic",
+    "maxScore": 10,
+    "reviewStatus": "ready",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "correctAnswers": {
+        "イ": "強度",
+        "ロ": "衝撃",
+        "ハ": "1",
+        "ニ": "引張",
+        "ホ": "垂直"
+      },
+      "acceptedAnswers": {
+        "ハ": [
+          "1",
+          "1年",
+          "一年"
+        ],
+        "ニ": [
+          "引張",
+          "引張り",
+          "引張試験",
+          "引張り試験"
+        ],
+        "ホ": [
+          "垂直",
+          "垂直距離"
+        ]
+      },
+      "displayNotice": "学習用正答キーに基づく採点です。公式解答ではありません。",
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        },
+        {
+          "name": "安全衛生情報センター 墜落による危険を防止するためのネットの構造等の安全基準",
+          "url": "https://www.jaish.gr.jp/anzen/hor/hombun/hor1-7/hor1-7-8-1-0.htm",
+          "retrieved": "2026-06-25",
+          "usage": "answer_key_basis"
+        }
+      ],
+      "excludeFromTotal": false
+    }
+  },
+  {
+    "qId": "Q_R6_03",
+    "responseType": "technical_short_answer",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        },
+        {
+          "name": "国土交通省 施工体制台帳、施工体系図等",
+          "url": "https://www.mlit.go.jp/totikensangyo/const/1_6_bt_000191.html",
+          "retrieved": "2026-06-25",
+          "usage": "legal_reference"
+        },
+        {
+          "name": "e-Gov 建設業法",
+          "url": "https://laws.e-gov.go.jp/law/324AC0000000100",
+          "retrieved": "2026-06-25",
+          "usage": "legal_reference"
+        },
+        {
+          "name": "e-Gov 公共工事の入札及び契約の適正化の促進に関する法律",
+          "url": "https://laws.e-gov.go.jp/law/412AC0000000127",
+          "retrieved": "2026-06-25",
+          "usage": "legal_reference"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "criteria": [
+        {
+          "name": "設問要求の充足",
+          "maxScore": 2,
+          "description": "指定された個数・項目・条件に答えている"
+        },
+        {
+          "name": "必須概念の理解",
+          "maxScore": 3,
+          "description": "問われている施工管理・法令・品質管理の主要概念を正しく扱う"
+        },
+        {
+          "name": "具体性と施工妥当性",
+          "maxScore": 3,
+          "description": "施工手順、管理方法、確認、是正、周知などが具体的で妥当"
+        },
+        {
+          "name": "因果関係と表現",
+          "maxScore": 2,
+          "description": "課題、処置、効果が対応し、答案として簡潔に読める"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ]
+    }
+  },
+  {
+    "qId": "Q_R6_04",
+    "responseType": "cloze_or_numeric",
+    "sourceQuality": "answer_key_available",
+    "scoreMode": "deterministic",
+    "maxScore": 10,
+    "reviewStatus": "ready",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "correctAnswers": {
+        "イ": "スランプ",
+        "ロ": "1.5",
+        "ハ": "一体性",
+        "ニ": "凝結",
+        "ホ": "35"
+      },
+      "acceptedAnswers": {
+        "ロ": [
+          "1.5",
+          "1.5時間",
+          "1.5h",
+          "90分"
+        ],
+        "ニ": [
+          "凝結",
+          "硬化"
+        ],
+        "ホ": [
+          "35",
+          "35℃",
+          "35度"
+        ]
+      },
+      "displayNotice": "学習用正答キーに基づく採点です。公式解答ではありません。",
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        },
+        {
+          "name": "TAC 令和6年度 1級土木施工管理技術検定 第二次検定 総評",
+          "url": "https://www.tac-school.co.jp/file/tac/kouza_kenchiku/2024pdf/202410/TAC_R7_1doboku_2zikouhyou.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "third_party_reference_check"
+        }
+      ],
+      "excludeFromTotal": false
+    }
+  },
+  {
+    "qId": "Q_R6_05",
+    "responseType": "cloze_or_numeric",
+    "sourceQuality": "answer_key_available",
+    "scoreMode": "deterministic",
+    "maxScore": 10,
+    "reviewStatus": "ready",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "correctAnswers": {
+        "イ": "最適含水比",
+        "ロ": "礫",
+        "ハ": "シルト",
+        "ニ": "品質",
+        "ホ": "当初"
+      },
+      "acceptedAnswers": {
+        "ロ": [
+          "礫",
+          "れき"
+        ],
+        "ホ": [
+          "当初",
+          "当初及び"
+        ]
+      },
+      "displayNotice": "学習用正答キーに基づく採点です。公式解答ではありません。",
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        },
+        {
+          "name": "建設データ 土木施工管理技士講座 第6回 第二次検定対策",
+          "url": "https://kensetsu-data.co.jp/journal/post-3308/",
+          "retrieved": "2026-06-25",
+          "usage": "similar_past_question_reference"
+        }
+      ],
+      "excludeFromTotal": false
+    }
+  },
+  {
+    "qId": "Q_R6_06",
+    "responseType": "cloze_or_numeric",
+    "sourceQuality": "answer_key_available",
+    "scoreMode": "deterministic",
+    "maxScore": 10,
+    "reviewStatus": "ready",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "correctAnswers": {
+        "イ": "開始前",
+        "ロ": "傾斜角",
+        "ハ": "定格荷重",
+        "ニ": "最大限",
+        "ホ": "合図"
+      },
+      "acceptedAnswers": {
+        "ニ": [
+          "最大限",
+          "最大",
+          "全張出し",
+          "全張り出し"
+        ],
+        "ホ": [
+          "合図"
+        ]
+      },
+      "displayNotice": "学習用正答キーに基づく採点です。公式解答ではありません。",
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        },
+        {
+          "name": "安全衛生情報センター クレーン等安全規則 第3章 移動式クレーン",
+          "url": "https://www.jaish.gr.jp/anzen/hor/hombun/hor1-2/hor1-2-18-3-0.htm",
+          "retrieved": "2026-06-25",
+          "usage": "answer_key_basis"
+        }
+      ],
+      "excludeFromTotal": false
+    }
+  },
+  {
+    "qId": "Q_R6_07",
+    "responseType": "cloze_or_numeric",
+    "sourceQuality": "answer_key_available",
+    "scoreMode": "deterministic",
+    "maxScore": 10,
+    "reviewStatus": "ready",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "correctAnswers": {
+        "イ": "電波",
+        "ロ": "5",
+        "ハ": "オフセット",
+        "ニ": "中止",
+        "ホ": "走行軌跡"
+      },
+      "acceptedAnswers": {
+        "イ": [
+          "電波",
+          "無線通信"
+        ],
+        "ロ": [
+          "5",
+          "5衛星",
+          "5個"
+        ],
+        "ハ": [
+          "オフセット",
+          "オフセット量"
+        ],
+        "ニ": [
+          "中止",
+          "停止"
+        ],
+        "ホ": [
+          "走行軌跡",
+          "走行軌跡図"
+        ]
+      },
+      "displayNotice": "学習用正答キーに基づく採点です。公式解答ではありません。",
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        },
+        {
+          "name": "国土交通省 TS・GNSSを用いた盛土の締固め管理要領",
+          "url": "https://www.mlit.go.jp/tec/constplan/content/001612921.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "answer_key_basis"
+        }
+      ],
+      "excludeFromTotal": false
+    }
+  },
+  {
+    "qId": "Q_R6_08",
+    "responseType": "mixed",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": true,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        },
+        {
+          "name": "安全衛生情報センター 土止め先行工法に関するガイドライン",
+          "url": "https://www.jaish.gr.jp/horei/hor1-44/hor1-44-44-1-2.html",
+          "retrieved": "2026-06-25",
+          "usage": "construction_safety_reference"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "criteria": [
+        {
+          "name": "設問要求の充足",
+          "maxScore": 2,
+          "description": "指定された個数・項目・条件に答えている"
+        },
+        {
+          "name": "必須概念の理解",
+          "maxScore": 3,
+          "description": "問われている施工管理・法令・品質管理の主要概念を正しく扱う"
+        },
+        {
+          "name": "具体性と施工妥当性",
+          "maxScore": 3,
+          "description": "施工手順、管理方法、確認、是正、周知などが具体的で妥当"
+        },
+        {
+          "name": "因果関係と表現",
+          "maxScore": 2,
+          "description": "課題、処置、効果が対応し、答案として簡潔に読める"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ]
+    }
+  },
+  {
+    "qId": "Q_R6_09",
+    "responseType": "technical_short_answer",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "criteria": [
+        {
+          "name": "設問要求の充足",
+          "maxScore": 2,
+          "description": "指定された個数・項目・条件に答えている"
+        },
+        {
+          "name": "必須概念の理解",
+          "maxScore": 3,
+          "description": "問われている施工管理・法令・品質管理の主要概念を正しく扱う"
+        },
+        {
+          "name": "具体性と施工妥当性",
+          "maxScore": 3,
+          "description": "施工手順、管理方法、確認、是正、周知などが具体的で妥当"
+        },
+        {
+          "name": "因果関係と表現",
+          "maxScore": 2,
+          "description": "課題、処置、効果が対応し、答案として簡潔に読める"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ]
+    }
+  },
+  {
+    "qId": "Q_R6_10",
+    "responseType": "technical_short_answer",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        },
+        {
+          "name": "e-Gov 労働安全衛生規則",
+          "url": "https://laws.e-gov.go.jp/document?lawid=347M50002000032",
+          "retrieved": "2026-06-25",
+          "usage": "legal_reference"
+        },
+        {
+          "name": "安全衛生情報センター 労働安全衛生規則 第2編 第10章 通路、足場等",
+          "url": "https://www.jaish.gr.jp/anzen/hor/hombun/hor1-2/hor1-2-1-2h10-0.htm",
+          "retrieved": "2026-06-25",
+          "usage": "legal_reference"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "criteria": [
+        {
+          "name": "設問要求の充足",
+          "maxScore": 2,
+          "description": "指定された個数・項目・条件に答えている"
+        },
+        {
+          "name": "必須概念の理解",
+          "maxScore": 3,
+          "description": "問われている施工管理・法令・品質管理の主要概念を正しく扱う"
+        },
+        {
+          "name": "具体性と施工妥当性",
+          "maxScore": 3,
+          "description": "施工手順、管理方法、確認、是正、周知などが具体的で妥当"
+        },
+        {
+          "name": "因果関係と表現",
+          "maxScore": 2,
+          "description": "課題、処置、効果が対応し、答案として簡潔に読める"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ]
+    }
+  },
+  {
+    "qId": "Q_R6_11",
+    "responseType": "technical_short_answer",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "criteria": [
+        {
+          "name": "設問要求の充足",
+          "maxScore": 2,
+          "description": "指定された個数・項目・条件に答えている"
+        },
+        {
+          "name": "必須概念の理解",
+          "maxScore": 3,
+          "description": "問われている施工管理・法令・品質管理の主要概念を正しく扱う"
+        },
+        {
+          "name": "具体性と施工妥当性",
+          "maxScore": 3,
+          "description": "施工手順、管理方法、確認、是正、周知などが具体的で妥当"
+        },
+        {
+          "name": "因果関係と表現",
+          "maxScore": 2,
+          "description": "課題、処置、効果が対応し、答案として簡潔に読める"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ]
+    }
+  },
+  {
+    "qId": "Q_R5_01",
+    "responseType": "experience_essay",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "criteria": [
+        {
+          "name": "工事概要の明確性",
+          "maxScore": 2,
+          "description": "工事名、発注者、場所、工期、工種、施工量、自分の立場を具体的に示している"
+        },
+        {
+          "name": "品質管理上の課題",
+          "maxScore": 4,
+          "description": "現場条件から品質管理上の課題と着眼点が具体的に書けている"
+        },
+        {
+          "name": "対策・確認・評価",
+          "maxScore": 3,
+          "description": "検討項目、対応処置、確認結果、評価が因果でつながっている"
+        },
+        {
+          "name": "施工管理者としての表現",
+          "maxScore": 1,
+          "description": "自分の立場で判断、周知、確認、是正している"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ]
+    }
+  },
+  {
+    "qId": "Q_R5_02",
+    "responseType": "cloze_or_numeric",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "criteria": [
+        {
+          "name": "設問要求の充足",
+          "maxScore": 2,
+          "description": "指定された個数・項目・条件に答えている"
+        },
+        {
+          "name": "必須語句の適合",
+          "maxScore": 4,
+          "description": "設問で求められる必須語句や概念を外していない"
+        },
+        {
+          "name": "用語・数値の正確性",
+          "maxScore": 3,
+          "description": "語句や数値の表記が正確で、意味がぶれていない"
+        },
+        {
+          "name": "表現の簡潔さ",
+          "maxScore": 1,
+          "description": "答案として読みやすく、余計な重複が少ない"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ]
+    }
+  },
+  {
+    "qId": "Q_R5_03",
+    "responseType": "technical_short_answer",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "criteria": [
+        {
+          "name": "設問要求の充足",
+          "maxScore": 2,
+          "description": "指定された個数・項目・条件に答えている"
+        },
+        {
+          "name": "必須概念の理解",
+          "maxScore": 3,
+          "description": "問われている施工管理・法令・品質管理の主要概念を正しく扱う"
+        },
+        {
+          "name": "具体性と施工妥当性",
+          "maxScore": 3,
+          "description": "施工手順、管理方法、確認、是正、周知などが具体的で妥当"
+        },
+        {
+          "name": "因果関係と表現",
+          "maxScore": 2,
+          "description": "課題、処置、効果が対応し、答案として簡潔に読める"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ]
+    }
+  },
+  {
+    "qId": "Q_R5_04",
+    "responseType": "cloze_or_numeric",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "criteria": [
+        {
+          "name": "設問要求の充足",
+          "maxScore": 2,
+          "description": "指定された個数・項目・条件に答えている"
+        },
+        {
+          "name": "必須語句の適合",
+          "maxScore": 4,
+          "description": "設問で求められる必須語句や概念を外していない"
+        },
+        {
+          "name": "用語・数値の正確性",
+          "maxScore": 3,
+          "description": "語句や数値の表記が正確で、意味がぶれていない"
+        },
+        {
+          "name": "表現の簡潔さ",
+          "maxScore": 1,
+          "description": "答案として読みやすく、余計な重複が少ない"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ]
+    }
+  },
+  {
+    "qId": "Q_R5_05",
+    "responseType": "cloze_or_numeric",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "criteria": [
+        {
+          "name": "設問要求の充足",
+          "maxScore": 2,
+          "description": "指定された個数・項目・条件に答えている"
+        },
+        {
+          "name": "必須語句の適合",
+          "maxScore": 4,
+          "description": "設問で求められる必須語句や概念を外していない"
+        },
+        {
+          "name": "用語・数値の正確性",
+          "maxScore": 3,
+          "description": "語句や数値の表記が正確で、意味がぶれていない"
+        },
+        {
+          "name": "表現の簡潔さ",
+          "maxScore": 1,
+          "description": "答案として読みやすく、余計な重複が少ない"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ]
+    }
+  },
+  {
+    "qId": "Q_R5_06",
+    "responseType": "cloze_or_numeric",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "criteria": [
+        {
+          "name": "設問要求の充足",
+          "maxScore": 2,
+          "description": "指定された個数・項目・条件に答えている"
+        },
+        {
+          "name": "必須語句の適合",
+          "maxScore": 4,
+          "description": "設問で求められる必須語句や概念を外していない"
+        },
+        {
+          "name": "用語・数値の正確性",
+          "maxScore": 3,
+          "description": "語句や数値の表記が正確で、意味がぶれていない"
+        },
+        {
+          "name": "表現の簡潔さ",
+          "maxScore": 1,
+          "description": "答案として読みやすく、余計な重複が少ない"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ]
+    }
+  },
+  {
+    "qId": "Q_R5_07",
+    "responseType": "cloze_or_numeric",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "criteria": [
+        {
+          "name": "設問要求の充足",
+          "maxScore": 2,
+          "description": "指定された個数・項目・条件に答えている"
+        },
+        {
+          "name": "必須語句の適合",
+          "maxScore": 4,
+          "description": "設問で求められる必須語句や概念を外していない"
+        },
+        {
+          "name": "用語・数値の正確性",
+          "maxScore": 3,
+          "description": "語句や数値の表記が正確で、意味がぶれていない"
+        },
+        {
+          "name": "表現の簡潔さ",
+          "maxScore": 1,
+          "description": "答案として読みやすく、余計な重複が少ない"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ]
+    }
+  },
+  {
+    "qId": "Q_R5_08",
+    "responseType": "technical_short_answer",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "criteria": [
+        {
+          "name": "設問要求の充足",
+          "maxScore": 2,
+          "description": "指定された個数・項目・条件に答えている"
+        },
+        {
+          "name": "必須概念の理解",
+          "maxScore": 3,
+          "description": "問われている施工管理・法令・品質管理の主要概念を正しく扱う"
+        },
+        {
+          "name": "具体性と施工妥当性",
+          "maxScore": 3,
+          "description": "施工手順、管理方法、確認、是正、周知などが具体的で妥当"
+        },
+        {
+          "name": "因果関係と表現",
+          "maxScore": 2,
+          "description": "課題、処置、効果が対応し、答案として簡潔に読める"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ]
+    }
+  },
+  {
+    "qId": "Q_R5_09",
+    "responseType": "mixed",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "criteria": [
+        {
+          "name": "指定数・選択内容の正確性",
+          "maxScore": 3,
+          "description": "選ぶ個数や選択対象を正しく満たしている"
+        },
+        {
+          "name": "各項目の内容の適合",
+          "maxScore": 3,
+          "description": "選択した項目の工種・用語・方法が設問に合っている"
+        },
+        {
+          "name": "留意事項・効果の具体性",
+          "maxScore": 3,
+          "description": "留意事項、効果、理由を具体的に書けている"
+        },
+        {
+          "name": "表現の簡潔さ",
+          "maxScore": 1,
+          "description": "答案として読みやすく、余計な重複が少ない"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ]
+    }
+  },
+  {
+    "qId": "Q_R5_10",
+    "responseType": "technical_short_answer",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "criteria": [
+        {
+          "name": "設問要求の充足",
+          "maxScore": 2,
+          "description": "指定された個数・項目・条件に答えている"
+        },
+        {
+          "name": "必須概念の理解",
+          "maxScore": 3,
+          "description": "問われている施工管理・法令・品質管理の主要概念を正しく扱う"
+        },
+        {
+          "name": "具体性と施工妥当性",
+          "maxScore": 3,
+          "description": "施工手順、管理方法、確認、是正、周知などが具体的で妥当"
+        },
+        {
+          "name": "因果関係と表現",
+          "maxScore": 2,
+          "description": "課題、処置、効果が対応し、答案として簡潔に読める"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ]
+    }
+  },
+  {
+    "qId": "Q_R5_11",
+    "responseType": "mixed",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": true,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "criteria": [
+        {
+          "name": "指定数・選択内容の正確性",
+          "maxScore": 3,
+          "description": "選ぶ個数や選択対象を正しく満たしている"
+        },
+        {
+          "name": "各項目の内容の適合",
+          "maxScore": 3,
+          "description": "選択した項目の工種・用語・方法が設問に合っている"
+        },
+        {
+          "name": "留意事項・効果の具体性",
+          "maxScore": 3,
+          "description": "留意事項、効果、理由を具体的に書けている"
+        },
+        {
+          "name": "表現の簡潔さ",
+          "maxScore": 1,
+          "description": "答案として読みやすく、余計な重複が少ない"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ]
+    }
+  },
+  {
+    "qId": "Q_R4_01",
+    "responseType": "experience_essay",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "criteria": [
+        {
+          "name": "工事概要の明確性",
+          "maxScore": 2,
+          "description": "工事名、発注者、場所、工期、工種、施工量、自分の立場を具体的に示している"
+        },
+        {
+          "name": "安全上の危険源・課題",
+          "maxScore": 4,
+          "description": "現場条件から安全上の危険源や課題が具体的に書けている"
+        },
+        {
+          "name": "対策・周知・確認",
+          "maxScore": 3,
+          "description": "検討項目、対応処置、周知、確認結果が具体的に書けている"
+        },
+        {
+          "name": "施工管理者としての表現",
+          "maxScore": 1,
+          "description": "自分の立場で判断、周知、確認、是正している"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ]
+    }
+  },
+  {
+    "qId": "Q_R4_02",
+    "responseType": "cloze_or_numeric",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "criteria": [
+        {
+          "name": "設問要求の充足",
+          "maxScore": 2,
+          "description": "指定された個数・項目・条件に答えている"
+        },
+        {
+          "name": "必須語句の適合",
+          "maxScore": 4,
+          "description": "設問で求められる必須語句や概念を外していない"
+        },
+        {
+          "name": "用語・数値の正確性",
+          "maxScore": 3,
+          "description": "語句や数値の表記が正確で、意味がぶれていない"
+        },
+        {
+          "name": "表現の簡潔さ",
+          "maxScore": 1,
+          "description": "答案として読みやすく、余計な重複が少ない"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ]
+    }
+  },
+  {
+    "qId": "Q_R4_03",
+    "responseType": "mixed",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "criteria": [
+        {
+          "name": "指定数・選択内容の正確性",
+          "maxScore": 3,
+          "description": "選ぶ個数や選択対象を正しく満たしている"
+        },
+        {
+          "name": "各項目の内容の適合",
+          "maxScore": 3,
+          "description": "選択した項目の工種・用語・方法が設問に合っている"
+        },
+        {
+          "name": "留意事項・効果の具体性",
+          "maxScore": 3,
+          "description": "留意事項、効果、理由を具体的に書けている"
+        },
+        {
+          "name": "表現の簡潔さ",
+          "maxScore": 1,
+          "description": "答案として読みやすく、余計な重複が少ない"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ]
+    }
+  },
+  {
+    "qId": "Q_R4_04",
+    "responseType": "cloze_or_numeric",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "criteria": [
+        {
+          "name": "設問要求の充足",
+          "maxScore": 2,
+          "description": "指定された個数・項目・条件に答えている"
+        },
+        {
+          "name": "必須語句の適合",
+          "maxScore": 4,
+          "description": "設問で求められる必須語句や概念を外していない"
+        },
+        {
+          "name": "用語・数値の正確性",
+          "maxScore": 3,
+          "description": "語句や数値の表記が正確で、意味がぶれていない"
+        },
+        {
+          "name": "表現の簡潔さ",
+          "maxScore": 1,
+          "description": "答案として読みやすく、余計な重複が少ない"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ]
+    }
+  },
+  {
+    "qId": "Q_R4_05",
+    "responseType": "cloze_or_numeric",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": true,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "criteria": [
+        {
+          "name": "設問要求の充足",
+          "maxScore": 2,
+          "description": "指定された個数・項目・条件に答えている"
+        },
+        {
+          "name": "必須語句の適合",
+          "maxScore": 4,
+          "description": "設問で求められる必須語句や概念を外していない"
+        },
+        {
+          "name": "用語・数値の正確性",
+          "maxScore": 3,
+          "description": "語句や数値の表記が正確で、意味がぶれていない"
+        },
+        {
+          "name": "表現の簡潔さ",
+          "maxScore": 1,
+          "description": "答案として読みやすく、余計な重複が少ない"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ]
+    }
+  },
+  {
+    "qId": "Q_R4_06",
+    "responseType": "cloze_or_numeric",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "criteria": [
+        {
+          "name": "設問要求の充足",
+          "maxScore": 2,
+          "description": "指定された個数・項目・条件に答えている"
+        },
+        {
+          "name": "必須語句の適合",
+          "maxScore": 4,
+          "description": "設問で求められる必須語句や概念を外していない"
+        },
+        {
+          "name": "用語・数値の正確性",
+          "maxScore": 3,
+          "description": "語句や数値の表記が正確で、意味がぶれていない"
+        },
+        {
+          "name": "表現の簡潔さ",
+          "maxScore": 1,
+          "description": "答案として読みやすく、余計な重複が少ない"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ]
+    }
+  },
+  {
+    "qId": "Q_R4_07",
+    "responseType": "cloze_or_numeric",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "criteria": [
+        {
+          "name": "設問要求の充足",
+          "maxScore": 2,
+          "description": "指定された個数・項目・条件に答えている"
+        },
+        {
+          "name": "必須語句の適合",
+          "maxScore": 4,
+          "description": "設問で求められる必須語句や概念を外していない"
+        },
+        {
+          "name": "用語・数値の正確性",
+          "maxScore": 3,
+          "description": "語句や数値の表記が正確で、意味がぶれていない"
+        },
+        {
+          "name": "表現の簡潔さ",
+          "maxScore": 1,
+          "description": "答案として読みやすく、余計な重複が少ない"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ]
+    }
+  },
+  {
+    "qId": "Q_R4_08",
+    "responseType": "mixed",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": true,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "criteria": [
+        {
+          "name": "指定数・選択内容の正確性",
+          "maxScore": 3,
+          "description": "選ぶ個数や選択対象を正しく満たしている"
+        },
+        {
+          "name": "各項目の内容の適合",
+          "maxScore": 3,
+          "description": "選択した項目の工種・用語・方法が設問に合っている"
+        },
+        {
+          "name": "留意事項・効果の具体性",
+          "maxScore": 3,
+          "description": "留意事項、効果、理由を具体的に書けている"
+        },
+        {
+          "name": "表現の簡潔さ",
+          "maxScore": 1,
+          "description": "答案として読みやすく、余計な重複が少ない"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ]
+    }
+  },
+  {
+    "qId": "Q_R4_09",
+    "responseType": "mixed",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": true,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "criteria": [
+        {
+          "name": "指定数・選択内容の正確性",
+          "maxScore": 3,
+          "description": "選ぶ個数や選択対象を正しく満たしている"
+        },
+        {
+          "name": "各項目の内容の適合",
+          "maxScore": 3,
+          "description": "選択した項目の工種・用語・方法が設問に合っている"
+        },
+        {
+          "name": "留意事項・効果の具体性",
+          "maxScore": 3,
+          "description": "留意事項、効果、理由を具体的に書けている"
+        },
+        {
+          "name": "表現の簡潔さ",
+          "maxScore": 1,
+          "description": "答案として読みやすく、余計な重複が少ない"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ]
+    }
+  },
+  {
+    "qId": "Q_R4_10",
+    "responseType": "technical_short_answer",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "criteria": [
+        {
+          "name": "設問要求の充足",
+          "maxScore": 2,
+          "description": "指定された個数・項目・条件に答えている"
+        },
+        {
+          "name": "必須概念の理解",
+          "maxScore": 3,
+          "description": "問われている施工管理・法令・品質管理の主要概念を正しく扱う"
+        },
+        {
+          "name": "具体性と施工妥当性",
+          "maxScore": 3,
+          "description": "施工手順、管理方法、確認、是正、周知などが具体的で妥当"
+        },
+        {
+          "name": "因果関係と表現",
+          "maxScore": 2,
+          "description": "課題、処置、効果が対応し、答案として簡潔に読める"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ]
+    }
+  },
+  {
+    "qId": "Q_R4_11",
+    "responseType": "technical_short_answer",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "criteria": [
+        {
+          "name": "設問要求の充足",
+          "maxScore": 2,
+          "description": "指定された個数・項目・条件に答えている"
+        },
+        {
+          "name": "必須概念の理解",
+          "maxScore": 3,
+          "description": "問われている施工管理・法令・品質管理の主要概念を正しく扱う"
+        },
+        {
+          "name": "具体性と施工妥当性",
+          "maxScore": 3,
+          "description": "施工手順、管理方法、確認、是正、周知などが具体的で妥当"
+        },
+        {
+          "name": "因果関係と表現",
+          "maxScore": 2,
+          "description": "課題、処置、効果が対応し、答案として簡潔に読める"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ]
+    }
+  },
+  {
+    "qId": "Q_R3_01",
+    "responseType": "experience_essay",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "criteria": [
+        {
+          "name": "工事概要の明確性",
+          "maxScore": 2,
+          "description": "工事名、発注者、場所、工期、工種、施工量、自分の立場を具体的に示している"
+        },
+        {
+          "name": "安全上の危険源・課題",
+          "maxScore": 4,
+          "description": "現場条件から安全上の危険源や課題が具体的に書けている"
+        },
+        {
+          "name": "対策・周知・確認",
+          "maxScore": 3,
+          "description": "検討項目、対応処置、周知、確認結果が具体的に書けている"
+        },
+        {
+          "name": "施工管理者としての表現",
+          "maxScore": 1,
+          "description": "自分の立場で判断、周知、確認、是正している"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ]
+    }
+  },
+  {
+    "qId": "Q_R3_02",
+    "responseType": "cloze_or_numeric",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "criteria": [
+        {
+          "name": "設問要求の充足",
+          "maxScore": 2,
+          "description": "指定された個数・項目・条件に答えている"
+        },
+        {
+          "name": "必須語句の適合",
+          "maxScore": 4,
+          "description": "設問で求められる必須語句や概念を外していない"
+        },
+        {
+          "name": "用語・数値の正確性",
+          "maxScore": 3,
+          "description": "語句や数値の表記が正確で、意味がぶれていない"
+        },
+        {
+          "name": "表現の簡潔さ",
+          "maxScore": 1,
+          "description": "答案として読みやすく、余計な重複が少ない"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ]
+    }
+  },
+  {
+    "qId": "Q_R3_03",
+    "responseType": "technical_short_answer",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "criteria": [
+        {
+          "name": "設問要求の充足",
+          "maxScore": 2,
+          "description": "指定された個数・項目・条件に答えている"
+        },
+        {
+          "name": "必須概念の理解",
+          "maxScore": 3,
+          "description": "問われている施工管理・法令・品質管理の主要概念を正しく扱う"
+        },
+        {
+          "name": "具体性と施工妥当性",
+          "maxScore": 3,
+          "description": "施工手順、管理方法、確認、是正、周知などが具体的で妥当"
+        },
+        {
+          "name": "因果関係と表現",
+          "maxScore": 2,
+          "description": "課題、処置、効果が対応し、答案として簡潔に読める"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ]
+    }
+  },
+  {
+    "qId": "Q_R3_04",
+    "responseType": "cloze_or_numeric",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "criteria": [
+        {
+          "name": "設問要求の充足",
+          "maxScore": 2,
+          "description": "指定された個数・項目・条件に答えている"
+        },
+        {
+          "name": "必須語句の適合",
+          "maxScore": 4,
+          "description": "設問で求められる必須語句や概念を外していない"
+        },
+        {
+          "name": "用語・数値の正確性",
+          "maxScore": 3,
+          "description": "語句や数値の表記が正確で、意味がぶれていない"
+        },
+        {
+          "name": "表現の簡潔さ",
+          "maxScore": 1,
+          "description": "答案として読みやすく、余計な重複が少ない"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ]
+    }
+  },
+  {
+    "qId": "Q_R3_05",
+    "responseType": "cloze_or_numeric",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "criteria": [
+        {
+          "name": "設問要求の充足",
+          "maxScore": 2,
+          "description": "指定された個数・項目・条件に答えている"
+        },
+        {
+          "name": "必須語句の適合",
+          "maxScore": 4,
+          "description": "設問で求められる必須語句や概念を外していない"
+        },
+        {
+          "name": "用語・数値の正確性",
+          "maxScore": 3,
+          "description": "語句や数値の表記が正確で、意味がぶれていない"
+        },
+        {
+          "name": "表現の簡潔さ",
+          "maxScore": 1,
+          "description": "答案として読みやすく、余計な重複が少ない"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ]
+    }
+  },
+  {
+    "qId": "Q_R3_06",
+    "responseType": "cloze_or_numeric",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "criteria": [
+        {
+          "name": "設問要求の充足",
+          "maxScore": 2,
+          "description": "指定された個数・項目・条件に答えている"
+        },
+        {
+          "name": "必須語句の適合",
+          "maxScore": 4,
+          "description": "設問で求められる必須語句や概念を外していない"
+        },
+        {
+          "name": "用語・数値の正確性",
+          "maxScore": 3,
+          "description": "語句や数値の表記が正確で、意味がぶれていない"
+        },
+        {
+          "name": "表現の簡潔さ",
+          "maxScore": 1,
+          "description": "答案として読みやすく、余計な重複が少ない"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ]
+    }
+  },
+  {
+    "qId": "Q_R3_07",
+    "responseType": "cloze_or_numeric",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "criteria": [
+        {
+          "name": "設問要求の充足",
+          "maxScore": 2,
+          "description": "指定された個数・項目・条件に答えている"
+        },
+        {
+          "name": "必須語句の適合",
+          "maxScore": 4,
+          "description": "設問で求められる必須語句や概念を外していない"
+        },
+        {
+          "name": "用語・数値の正確性",
+          "maxScore": 3,
+          "description": "語句や数値の表記が正確で、意味がぶれていない"
+        },
+        {
+          "name": "表現の簡潔さ",
+          "maxScore": 1,
+          "description": "答案として読みやすく、余計な重複が少ない"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ]
+    }
+  },
+  {
+    "qId": "Q_R3_08",
+    "responseType": "mixed",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "criteria": [
+        {
+          "name": "指定数・選択内容の正確性",
+          "maxScore": 3,
+          "description": "選ぶ個数や選択対象を正しく満たしている"
+        },
+        {
+          "name": "各項目の内容の適合",
+          "maxScore": 3,
+          "description": "選択した項目の工種・用語・方法が設問に合っている"
+        },
+        {
+          "name": "留意事項・効果の具体性",
+          "maxScore": 3,
+          "description": "留意事項、効果、理由を具体的に書けている"
+        },
+        {
+          "name": "表現の簡潔さ",
+          "maxScore": 1,
+          "description": "答案として読みやすく、余計な重複が少ない"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ]
+    }
+  },
+  {
+    "qId": "Q_R3_09",
+    "responseType": "mixed",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "criteria": [
+        {
+          "name": "指定数・選択内容の正確性",
+          "maxScore": 3,
+          "description": "選ぶ個数や選択対象を正しく満たしている"
+        },
+        {
+          "name": "各項目の内容の適合",
+          "maxScore": 3,
+          "description": "選択した項目の工種・用語・方法が設問に合っている"
+        },
+        {
+          "name": "留意事項・効果の具体性",
+          "maxScore": 3,
+          "description": "留意事項、効果、理由を具体的に書けている"
+        },
+        {
+          "name": "表現の簡潔さ",
+          "maxScore": 1,
+          "description": "答案として読みやすく、余計な重複が少ない"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ]
+    }
+  },
+  {
+    "qId": "Q_R3_10",
+    "responseType": "technical_short_answer",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": true,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "criteria": [
+        {
+          "name": "設問要求の充足",
+          "maxScore": 2,
+          "description": "指定された個数・項目・条件に答えている"
+        },
+        {
+          "name": "必須概念の理解",
+          "maxScore": 3,
+          "description": "問われている施工管理・法令・品質管理の主要概念を正しく扱う"
+        },
+        {
+          "name": "具体性と施工妥当性",
+          "maxScore": 3,
+          "description": "施工手順、管理方法、確認、是正、周知などが具体的で妥当"
+        },
+        {
+          "name": "因果関係と表現",
+          "maxScore": 2,
+          "description": "課題、処置、効果が対応し、答案として簡潔に読める"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ]
+    }
+  },
+  {
+    "qId": "Q_R3_11",
+    "responseType": "mixed",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": true,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "criteria": [
+        {
+          "name": "指定数・選択内容の正確性",
+          "maxScore": 3,
+          "description": "選ぶ個数や選択対象を正しく満たしている"
+        },
+        {
+          "name": "各項目の内容の適合",
+          "maxScore": 3,
+          "description": "選択した項目の工種・用語・方法が設問に合っている"
+        },
+        {
+          "name": "留意事項・効果の具体性",
+          "maxScore": 3,
+          "description": "留意事項、効果、理由を具体的に書けている"
+        },
+        {
+          "name": "表現の簡潔さ",
+          "maxScore": 1,
+          "description": "答案として読みやすく、余計な重複が少ない"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ]
+    }
+  },
+  {
+    "qId": "Q_H28_01",
+    "responseType": "experience_essay",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "gradingGuidance": "公式模範解答ではなく学習用参考答案に基づくAI推定採点。正答キー未確認の穴埋めはdeterministic扱いにせず、文脈に合う語句・数値・同義表現を評価する。",
+      "referenceKeywords": "経験した土木工事の工事概要を具体化し、現場条件から安全管理上の技術的課題、検討項目、実施した対応処置、実施後の評価を一貫して記述する。",
+      "criteria": [
+        {
+          "name": "工事概要の具体性",
+          "maxScore": 2,
+          "description": "工事名、場所、工期、工種、施工量、立場が具体的"
+        },
+        {
+          "name": "技術的課題と現場条件",
+          "maxScore": 3,
+          "description": "現場状況から課題が導かれ、設問テーマに合っている"
+        },
+        {
+          "name": "検討項目と実施処置",
+          "maxScore": 3,
+          "description": "検討理由、検討内容、実施した処置が具体的で妥当"
+        },
+        {
+          "name": "評価と施工管理者としての表現",
+          "maxScore": 2,
+          "description": "結果・評価が処置と対応し、自分の立場で簡潔に記述している"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ]
+    }
+  },
+  {
+    "qId": "Q_H28_02",
+    "responseType": "cloze_or_numeric",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "gradingGuidance": "公式模範解答ではなく学習用参考答案に基づくAI推定採点。正答キー未確認の穴埋めはdeterministic扱いにせず、文脈に合う語句・数値・同義表現を評価する。",
+      "referenceKeywords": "高含水比材料は乾燥、ばっ気、含水比調整、固化材による安定処理を検討し、土質、強度、粒度、排水、養生期間を確認して現場利用の可否を判断する。",
+      "criteria": [
+        {
+          "name": "設問要求の充足",
+          "maxScore": 2,
+          "description": "空欄番号、個数、語句又は数値の形式に答えている"
+        },
+        {
+          "name": "必須語句・概念の適合",
+          "maxScore": 4,
+          "description": "設問文脈に合う施工管理上の用語・数値・概念を外していない"
+        },
+        {
+          "name": "用語・数値の正確性",
+          "maxScore": 3,
+          "description": "表記ゆれを許容しつつ、意味・単位・対象が正確"
+        },
+        {
+          "name": "答案形式の明確さ",
+          "maxScore": 1,
+          "description": "番号対応が明確で、余計な説明が少ない"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ]
+    }
+  },
+  {
+    "qId": "Q_H28_03",
+    "responseType": "cloze_or_numeric",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "gradingGuidance": "公式模範解答ではなく学習用参考答案に基づくAI推定採点。正答キー未確認の穴埋めはdeterministic扱いにせず、文脈に合う語句・数値・同義表現を評価する。",
+      "referenceKeywords": "鉄筋位置、かぶり、スペーサ、打込み位置、材料分離防止、締固め、打重ね時間、コールドジョイント防止、再振動の可否を確認して品質を確保する。",
+      "criteria": [
+        {
+          "name": "設問要求の充足",
+          "maxScore": 2,
+          "description": "空欄番号、個数、語句又は数値の形式に答えている"
+        },
+        {
+          "name": "必須語句・概念の適合",
+          "maxScore": 4,
+          "description": "設問文脈に合う施工管理上の用語・数値・概念を外していない"
+        },
+        {
+          "name": "用語・数値の正確性",
+          "maxScore": 3,
+          "description": "表記ゆれを許容しつつ、意味・単位・対象が正確"
+        },
+        {
+          "name": "答案形式の明確さ",
+          "maxScore": 1,
+          "description": "番号対応が明確で、余計な説明が少ない"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ]
+    }
+  },
+  {
+    "qId": "Q_H28_04",
+    "responseType": "cloze_or_numeric",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "gradingGuidance": "公式模範解答ではなく学習用参考答案に基づくAI推定採点。正答キー未確認の穴埋めはdeterministic扱いにせず、文脈に合う語句・数値・同義表現を評価する。",
+      "referenceKeywords": "反発度法、打音法、超音波法、電磁波レーダ法、電磁誘導法、自然電位法などについて、推定対象、適用条件、限界、必要な確認試験を対応させる。",
+      "criteria": [
+        {
+          "name": "設問要求の充足",
+          "maxScore": 2,
+          "description": "空欄番号、個数、語句又は数値の形式に答えている"
+        },
+        {
+          "name": "必須語句・概念の適合",
+          "maxScore": 4,
+          "description": "設問文脈に合う施工管理上の用語・数値・概念を外していない"
+        },
+        {
+          "name": "用語・数値の正確性",
+          "maxScore": 3,
+          "description": "表記ゆれを許容しつつ、意味・単位・対象が正確"
+        },
+        {
+          "name": "答案形式の明確さ",
+          "maxScore": 1,
+          "description": "番号対応が明確で、余計な説明が少ない"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ]
+    }
+  },
+  {
+    "qId": "Q_H28_05",
+    "responseType": "cloze_or_numeric",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "gradingGuidance": "公式模範解答ではなく学習用参考答案に基づくAI推定採点。正答キー未確認の穴埋めはdeterministic扱いにせず、文脈に合う語句・数値・同義表現を評価する。",
+      "referenceKeywords": "土止め支保工では組立図、部材配置、切ばり・腹おこし、取付け時期、作業主任者、点検、異常時の補修、立入禁止を管理する。",
+      "criteria": [
+        {
+          "name": "設問要求の充足",
+          "maxScore": 2,
+          "description": "空欄番号、個数、語句又は数値の形式に答えている"
+        },
+        {
+          "name": "必須語句・概念の適合",
+          "maxScore": 4,
+          "description": "設問文脈に合う施工管理上の用語・数値・概念を外していない"
+        },
+        {
+          "name": "用語・数値の正確性",
+          "maxScore": 3,
+          "description": "表記ゆれを許容しつつ、意味・単位・対象が正確"
+        },
+        {
+          "name": "答案形式の明確さ",
+          "maxScore": 1,
+          "description": "番号対応が明確で、余計な説明が少ない"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ]
+    }
+  },
+  {
+    "qId": "Q_H28_06",
+    "responseType": "cloze_or_numeric",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "gradingGuidance": "公式模範解答ではなく学習用参考答案に基づくAI推定採点。正答キー未確認の穴埋めはdeterministic扱いにせず、文脈に合う語句・数値・同義表現を評価する。",
+      "referenceKeywords": "建設副産物は分別解体、再資源化、廃棄物処理計画、元請・発注者・処理業者の責務、保管、運搬、マニフェスト管理を整理する。",
+      "criteria": [
+        {
+          "name": "設問要求の充足",
+          "maxScore": 2,
+          "description": "空欄番号、個数、語句又は数値の形式に答えている"
+        },
+        {
+          "name": "必須語句・概念の適合",
+          "maxScore": 4,
+          "description": "設問文脈に合う施工管理上の用語・数値・概念を外していない"
+        },
+        {
+          "name": "用語・数値の正確性",
+          "maxScore": 3,
+          "description": "表記ゆれを許容しつつ、意味・単位・対象が正確"
+        },
+        {
+          "name": "答案形式の明確さ",
+          "maxScore": 1,
+          "description": "番号対応が明確で、余計な説明が少ない"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ]
+    }
+  },
+  {
+    "qId": "Q_H28_07",
+    "responseType": "technical_short_answer",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "gradingGuidance": "公式模範解答ではなく学習用参考答案に基づくAI推定採点。正答キー未確認の穴埋めはdeterministic扱いにせず、文脈に合う語句・数値・同義表現を評価する。",
+      "referenceKeywords": "仮排水の目的は盛土材の含水比上昇、法面浸食、軟弱化を防ぐことであり、流末、縦横断排水、沈砂、施工中の維持管理を具体的に示す。",
+      "criteria": [
+        {
+          "name": "設問要求の充足",
+          "maxScore": 2,
+          "description": "指定された個数・項目・条件に答えている"
+        },
+        {
+          "name": "必須概念の理解",
+          "maxScore": 3,
+          "description": "問われている施工管理・法令・品質管理の主要概念を正しく扱う"
+        },
+        {
+          "name": "具体性と施工妥当性",
+          "maxScore": 3,
+          "description": "施工手順、管理方法、確認、是正、周知などが具体的で妥当"
+        },
+        {
+          "name": "因果関係と表現",
+          "maxScore": 2,
+          "description": "課題、処置、効果が対応し、答案として簡潔に読める"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ],
+      "overSelectionGuard": true
+    }
+  },
+  {
+    "qId": "Q_H28_08",
+    "responseType": "technical_short_answer",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "gradingGuidance": "公式模範解答ではなく学習用参考答案に基づくAI推定採点。正答キー未確認の穴埋めはdeterministic扱いにせず、文脈に合う語句・数値・同義表現を評価する。",
+      "referenceKeywords": "寒中コンクリートでは材料温度、打込み温度、初期凍害防止、保温・給熱養生、温度管理、急冷防止、必要強度到達までの養生を管理する。",
+      "criteria": [
+        {
+          "name": "設問要求の充足",
+          "maxScore": 2,
+          "description": "指定された個数・項目・条件に答えている"
+        },
+        {
+          "name": "必須概念の理解",
+          "maxScore": 3,
+          "description": "問われている施工管理・法令・品質管理の主要概念を正しく扱う"
+        },
+        {
+          "name": "具体性と施工妥当性",
+          "maxScore": 3,
+          "description": "施工手順、管理方法、確認、是正、周知などが具体的で妥当"
+        },
+        {
+          "name": "因果関係と表現",
+          "maxScore": 2,
+          "description": "課題、処置、効果が対応し、答案として簡潔に読める"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ],
+      "overSelectionGuard": true
+    }
+  },
+  {
+    "qId": "Q_H28_09",
+    "responseType": "technical_short_answer",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "gradingGuidance": "公式模範解答ではなく学習用参考答案に基づくAI推定採点。正答キー未確認の穴埋めはdeterministic扱いにせず、文脈に合う語句・数値・同義表現を評価する。",
+      "referenceKeywords": "締固め管理は品質規定方式と工法規定方式に分け、乾燥密度、空気間げき率、飽和度、施工含水比、転圧回数、敷均し厚、機械条件を管理する。",
+      "criteria": [
+        {
+          "name": "設問要求の充足",
+          "maxScore": 2,
+          "description": "指定された個数・項目・条件に答えている"
+        },
+        {
+          "name": "必須概念の理解",
+          "maxScore": 3,
+          "description": "問われている施工管理・法令・品質管理の主要概念を正しく扱う"
+        },
+        {
+          "name": "具体性と施工妥当性",
+          "maxScore": 3,
+          "description": "施工手順、管理方法、確認、是正、周知などが具体的で妥当"
+        },
+        {
+          "name": "因果関係と表現",
+          "maxScore": 2,
+          "description": "課題、処置、効果が対応し、答案として簡潔に読める"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ],
+      "overSelectionGuard": true
+    }
+  },
+  {
+    "qId": "Q_H28_10",
+    "responseType": "technical_short_answer",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": true,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "gradingGuidance": "公式模範解答ではなく学習用参考答案に基づくAI推定採点。正答キー未確認の穴埋めはdeterministic扱いにせず、文脈に合う語句・数値・同義表現を評価する。",
+      "referenceKeywords": "移動式クレーン作業では地盤養生、アウトリガ設置、定格荷重遵守、過負荷防止、玉掛け資格、合図、吊荷下立入禁止、作業半径内立入禁止を記述する。",
+      "criteria": [
+        {
+          "name": "設問要求の充足",
+          "maxScore": 2,
+          "description": "指定された個数・項目・条件に答えている"
+        },
+        {
+          "name": "必須概念の理解",
+          "maxScore": 3,
+          "description": "問われている施工管理・法令・品質管理の主要概念を正しく扱う"
+        },
+        {
+          "name": "具体性と施工妥当性",
+          "maxScore": 3,
+          "description": "施工手順、管理方法、確認、是正、周知などが具体的で妥当"
+        },
+        {
+          "name": "因果関係と表現",
+          "maxScore": 2,
+          "description": "課題、処置、効果が対応し、答案として簡潔に読める"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ],
+      "overSelectionGuard": true
+    }
+  },
+  {
+    "qId": "Q_H28_11",
+    "responseType": "mixed",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "gradingGuidance": "公式模範解答ではなく学習用参考答案に基づくAI推定採点。正答キー未確認の穴埋めはdeterministic扱いにせず、文脈に合う語句・数値・同義表現を評価する。",
+      "referenceKeywords": "施工計画書は現場組織表、主要船舶・機械、施工方法、環境対策から選び、体制、能力、手順、施工順序、周辺環境への配慮を具体化する。",
+      "criteria": [
+        {
+          "name": "指定数・選択内容の正確性",
+          "maxScore": 3,
+          "description": "選ぶ個数、番号、工種名、対象項目を正しく満たしている"
+        },
+        {
+          "name": "各項目の内容の適合",
+          "maxScore": 3,
+          "description": "選択した項目の概要、用語、施工方法が設問条件に合っている"
+        },
+        {
+          "name": "留意事項・効果の具体性",
+          "maxScore": 3,
+          "description": "留意事項、効果、理由、管理方法を具体的に書けている"
+        },
+        {
+          "name": "表現の簡潔さ",
+          "maxScore": 1,
+          "description": "答案として読みやすく、重複や条件違反が少ない"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ],
+      "overSelectionGuard": true
+    }
+  },
+  {
+    "qId": "Q_H29_01",
+    "responseType": "experience_essay",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "gradingGuidance": "公式模範解答ではなく学習用参考答案に基づくAI推定採点。正答キー未確認の穴埋めはdeterministic扱いにせず、文脈に合う語句・数値・同義表現を評価する。",
+      "referenceKeywords": "経験した土木工事の工事概要を具体化し、現場条件から品質管理上の技術的課題、検討項目、実施した対応処置、実施後の評価を一貫して記述する。",
+      "criteria": [
+        {
+          "name": "工事概要の具体性",
+          "maxScore": 2,
+          "description": "工事名、場所、工期、工種、施工量、立場が具体的"
+        },
+        {
+          "name": "技術的課題と現場条件",
+          "maxScore": 3,
+          "description": "現場状況から課題が導かれ、設問テーマに合っている"
+        },
+        {
+          "name": "検討項目と実施処置",
+          "maxScore": 3,
+          "description": "検討理由、検討内容、実施した処置が具体的で妥当"
+        },
+        {
+          "name": "評価と施工管理者としての表現",
+          "maxScore": 2,
+          "description": "結果・評価が処置と対応し、自分の立場で簡潔に記述している"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ]
+    }
+  },
+  {
+    "qId": "Q_H29_02",
+    "responseType": "cloze_or_numeric",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "gradingGuidance": "公式模範解答ではなく学習用参考答案に基づくAI推定採点。正答キー未確認の穴埋めはdeterministic扱いにせず、文脈に合う語句・数値・同義表現を評価する。",
+      "referenceKeywords": "構造物背面の不同沈下防止では透水性・非圧縮性材料、排水、薄層転圧、狭隘部締固め、小型機械、段階施工、すり付けを管理する。",
+      "criteria": [
+        {
+          "name": "設問要求の充足",
+          "maxScore": 2,
+          "description": "空欄番号、個数、語句又は数値の形式に答えている"
+        },
+        {
+          "name": "必須語句・概念の適合",
+          "maxScore": 4,
+          "description": "設問文脈に合う施工管理上の用語・数値・概念を外していない"
+        },
+        {
+          "name": "用語・数値の正確性",
+          "maxScore": 3,
+          "description": "表記ゆれを許容しつつ、意味・単位・対象が正確"
+        },
+        {
+          "name": "答案形式の明確さ",
+          "maxScore": 1,
+          "description": "番号対応が明確で、余計な説明が少ない"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ]
+    }
+  },
+  {
+    "qId": "Q_H29_03",
+    "responseType": "cloze_or_numeric",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "gradingGuidance": "公式模範解答ではなく学習用参考答案に基づくAI推定採点。正答キー未確認の穴埋めはdeterministic扱いにせず、文脈に合う語句・数値・同義表現を評価する。",
+      "referenceKeywords": "コンクリートポンプ圧送では先送りモルタル、管径、圧送負荷、配管、閉塞防止、打込み速度、材料分離防止、機種・台数の選定を整理する。",
+      "criteria": [
+        {
+          "name": "設問要求の充足",
+          "maxScore": 2,
+          "description": "空欄番号、個数、語句又は数値の形式に答えている"
+        },
+        {
+          "name": "必須語句・概念の適合",
+          "maxScore": 4,
+          "description": "設問文脈に合う施工管理上の用語・数値・概念を外していない"
+        },
+        {
+          "name": "用語・数値の正確性",
+          "maxScore": 3,
+          "description": "表記ゆれを許容しつつ、意味・単位・対象が正確"
+        },
+        {
+          "name": "答案形式の明確さ",
+          "maxScore": 1,
+          "description": "番号対応が明確で、余計な説明が少ない"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ]
+    }
+  },
+  {
+    "qId": "Q_H29_04",
+    "responseType": "cloze_or_numeric",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "gradingGuidance": "公式模範解答ではなく学習用参考答案に基づくAI推定採点。正答キー未確認の穴埋めはdeterministic扱いにせず、文脈に合う語句・数値・同義表現を評価する。",
+      "referenceKeywords": "盛土締固め管理では品質規定方式と工法規定方式を区別し、管理項目、管理基準、頻度、締固め機械、敷均し厚、転圧回数を対応させる。",
+      "criteria": [
+        {
+          "name": "設問要求の充足",
+          "maxScore": 2,
+          "description": "空欄番号、個数、語句又は数値の形式に答えている"
+        },
+        {
+          "name": "必須語句・概念の適合",
+          "maxScore": 4,
+          "description": "設問文脈に合う施工管理上の用語・数値・概念を外していない"
+        },
+        {
+          "name": "用語・数値の正確性",
+          "maxScore": 3,
+          "description": "表記ゆれを許容しつつ、意味・単位・対象が正確"
+        },
+        {
+          "name": "答案形式の明確さ",
+          "maxScore": 1,
+          "description": "番号対応が明確で、余計な説明が少ない"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ]
+    }
+  },
+  {
+    "qId": "Q_H29_05",
+    "responseType": "cloze_or_numeric",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "gradingGuidance": "公式模範解答ではなく学習用参考答案に基づくAI推定採点。正答キー未確認の穴埋めはdeterministic扱いにせず、文脈に合う語句・数値・同義表現を評価する。",
+      "referenceKeywords": "車両系建設機械では地形・地盤調査、作業計画、誘導者、立入禁止、ヘッドガード、転倒・接触防止、資格、点検、制限荷重を管理する。",
+      "criteria": [
+        {
+          "name": "設問要求の充足",
+          "maxScore": 2,
+          "description": "空欄番号、個数、語句又は数値の形式に答えている"
+        },
+        {
+          "name": "必須語句・概念の適合",
+          "maxScore": 4,
+          "description": "設問文脈に合う施工管理上の用語・数値・概念を外していない"
+        },
+        {
+          "name": "用語・数値の正確性",
+          "maxScore": 3,
+          "description": "表記ゆれを許容しつつ、意味・単位・対象が正確"
+        },
+        {
+          "name": "答案形式の明確さ",
+          "maxScore": 1,
+          "description": "番号対応が明確で、余計な説明が少ない"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ]
+    }
+  },
+  {
+    "qId": "Q_H29_06",
+    "responseType": "cloze_or_numeric",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "gradingGuidance": "公式模範解答ではなく学習用参考答案に基づくAI推定採点。正答キー未確認の穴埋めはdeterministic扱いにせず、文脈に合う語句・数値・同義表現を評価する。",
+      "referenceKeywords": "施工計画は設計図書、現場条件、関係機関協議、工程、安全、環境、品質、資機材、労務、施工方法を総合的に反映して作成する。",
+      "criteria": [
+        {
+          "name": "設問要求の充足",
+          "maxScore": 2,
+          "description": "空欄番号、個数、語句又は数値の形式に答えている"
+        },
+        {
+          "name": "必須語句・概念の適合",
+          "maxScore": 4,
+          "description": "設問文脈に合う施工管理上の用語・数値・概念を外していない"
+        },
+        {
+          "name": "用語・数値の正確性",
+          "maxScore": 3,
+          "description": "表記ゆれを許容しつつ、意味・単位・対象が正確"
+        },
+        {
+          "name": "答案形式の明確さ",
+          "maxScore": 1,
+          "description": "番号対応が明確で、余計な説明が少ない"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ]
+    }
+  },
+  {
+    "qId": "Q_H29_07",
+    "responseType": "mixed",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "gradingGuidance": "公式模範解答ではなく学習用参考答案に基づくAI推定採点。正答キー未確認の穴埋めはdeterministic扱いにせず、文脈に合う語句・数値・同義表現を評価する。",
+      "referenceKeywords": "軟弱地盤対策は載荷盛土、サンドコンパクションパイル、薬液注入、荷重軽減、押え盛土から選び、概要と沈下抑制・安定性向上などの効果を対応させる。",
+      "criteria": [
+        {
+          "name": "指定数・選択内容の正確性",
+          "maxScore": 3,
+          "description": "選ぶ個数、番号、工種名、対象項目を正しく満たしている"
+        },
+        {
+          "name": "各項目の内容の適合",
+          "maxScore": 3,
+          "description": "選択した項目の概要、用語、施工方法が設問条件に合っている"
+        },
+        {
+          "name": "留意事項・効果の具体性",
+          "maxScore": 3,
+          "description": "留意事項、効果、理由、管理方法を具体的に書けている"
+        },
+        {
+          "name": "表現の簡潔さ",
+          "maxScore": 1,
+          "description": "答案として読みやすく、重複や条件違反が少ない"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ],
+      "overSelectionGuard": true
+    }
+  },
+  {
+    "qId": "Q_H29_08",
+    "responseType": "technical_short_answer",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "gradingGuidance": "公式模範解答ではなく学習用参考答案に基づくAI推定採点。正答キー未確認の穴埋めはdeterministic扱いにせず、文脈に合う語句・数値・同義表現を評価する。",
+      "referenceKeywords": "暑中コンクリートでは材料冷却、運搬時間短縮、打込み温度管理、打込み後の湿潤養生、直射日光・風の遮断、急激な乾燥防止を記述する。",
+      "criteria": [
+        {
+          "name": "設問要求の充足",
+          "maxScore": 2,
+          "description": "指定された個数・項目・条件に答えている"
+        },
+        {
+          "name": "必須概念の理解",
+          "maxScore": 3,
+          "description": "問われている施工管理・法令・品質管理の主要概念を正しく扱う"
+        },
+        {
+          "name": "具体性と施工妥当性",
+          "maxScore": 3,
+          "description": "施工手順、管理方法、確認、是正、周知などが具体的で妥当"
+        },
+        {
+          "name": "因果関係と表現",
+          "maxScore": 2,
+          "description": "課題、処置、効果が対応し、答案として簡潔に読める"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ],
+      "overSelectionGuard": true
+    }
+  },
+  {
+    "qId": "Q_H29_09",
+    "responseType": "technical_short_answer",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "gradingGuidance": "公式模範解答ではなく学習用参考答案に基づくAI推定採点。正答キー未確認の穴埋めはdeterministic扱いにせず、文脈に合う語句・数値・同義表現を評価する。",
+      "referenceKeywords": "鉄筋の加工・組立・継手検査では径、間隔、かぶり、定着・継手位置、継手長さ、圧接・溶接外観、超音波探傷、判定基準を整理する。",
+      "criteria": [
+        {
+          "name": "設問要求の充足",
+          "maxScore": 2,
+          "description": "指定された個数・項目・条件に答えている"
+        },
+        {
+          "name": "必須概念の理解",
+          "maxScore": 3,
+          "description": "問われている施工管理・法令・品質管理の主要概念を正しく扱う"
+        },
+        {
+          "name": "具体性と施工妥当性",
+          "maxScore": 3,
+          "description": "施工手順、管理方法、確認、是正、周知などが具体的で妥当"
+        },
+        {
+          "name": "因果関係と表現",
+          "maxScore": 2,
+          "description": "課題、処置、効果が対応し、答案として簡潔に読める"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ],
+      "overSelectionGuard": true
+    }
+  },
+  {
+    "qId": "Q_H29_10",
+    "responseType": "technical_short_answer",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "gradingGuidance": "公式模範解答ではなく学習用参考答案に基づくAI推定採点。正答キー未確認の穴埋めはdeterministic扱いにせず、文脈に合う語句・数値・同義表現を評価する。",
+      "referenceKeywords": "高所作業では作業床、手すり、中さん、幅木、安全帯取付設備、防網、開口部養生、昇降設備、悪天候時中止、点検を記述する。",
+      "criteria": [
+        {
+          "name": "設問要求の充足",
+          "maxScore": 2,
+          "description": "指定された個数・項目・条件に答えている"
+        },
+        {
+          "name": "必須概念の理解",
+          "maxScore": 3,
+          "description": "問われている施工管理・法令・品質管理の主要概念を正しく扱う"
+        },
+        {
+          "name": "具体性と施工妥当性",
+          "maxScore": 3,
+          "description": "施工手順、管理方法、確認、是正、周知などが具体的で妥当"
+        },
+        {
+          "name": "因果関係と表現",
+          "maxScore": 2,
+          "description": "課題、処置、効果が対応し、答案として簡潔に読める"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ],
+      "overSelectionGuard": true
+    }
+  },
+  {
+    "qId": "Q_H29_11",
+    "responseType": "technical_short_answer",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "gradingGuidance": "公式模範解答ではなく学習用参考答案に基づくAI推定採点。正答キー未確認の穴埋めはdeterministic扱いにせず、文脈に合う語句・数値・同義表現を評価する。",
+      "referenceKeywords": "建設廃棄物の分別・保管では種類別保管、掲示、飛散流出防止、雨水対策、保管場所管理、委託契約、マニフェスト、処理業者確認を記述する。",
+      "criteria": [
+        {
+          "name": "設問要求の充足",
+          "maxScore": 2,
+          "description": "指定された個数・項目・条件に答えている"
+        },
+        {
+          "name": "必須概念の理解",
+          "maxScore": 3,
+          "description": "問われている施工管理・法令・品質管理の主要概念を正しく扱う"
+        },
+        {
+          "name": "具体性と施工妥当性",
+          "maxScore": 3,
+          "description": "施工手順、管理方法、確認、是正、周知などが具体的で妥当"
+        },
+        {
+          "name": "因果関係と表現",
+          "maxScore": 2,
+          "description": "課題、処置、効果が対応し、答案として簡潔に読める"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ],
+      "overSelectionGuard": true
+    }
+  },
+  {
+    "qId": "Q_H30_01",
+    "responseType": "experience_essay",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "gradingGuidance": "公式模範解答ではなく学習用参考答案に基づくAI推定採点。正答キー未確認の穴埋めはdeterministic扱いにせず、文脈に合う語句・数値・同義表現を評価する。",
+      "referenceKeywords": "経験した土木工事の工事概要を具体化し、安全管理又は品質管理で特に留意した課題、検討内容、実施処置、評価を自分の立場で記述する。",
+      "criteria": [
+        {
+          "name": "工事概要の具体性",
+          "maxScore": 2,
+          "description": "工事名、場所、工期、工種、施工量、立場が具体的"
+        },
+        {
+          "name": "技術的課題と現場条件",
+          "maxScore": 3,
+          "description": "現場状況から課題が導かれ、設問テーマに合っている"
+        },
+        {
+          "name": "検討項目と実施処置",
+          "maxScore": 3,
+          "description": "検討理由、検討内容、実施した処置が具体的で妥当"
+        },
+        {
+          "name": "評価と施工管理者としての表現",
+          "maxScore": 2,
+          "description": "結果・評価が処置と対応し、自分の立場で簡潔に記述している"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ]
+    }
+  },
+  {
+    "qId": "Q_H30_02",
+    "responseType": "cloze_or_numeric",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "gradingGuidance": "公式模範解答ではなく学習用参考答案に基づくAI推定採点。正答キー未確認の穴埋めはdeterministic扱いにせず、文脈に合う語句・数値・同義表現を評価する。",
+      "referenceKeywords": "盛土施工では基礎地盤処理、湧水・沢部排水、材料のせん断強度・圧縮性・吸水性、粒度、含水比、敷均し厚、締固めを管理する。",
+      "criteria": [
+        {
+          "name": "設問要求の充足",
+          "maxScore": 2,
+          "description": "空欄番号、個数、語句又は数値の形式に答えている"
+        },
+        {
+          "name": "必須語句・概念の適合",
+          "maxScore": 4,
+          "description": "設問文脈に合う施工管理上の用語・数値・概念を外していない"
+        },
+        {
+          "name": "用語・数値の正確性",
+          "maxScore": 3,
+          "description": "表記ゆれを許容しつつ、意味・単位・対象が正確"
+        },
+        {
+          "name": "答案形式の明確さ",
+          "maxScore": 1,
+          "description": "番号対応が明確で、余計な説明が少ない"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ]
+    }
+  },
+  {
+    "qId": "Q_H30_03",
+    "responseType": "cloze_or_numeric",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "gradingGuidance": "公式模範解答ではなく学習用参考答案に基づくAI推定採点。正答キー未確認の穴埋めはdeterministic扱いにせず、文脈に合う語句・数値・同義表現を評価する。",
+      "referenceKeywords": "コンクリート養生では水和反応を進めるため湿潤状態、温度、日射・風対策、保温、散水、養生マット、養生期間を管理する。",
+      "criteria": [
+        {
+          "name": "設問要求の充足",
+          "maxScore": 2,
+          "description": "空欄番号、個数、語句又は数値の形式に答えている"
+        },
+        {
+          "name": "必須語句・概念の適合",
+          "maxScore": 4,
+          "description": "設問文脈に合う施工管理上の用語・数値・概念を外していない"
+        },
+        {
+          "name": "用語・数値の正確性",
+          "maxScore": 3,
+          "description": "表記ゆれを許容しつつ、意味・単位・対象が正確"
+        },
+        {
+          "name": "答案形式の明確さ",
+          "maxScore": 1,
+          "description": "番号対応が明確で、余計な説明が少ない"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ]
+    }
+  },
+  {
+    "qId": "Q_H30_04",
+    "responseType": "cloze_or_numeric",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "gradingGuidance": "公式模範解答ではなく学習用参考答案に基づくAI推定採点。正答キー未確認の穴埋めはdeterministic扱いにせず、文脈に合う語句・数値・同義表現を評価する。",
+      "referenceKeywords": "型枠及び支保工の取外しは、部材に作用する荷重、必要強度、構造物の種類、部材寸法、気温、順序、存置期間を考慮して行う。",
+      "criteria": [
+        {
+          "name": "設問要求の充足",
+          "maxScore": 2,
+          "description": "空欄番号、個数、語句又は数値の形式に答えている"
+        },
+        {
+          "name": "必須語句・概念の適合",
+          "maxScore": 4,
+          "description": "設問文脈に合う施工管理上の用語・数値・概念を外していない"
+        },
+        {
+          "name": "用語・数値の正確性",
+          "maxScore": 3,
+          "description": "表記ゆれを許容しつつ、意味・単位・対象が正確"
+        },
+        {
+          "name": "答案形式の明確さ",
+          "maxScore": 1,
+          "description": "番号対応が明確で、余計な説明が少ない"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ]
+    }
+  },
+  {
+    "qId": "Q_H30_05",
+    "responseType": "cloze_or_numeric",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "gradingGuidance": "公式模範解答ではなく学習用参考答案に基づくAI推定採点。正答キー未確認の穴埋めはdeterministic扱いにせず、文脈に合う語句・数値・同義表現を評価する。",
+      "referenceKeywords": "墜落等防止では高さ基準、作業床、手すり、中さん、幅木、防網、要求性能墜落制止用器具、親綱、開口部養生、点検を整理する。",
+      "criteria": [
+        {
+          "name": "設問要求の充足",
+          "maxScore": 2,
+          "description": "空欄番号、個数、語句又は数値の形式に答えている"
+        },
+        {
+          "name": "必須語句・概念の適合",
+          "maxScore": 4,
+          "description": "設問文脈に合う施工管理上の用語・数値・概念を外していない"
+        },
+        {
+          "name": "用語・数値の正確性",
+          "maxScore": 3,
+          "description": "表記ゆれを許容しつつ、意味・単位・対象が正確"
+        },
+        {
+          "name": "答案形式の明確さ",
+          "maxScore": 1,
+          "description": "番号対応が明確で、余計な説明が少ない"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ]
+    }
+  },
+  {
+    "qId": "Q_H30_06",
+    "responseType": "cloze_or_numeric",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "gradingGuidance": "公式模範解答ではなく学習用参考答案に基づくAI推定採点。正答キー未確認の穴埋めはdeterministic扱いにせず、文脈に合う語句・数値・同義表現を評価する。",
+      "referenceKeywords": "建設副産物対策では発注者の条件明示・費用計上、元請の排出事業者責任、分別解体、再資源化、処理委託、記録管理を整理する。",
+      "criteria": [
+        {
+          "name": "設問要求の充足",
+          "maxScore": 2,
+          "description": "空欄番号、個数、語句又は数値の形式に答えている"
+        },
+        {
+          "name": "必須語句・概念の適合",
+          "maxScore": 4,
+          "description": "設問文脈に合う施工管理上の用語・数値・概念を外していない"
+        },
+        {
+          "name": "用語・数値の正確性",
+          "maxScore": 3,
+          "description": "表記ゆれを許容しつつ、意味・単位・対象が正確"
+        },
+        {
+          "name": "答案形式の明確さ",
+          "maxScore": 1,
+          "description": "番号対応が明確で、余計な説明が少ない"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ]
+    }
+  },
+  {
+    "qId": "Q_H30_07",
+    "responseType": "technical_short_answer",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "gradingGuidance": "公式模範解答ではなく学習用参考答案に基づくAI推定採点。正答キー未確認の穴埋めはdeterministic扱いにせず、文脈に合う語句・数値・同義表現を評価する。",
+      "referenceKeywords": "石灰系固化材とセメント系固化材について、適用土質、反応速度、強度発現、発熱、混合むら、養生、六価クロムや粉じん対策を記述する。",
+      "criteria": [
+        {
+          "name": "設問要求の充足",
+          "maxScore": 2,
+          "description": "指定された個数・項目・条件に答えている"
+        },
+        {
+          "name": "必須概念の理解",
+          "maxScore": 3,
+          "description": "問われている施工管理・法令・品質管理の主要概念を正しく扱う"
+        },
+        {
+          "name": "具体性と施工妥当性",
+          "maxScore": 3,
+          "description": "施工手順、管理方法、確認、是正、周知などが具体的で妥当"
+        },
+        {
+          "name": "因果関係と表現",
+          "maxScore": 2,
+          "description": "課題、処置、効果が対応し、答案として簡潔に読める"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ],
+      "overSelectionGuard": true
+    }
+  },
+  {
+    "qId": "Q_H30_08",
+    "responseType": "technical_short_answer",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "gradingGuidance": "公式模範解答ではなく学習用参考答案に基づくAI推定採点。正答キー未確認の穴埋めはdeterministic扱いにせず、文脈に合う語句・数値・同義表現を評価する。",
+      "referenceKeywords": "打継目位置はせん断力の小さい位置など構造上支障の少ない箇所とし、水平打継目はレイタンス除去、粗面化、清掃、湿潤状態を確保する。",
+      "criteria": [
+        {
+          "name": "設問要求の充足",
+          "maxScore": 2,
+          "description": "指定された個数・項目・条件に答えている"
+        },
+        {
+          "name": "必須概念の理解",
+          "maxScore": 3,
+          "description": "問われている施工管理・法令・品質管理の主要概念を正しく扱う"
+        },
+        {
+          "name": "具体性と施工妥当性",
+          "maxScore": 3,
+          "description": "施工手順、管理方法、確認、是正、周知などが具体的で妥当"
+        },
+        {
+          "name": "因果関係と表現",
+          "maxScore": 2,
+          "description": "課題、処置、効果が対応し、答案として簡潔に読める"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ],
+      "overSelectionGuard": true
+    }
+  },
+  {
+    "qId": "Q_H30_09",
+    "responseType": "technical_short_answer",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "gradingGuidance": "公式模範解答ではなく学習用参考答案に基づくAI推定採点。正答キー未確認の穴埋めはdeterministic扱いにせず、文脈に合う語句・数値・同義表現を評価する。",
+      "referenceKeywords": "締固め管理方式は品質規定方式と工法規定方式を挙げ、前者は乾燥密度等の品質、後者は敷均し厚・転圧回数・機械条件で管理する。",
+      "criteria": [
+        {
+          "name": "設問要求の充足",
+          "maxScore": 2,
+          "description": "指定された個数・項目・条件に答えている"
+        },
+        {
+          "name": "必須概念の理解",
+          "maxScore": 3,
+          "description": "問われている施工管理・法令・品質管理の主要概念を正しく扱う"
+        },
+        {
+          "name": "具体性と施工妥当性",
+          "maxScore": 3,
+          "description": "施工手順、管理方法、確認、是正、周知などが具体的で妥当"
+        },
+        {
+          "name": "因果関係と表現",
+          "maxScore": 2,
+          "description": "課題、処置、効果が対応し、答案として簡潔に読める"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ],
+      "overSelectionGuard": true
+    }
+  },
+  {
+    "qId": "Q_H30_10",
+    "responseType": "mixed",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "gradingGuidance": "公式模範解答ではなく学習用参考答案に基づくAI推定採点。正答キー未確認の穴埋めはdeterministic扱いにせず、文脈に合う語句・数値・同義表現を評価する。",
+      "referenceKeywords": "明り掘削又は型枠支保工では作業主任者、作業計画、立入禁止、崩壊・倒壊防止、点検、合図、保護設備、悪天候時措置を記述する。",
+      "criteria": [
+        {
+          "name": "指定数・選択内容の正確性",
+          "maxScore": 3,
+          "description": "選ぶ個数、番号、工種名、対象項目を正しく満たしている"
+        },
+        {
+          "name": "各項目の内容の適合",
+          "maxScore": 3,
+          "description": "選択した項目の概要、用語、施工方法が設問条件に合っている"
+        },
+        {
+          "name": "留意事項・効果の具体性",
+          "maxScore": 3,
+          "description": "留意事項、効果、理由、管理方法を具体的に書けている"
+        },
+        {
+          "name": "表現の簡潔さ",
+          "maxScore": 1,
+          "description": "答案として読みやすく、重複や条件違反が少ない"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ],
+      "overSelectionGuard": true
+    }
+  },
+  {
+    "qId": "Q_H30_11",
+    "responseType": "mixed",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": true,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "gradingGuidance": "公式模範解答ではなく学習用参考答案に基づくAI推定採点。正答キー未確認の穴埋めはdeterministic扱いにせず、文脈に合う語句・数値・同義表現を評価する。",
+      "referenceKeywords": "プレキャストボックスカルバート施工は床付け、基礎、敷きモルタル、据付け、連結、目地、埋戻しから2工程を選び、出来形・品質・安定性を管理する。",
+      "criteria": [
+        {
+          "name": "指定数・選択内容の正確性",
+          "maxScore": 3,
+          "description": "選ぶ個数、番号、工種名、対象項目を正しく満たしている"
+        },
+        {
+          "name": "各項目の内容の適合",
+          "maxScore": 3,
+          "description": "選択した項目の概要、用語、施工方法が設問条件に合っている"
+        },
+        {
+          "name": "留意事項・効果の具体性",
+          "maxScore": 3,
+          "description": "留意事項、効果、理由、管理方法を具体的に書けている"
+        },
+        {
+          "name": "表現の簡潔さ",
+          "maxScore": 1,
+          "description": "答案として読みやすく、重複や条件違反が少ない"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ],
+      "overSelectionGuard": true
+    }
+  },
+  {
+    "qId": "Q_R1_01",
+    "responseType": "experience_essay",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "gradingGuidance": "公式模範解答ではなく学習用参考答案に基づくAI推定採点。正答キー未確認の穴埋めはdeterministic扱いにせず、文脈に合う語句・数値・同義表現を評価する。",
+      "referenceKeywords": "経験した土木工事の工事概要を具体化し、品質管理上の課題、検討項目、実施処置、確認結果、評価を対応させて記述する。",
+      "criteria": [
+        {
+          "name": "工事概要の具体性",
+          "maxScore": 2,
+          "description": "工事名、場所、工期、工種、施工量、立場が具体的"
+        },
+        {
+          "name": "技術的課題と現場条件",
+          "maxScore": 3,
+          "description": "現場状況から課題が導かれ、設問テーマに合っている"
+        },
+        {
+          "name": "検討項目と実施処置",
+          "maxScore": 3,
+          "description": "検討理由、検討内容、実施した処置が具体的で妥当"
+        },
+        {
+          "name": "評価と施工管理者としての表現",
+          "maxScore": 2,
+          "description": "結果・評価が処置と対応し、自分の立場で簡潔に記述している"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ]
+    }
+  },
+  {
+    "qId": "Q_R1_02",
+    "responseType": "cloze_or_numeric",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "gradingGuidance": "公式模範解答ではなく学習用参考答案に基づくAI推定採点。正答キー未確認の穴埋めはdeterministic扱いにせず、文脈に合う語句・数値・同義表現を評価する。",
+      "referenceKeywords": "軟弱地盤上の盛土では表面排水、横断勾配、施工機械のトラフィカビリティ、沈下・安定管理、段階施工、過剰な含水上昇防止を整理する。",
+      "criteria": [
+        {
+          "name": "設問要求の充足",
+          "maxScore": 2,
+          "description": "空欄番号、個数、語句又は数値の形式に答えている"
+        },
+        {
+          "name": "必須語句・概念の適合",
+          "maxScore": 4,
+          "description": "設問文脈に合う施工管理上の用語・数値・概念を外していない"
+        },
+        {
+          "name": "用語・数値の正確性",
+          "maxScore": 3,
+          "description": "表記ゆれを許容しつつ、意味・単位・対象が正確"
+        },
+        {
+          "name": "答案形式の明確さ",
+          "maxScore": 1,
+          "description": "番号対応が明確で、余計な説明が少ない"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ]
+    }
+  },
+  {
+    "qId": "Q_R1_03",
+    "responseType": "cloze_or_numeric",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "gradingGuidance": "公式模範解答ではなく学習用参考答案に基づくAI推定採点。正答キー未確認の穴埋めはdeterministic扱いにせず、文脈に合う語句・数値・同義表現を評価する。",
+      "referenceKeywords": "打継目位置、スペーサ、鉄筋位置、かぶり、打重ね時間、締固め、レイタンス処理、養生を対応させ、コンクリートを一体化させる。",
+      "criteria": [
+        {
+          "name": "設問要求の充足",
+          "maxScore": 2,
+          "description": "空欄番号、個数、語句又は数値の形式に答えている"
+        },
+        {
+          "name": "必須語句・概念の適合",
+          "maxScore": 4,
+          "description": "設問文脈に合う施工管理上の用語・数値・概念を外していない"
+        },
+        {
+          "name": "用語・数値の正確性",
+          "maxScore": 3,
+          "description": "表記ゆれを許容しつつ、意味・単位・対象が正確"
+        },
+        {
+          "name": "答案形式の明確さ",
+          "maxScore": 1,
+          "description": "番号対応が明確で、余計な説明が少ない"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ]
+    }
+  },
+  {
+    "qId": "Q_R1_04",
+    "responseType": "cloze_or_numeric",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "gradingGuidance": "公式模範解答ではなく学習用参考答案に基づくAI推定採点。正答キー未確認の穴埋めはdeterministic扱いにせず、文脈に合う語句・数値・同義表現を評価する。",
+      "referenceKeywords": "品質規定方式は乾燥密度、締固め度、空気間げき率、飽和度、強度・変形特性を、工法規定方式は機械・回数・厚さを管理する。",
+      "criteria": [
+        {
+          "name": "設問要求の充足",
+          "maxScore": 2,
+          "description": "空欄番号、個数、語句又は数値の形式に答えている"
+        },
+        {
+          "name": "必須語句・概念の適合",
+          "maxScore": 4,
+          "description": "設問文脈に合う施工管理上の用語・数値・概念を外していない"
+        },
+        {
+          "name": "用語・数値の正確性",
+          "maxScore": 3,
+          "description": "表記ゆれを許容しつつ、意味・単位・対象が正確"
+        },
+        {
+          "name": "答案形式の明確さ",
+          "maxScore": 1,
+          "description": "番号対応が明確で、余計な説明が少ない"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ]
+    }
+  },
+  {
+    "qId": "Q_R1_05",
+    "responseType": "cloze_or_numeric",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "gradingGuidance": "公式模範解答ではなく学習用参考答案に基づくAI推定採点。正答キー未確認の穴埋めはdeterministic扱いにせず、文脈に合う語句・数値・同義表現を評価する。",
+      "referenceKeywords": "車両系建設機械では接触防止、誘導、立入禁止、作業計画、転倒防止、荷の落下防止、制限速度、資格、点検、合図を管理する。",
+      "criteria": [
+        {
+          "name": "設問要求の充足",
+          "maxScore": 2,
+          "description": "空欄番号、個数、語句又は数値の形式に答えている"
+        },
+        {
+          "name": "必須語句・概念の適合",
+          "maxScore": 4,
+          "description": "設問文脈に合う施工管理上の用語・数値・概念を外していない"
+        },
+        {
+          "name": "用語・数値の正確性",
+          "maxScore": 3,
+          "description": "表記ゆれを許容しつつ、意味・単位・対象が正確"
+        },
+        {
+          "name": "答案形式の明確さ",
+          "maxScore": 1,
+          "description": "番号対応が明確で、余計な説明が少ない"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ]
+    }
+  },
+  {
+    "qId": "Q_R1_06",
+    "responseType": "cloze_or_numeric",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "gradingGuidance": "公式模範解答ではなく学習用参考答案に基づくAI推定採点。正答キー未確認の穴埋めはdeterministic扱いにせず、文脈に合う語句・数値・同義表現を評価する。",
+      "referenceKeywords": "特定建設資材はコンクリート塊、アスファルト・コンクリート塊、建設発生木材などを破砕、選別、粒度調整し再生資材として利用する。",
+      "criteria": [
+        {
+          "name": "設問要求の充足",
+          "maxScore": 2,
+          "description": "空欄番号、個数、語句又は数値の形式に答えている"
+        },
+        {
+          "name": "必須語句・概念の適合",
+          "maxScore": 4,
+          "description": "設問文脈に合う施工管理上の用語・数値・概念を外していない"
+        },
+        {
+          "name": "用語・数値の正確性",
+          "maxScore": 3,
+          "description": "表記ゆれを許容しつつ、意味・単位・対象が正確"
+        },
+        {
+          "name": "答案形式の明確さ",
+          "maxScore": 1,
+          "description": "番号対応が明確で、余計な説明が少ない"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ]
+    }
+  },
+  {
+    "qId": "Q_R1_07",
+    "responseType": "mixed",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "gradingGuidance": "公式模範解答ではなく学習用参考答案に基づくAI推定採点。正答キー未確認の穴埋めはdeterministic扱いにせず、文脈に合う語句・数値・同義表現を評価する。",
+      "referenceKeywords": "種子散布、張芝、プレキャスト枠、ブロック積擁壁から2工法を選び、概要、適用条件、施工時期、法面安定、排水、定着を記述する。",
+      "criteria": [
+        {
+          "name": "指定数・選択内容の正確性",
+          "maxScore": 3,
+          "description": "選ぶ個数、番号、工種名、対象項目を正しく満たしている"
+        },
+        {
+          "name": "各項目の内容の適合",
+          "maxScore": 3,
+          "description": "選択した項目の概要、用語、施工方法が設問条件に合っている"
+        },
+        {
+          "name": "留意事項・効果の具体性",
+          "maxScore": 3,
+          "description": "留意事項、効果、理由、管理方法を具体的に書けている"
+        },
+        {
+          "name": "表現の簡潔さ",
+          "maxScore": 1,
+          "description": "答案として読みやすく、重複や条件違反が少ない"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ],
+      "overSelectionGuard": true
+    }
+  },
+  {
+    "qId": "Q_R1_08",
+    "responseType": "technical_short_answer",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "gradingGuidance": "公式模範解答ではなく学習用参考答案に基づくAI推定採点。正答キー未確認の穴埋めはdeterministic扱いにせず、文脈に合う語句・数値・同義表現を評価する。",
+      "referenceKeywords": "打重ね時は許容打重ね時間を守り、締固め時はバイブレータを下層に挿入して一体化させ、材料分離や過振動を避ける。",
+      "criteria": [
+        {
+          "name": "設問要求の充足",
+          "maxScore": 2,
+          "description": "指定された個数・項目・条件に答えている"
+        },
+        {
+          "name": "必須概念の理解",
+          "maxScore": 3,
+          "description": "問われている施工管理・法令・品質管理の主要概念を正しく扱う"
+        },
+        {
+          "name": "具体性と施工妥当性",
+          "maxScore": 3,
+          "description": "施工手順、管理方法、確認、是正、周知などが具体的で妥当"
+        },
+        {
+          "name": "因果関係と表現",
+          "maxScore": 2,
+          "description": "課題、処置、効果が対応し、答案として簡潔に読める"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ],
+      "overSelectionGuard": true
+    }
+  },
+  {
+    "qId": "Q_R1_09",
+    "responseType": "mixed",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "gradingGuidance": "公式模範解答ではなく学習用参考答案に基づくAI推定採点。正答キー未確認の穴埋めはdeterministic扱いにせず、文脈に合う語句・数値・同義表現を評価する。",
+      "referenceKeywords": "塩害、凍害、アルカリシリカ反応から2つ選び、低水セメント比、かぶり確保、ひび割れ抑制、空気量管理、反応性骨材対策を記述する。",
+      "criteria": [
+        {
+          "name": "指定数・選択内容の正確性",
+          "maxScore": 3,
+          "description": "選ぶ個数、番号、工種名、対象項目を正しく満たしている"
+        },
+        {
+          "name": "各項目の内容の適合",
+          "maxScore": 3,
+          "description": "選択した項目の概要、用語、施工方法が設問条件に合っている"
+        },
+        {
+          "name": "留意事項・効果の具体性",
+          "maxScore": 3,
+          "description": "留意事項、効果、理由、管理方法を具体的に書けている"
+        },
+        {
+          "name": "表現の簡潔さ",
+          "maxScore": 1,
+          "description": "答案として読みやすく、重複や条件違反が少ない"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ],
+      "overSelectionGuard": true
+    }
+  },
+  {
+    "qId": "Q_R1_10",
+    "responseType": "technical_short_answer",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": true,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "gradingGuidance": "公式模範解答ではなく学習用参考答案に基づくAI推定採点。正答キー未確認の穴埋めはdeterministic扱いにせず、文脈に合う語句・数値・同義表現を評価する。",
+      "referenceKeywords": "H形鋼搬入時の移動式クレーン作業では玉掛け、吊荷下立入禁止、合図、定格荷重、アウトリガ、地盤養生、旋回範囲管理を記述する。",
+      "criteria": [
+        {
+          "name": "設問要求の充足",
+          "maxScore": 2,
+          "description": "指定された個数・項目・条件に答えている"
+        },
+        {
+          "name": "必須概念の理解",
+          "maxScore": 3,
+          "description": "問われている施工管理・法令・品質管理の主要概念を正しく扱う"
+        },
+        {
+          "name": "具体性と施工妥当性",
+          "maxScore": 3,
+          "description": "施工手順、管理方法、確認、是正、周知などが具体的で妥当"
+        },
+        {
+          "name": "因果関係と表現",
+          "maxScore": 2,
+          "description": "課題、処置、効果が対応し、答案として簡潔に読める"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ],
+      "overSelectionGuard": true
+    }
+  },
+  {
+    "qId": "Q_R1_11",
+    "responseType": "mixed",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "gradingGuidance": "公式模範解答ではなく学習用参考答案に基づくAI推定採点。正答キー未確認の穴埋めはdeterministic扱いにせず、文脈に合う語句・数値・同義表現を評価する。",
+      "referenceKeywords": "施工計画書は現場組織表、主要資材、施工方法、安全管理から選び、責任体制、資材規格、手順、危険防止措置を具体化する。",
+      "criteria": [
+        {
+          "name": "指定数・選択内容の正確性",
+          "maxScore": 3,
+          "description": "選ぶ個数、番号、工種名、対象項目を正しく満たしている"
+        },
+        {
+          "name": "各項目の内容の適合",
+          "maxScore": 3,
+          "description": "選択した項目の概要、用語、施工方法が設問条件に合っている"
+        },
+        {
+          "name": "留意事項・効果の具体性",
+          "maxScore": 3,
+          "description": "留意事項、効果、理由、管理方法を具体的に書けている"
+        },
+        {
+          "name": "表現の簡潔さ",
+          "maxScore": 1,
+          "description": "答案として読みやすく、重複や条件違反が少ない"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ],
+      "overSelectionGuard": true
+    }
+  },
+  {
+    "qId": "Q_R2_01",
+    "responseType": "experience_essay",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "gradingGuidance": "公式模範解答ではなく学習用参考答案に基づくAI推定採点。正答キー未確認の穴埋めはdeterministic扱いにせず、文脈に合う語句・数値・同義表現を評価する。",
+      "referenceKeywords": "経験した土木工事の工事概要を具体化し、品質管理又は安全管理上の技術的課題、検討理由、実施処置、効果を対応させて記述する。",
+      "criteria": [
+        {
+          "name": "工事概要の具体性",
+          "maxScore": 2,
+          "description": "工事名、場所、工期、工種、施工量、立場が具体的"
+        },
+        {
+          "name": "技術的課題と現場条件",
+          "maxScore": 3,
+          "description": "現場状況から課題が導かれ、設問テーマに合っている"
+        },
+        {
+          "name": "検討項目と実施処置",
+          "maxScore": 3,
+          "description": "検討理由、検討内容、実施した処置が具体的で妥当"
+        },
+        {
+          "name": "評価と施工管理者としての表現",
+          "maxScore": 2,
+          "description": "結果・評価が処置と対応し、自分の立場で簡潔に記述している"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ]
+    }
+  },
+  {
+    "qId": "Q_R2_02",
+    "responseType": "cloze_or_numeric",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "gradingGuidance": "公式模範解答ではなく学習用参考答案に基づくAI推定採点。正答キー未確認の穴埋めはdeterministic扱いにせず、文脈に合う語句・数値・同義表現を評価する。",
+      "referenceKeywords": "建設発生土は含水比調整、ばっ気乾燥、法面勾配変更、ジオテキスタイル、排水処理、安定処理を土質・強度・利用先に応じて選ぶ。",
+      "criteria": [
+        {
+          "name": "設問要求の充足",
+          "maxScore": 2,
+          "description": "空欄番号、個数、語句又は数値の形式に答えている"
+        },
+        {
+          "name": "必須語句・概念の適合",
+          "maxScore": 4,
+          "description": "設問文脈に合う施工管理上の用語・数値・概念を外していない"
+        },
+        {
+          "name": "用語・数値の正確性",
+          "maxScore": 3,
+          "description": "表記ゆれを許容しつつ、意味・単位・対象が正確"
+        },
+        {
+          "name": "答案形式の明確さ",
+          "maxScore": 1,
+          "description": "番号対応が明確で、余計な説明が少ない"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ]
+    }
+  },
+  {
+    "qId": "Q_R2_03",
+    "responseType": "cloze_or_numeric",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "gradingGuidance": "公式模範解答ではなく学習用参考答案に基づくAI推定採点。正答キー未確認の穴埋めはdeterministic扱いにせず、文脈に合う語句・数値・同義表現を評価する。",
+      "referenceKeywords": "混和材料ではフライアッシュ、膨張材、高炉スラグ微粉末、シリカフューム、AE剤、減水剤等の効果、適用、品質上の留意点を整理する。",
+      "criteria": [
+        {
+          "name": "設問要求の充足",
+          "maxScore": 2,
+          "description": "空欄番号、個数、語句又は数値の形式に答えている"
+        },
+        {
+          "name": "必須語句・概念の適合",
+          "maxScore": 4,
+          "description": "設問文脈に合う施工管理上の用語・数値・概念を外していない"
+        },
+        {
+          "name": "用語・数値の正確性",
+          "maxScore": 3,
+          "description": "表記ゆれを許容しつつ、意味・単位・対象が正確"
+        },
+        {
+          "name": "答案形式の明確さ",
+          "maxScore": 1,
+          "description": "番号対応が明確で、余計な説明が少ない"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ]
+    }
+  },
+  {
+    "qId": "Q_R2_04",
+    "responseType": "cloze_or_numeric",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "gradingGuidance": "公式模範解答ではなく学習用参考答案に基づくAI推定採点。正答キー未確認の穴埋めはdeterministic扱いにせず、文脈に合う語句・数値・同義表現を評価する。",
+      "referenceKeywords": "コンクリート品質管理では許容打重ね時間、材料分離防止、締固め、ブリーディング、養生、湿潤状態、温度管理、初期欠陥防止を整理する。",
+      "criteria": [
+        {
+          "name": "設問要求の充足",
+          "maxScore": 2,
+          "description": "空欄番号、個数、語句又は数値の形式に答えている"
+        },
+        {
+          "name": "必須語句・概念の適合",
+          "maxScore": 4,
+          "description": "設問文脈に合う施工管理上の用語・数値・概念を外していない"
+        },
+        {
+          "name": "用語・数値の正確性",
+          "maxScore": 3,
+          "description": "表記ゆれを許容しつつ、意味・単位・対象が正確"
+        },
+        {
+          "name": "答案形式の明確さ",
+          "maxScore": 1,
+          "description": "番号対応が明確で、余計な説明が少ない"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ]
+    }
+  },
+  {
+    "qId": "Q_R2_05",
+    "responseType": "cloze_or_numeric",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "gradingGuidance": "公式模範解答ではなく学習用参考答案に基づくAI推定採点。正答キー未確認の穴埋めはdeterministic扱いにせず、文脈に合う語句・数値・同義表現を評価する。",
+      "referenceKeywords": "足場点検では作業開始前、悪天候・地震後、組立変更後の点検時期、墜落防止設備、手すり、緊結、脚部、最大積載荷重、記録を管理する。",
+      "criteria": [
+        {
+          "name": "設問要求の充足",
+          "maxScore": 2,
+          "description": "空欄番号、個数、語句又は数値の形式に答えている"
+        },
+        {
+          "name": "必須語句・概念の適合",
+          "maxScore": 4,
+          "description": "設問文脈に合う施工管理上の用語・数値・概念を外していない"
+        },
+        {
+          "name": "用語・数値の正確性",
+          "maxScore": 3,
+          "description": "表記ゆれを許容しつつ、意味・単位・対象が正確"
+        },
+        {
+          "name": "答案形式の明確さ",
+          "maxScore": 1,
+          "description": "番号対応が明確で、余計な説明が少ない"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ]
+    }
+  },
+  {
+    "qId": "Q_R2_06",
+    "responseType": "technical_short_answer",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "gradingGuidance": "公式模範解答ではなく学習用参考答案に基づくAI推定採点。正答キー未確認の穴埋めはdeterministic扱いにせず、文脈に合う語句・数値・同義表現を評価する。",
+      "referenceKeywords": "施工計画は施工条件、工程、資機材、労務、安全、環境、関係機関協議、交通災害防止、品質確保、確実な施工を総合的に整理する。",
+      "criteria": [
+        {
+          "name": "設問要求の充足",
+          "maxScore": 2,
+          "description": "指定された個数・項目・条件に答えている"
+        },
+        {
+          "name": "必須概念の理解",
+          "maxScore": 3,
+          "description": "問われている施工管理・法令・品質管理の主要概念を正しく扱う"
+        },
+        {
+          "name": "具体性と施工妥当性",
+          "maxScore": 3,
+          "description": "施工手順、管理方法、確認、是正、周知などが具体的で妥当"
+        },
+        {
+          "name": "因果関係と表現",
+          "maxScore": 2,
+          "description": "課題、処置、効果が対応し、答案として簡潔に読める"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ],
+      "overSelectionGuard": true
+    }
+  },
+  {
+    "qId": "Q_R2_07",
+    "responseType": "technical_short_answer",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "gradingGuidance": "公式模範解答ではなく学習用参考答案に基づくAI推定採点。正答キー未確認の穴埋めはdeterministic扱いにせず、文脈に合う語句・数値・同義表現を評価する。",
+      "referenceKeywords": "切土法面排水の目的は表面水・地下水による浸食や崩壊を防ぐことであり、仮排水、法肩排水、縦排水、流末処理、早期施工を管理する。",
+      "criteria": [
+        {
+          "name": "設問要求の充足",
+          "maxScore": 2,
+          "description": "指定された個数・項目・条件に答えている"
+        },
+        {
+          "name": "必須概念の理解",
+          "maxScore": 3,
+          "description": "問われている施工管理・法令・品質管理の主要概念を正しく扱う"
+        },
+        {
+          "name": "具体性と施工妥当性",
+          "maxScore": 3,
+          "description": "施工手順、管理方法、確認、是正、周知などが具体的で妥当"
+        },
+        {
+          "name": "因果関係と表現",
+          "maxScore": 2,
+          "description": "課題、処置、効果が対応し、答案として簡潔に読める"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ],
+      "overSelectionGuard": true
+    }
+  },
+  {
+    "qId": "Q_R2_08",
+    "responseType": "technical_short_answer",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "gradingGuidance": "公式模範解答ではなく学習用参考答案に基づくAI推定採点。正答キー未確認の穴埋めはdeterministic扱いにせず、文脈に合う語句・数値・同義表現を評価する。",
+      "referenceKeywords": "沈みひび割れは沈下・ブリーディング等に対し再振動や打込み管理で防ぎ、温度ひび割れはリフト割り、保温、温度差低減、養生で防ぐ。",
+      "criteria": [
+        {
+          "name": "設問要求の充足",
+          "maxScore": 2,
+          "description": "指定された個数・項目・条件に答えている"
+        },
+        {
+          "name": "必須概念の理解",
+          "maxScore": 3,
+          "description": "問われている施工管理・法令・品質管理の主要概念を正しく扱う"
+        },
+        {
+          "name": "具体性と施工妥当性",
+          "maxScore": 3,
+          "description": "施工手順、管理方法、確認、是正、周知などが具体的で妥当"
+        },
+        {
+          "name": "因果関係と表現",
+          "maxScore": 2,
+          "description": "課題、処置、効果が対応し、答案として簡潔に読める"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ],
+      "overSelectionGuard": true
+    }
+  },
+  {
+    "qId": "Q_R2_09",
+    "responseType": "technical_short_answer",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "gradingGuidance": "公式模範解答ではなく学習用参考答案に基づくAI推定採点。正答キー未確認の穴埋めはdeterministic扱いにせず、文脈に合う語句・数値・同義表現を評価する。",
+      "referenceKeywords": "盛土締固め管理は品質規定方式と工法規定方式を挙げ、乾燥密度・空気間げき率等の品質又は敷均し厚・転圧回数等の施工条件で管理する。",
+      "criteria": [
+        {
+          "name": "設問要求の充足",
+          "maxScore": 2,
+          "description": "指定された個数・項目・条件に答えている"
+        },
+        {
+          "name": "必須概念の理解",
+          "maxScore": 3,
+          "description": "問われている施工管理・法令・品質管理の主要概念を正しく扱う"
+        },
+        {
+          "name": "具体性と施工妥当性",
+          "maxScore": 3,
+          "description": "施工手順、管理方法、確認、是正、周知などが具体的で妥当"
+        },
+        {
+          "name": "因果関係と表現",
+          "maxScore": 2,
+          "description": "課題、処置、効果が対応し、答案として簡潔に読める"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ],
+      "overSelectionGuard": true
+    }
+  },
+  {
+    "qId": "Q_R2_10",
+    "responseType": "technical_short_answer",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "gradingGuidance": "公式模範解答ではなく学習用参考答案に基づくAI推定採点。正答キー未確認の穴埋めはdeterministic扱いにせず、文脈に合う語句・数値・同義表現を評価する。",
+      "referenceKeywords": "機械掘削・積込みでは作業計画、誘導者、立入禁止、接触防止、地山崩壊防止、転倒防止、合図、視界確保、点検、資格を記述する。",
+      "criteria": [
+        {
+          "name": "設問要求の充足",
+          "maxScore": 2,
+          "description": "指定された個数・項目・条件に答えている"
+        },
+        {
+          "name": "必須概念の理解",
+          "maxScore": 3,
+          "description": "問われている施工管理・法令・品質管理の主要概念を正しく扱う"
+        },
+        {
+          "name": "具体性と施工妥当性",
+          "maxScore": 3,
+          "description": "施工手順、管理方法、確認、是正、周知などが具体的で妥当"
+        },
+        {
+          "name": "因果関係と表現",
+          "maxScore": 2,
+          "description": "課題、処置、効果が対応し、答案として簡潔に読める"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ],
+      "overSelectionGuard": true
+    }
+  },
+  {
+    "qId": "Q_R2_11",
+    "responseType": "technical_short_answer",
+    "sourceQuality": "reference_only",
+    "scoreMode": "rubric_ai",
+    "maxScore": 10,
+    "reviewStatus": "curated_reference",
+    "rubricJson": {
+      "generatorModel": "gpt-5.5",
+      "displayNotice": "AI推定点・公式採点ではありません。",
+      "referenceType": "curated_reference",
+      "requiresImage": false,
+      "sourceRefs": [
+        {
+          "name": "全国建設研修センター 試験問題/正答肢",
+          "url": "https://www.jctc.jp/mondai/",
+          "retrieved": "2026-06-25",
+          "usage": "official_problem_listing"
+        },
+        {
+          "name": "全国建設研修センター 1級土木施工管理技術検定 第二次検定 受検の手引",
+          "url": "https://www.jctc.jp/kentei/themes/tebiki_1d03_08_old.pdf",
+          "retrieved": "2026-06-25",
+          "usage": "second_exam_answers_not_published_confirmation"
+        }
+      ],
+      "referencePolicy": "記述式の公式模範解答は公表されないため、採点結果は学習用のAI推定点として扱う。民間解答本文は保存せず、論点・キーワード・採点観点のみ独自整理する。",
+      "gradingGuidance": "公式模範解答ではなく学習用参考答案に基づくAI推定採点。正答キー未確認の穴埋めはdeterministic扱いにせず、文脈に合う語句・数値・同義表現を評価する。",
+      "referenceKeywords": "騒音・振動対策は低騒音低振動機械、作業時間管理、防音・防振設備、施工方法変更、発生源距離確保、住民周知、測定記録を記述する。",
+      "criteria": [
+        {
+          "name": "設問要求の充足",
+          "maxScore": 2,
+          "description": "指定された個数・項目・条件に答えている"
+        },
+        {
+          "name": "必須概念の理解",
+          "maxScore": 3,
+          "description": "問われている施工管理・法令・品質管理の主要概念を正しく扱う"
+        },
+        {
+          "name": "具体性と施工妥当性",
+          "maxScore": 3,
+          "description": "施工手順、管理方法、確認、是正、周知などが具体的で妥当"
+        },
+        {
+          "name": "因果関係と表現",
+          "maxScore": 2,
+          "description": "課題、処置、効果が対応し、答案として簡潔に読める"
+        }
+      ],
+      "fullScorePolicy": "設問要求、具体性、因果、除外条件への適合が十分なら10点を付ける。形式的な記録・是正の不足だけで9点止まりにしない。",
+      "feedbackRequired": [
+        "不足論点",
+        "10点に近づく追記例",
+        "条件違反があれば警告"
+      ],
+      "overSelectionGuard": true
     }
   }
 ]

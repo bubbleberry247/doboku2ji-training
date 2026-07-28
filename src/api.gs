@@ -1,6 +1,37 @@
 var __clientUserKey = '';
 var DOBOKU2JI_PROGRAM_START_DATE_ = '2026-07-01';
 var DOBOKU2JI_EXAM_DATE_ = '2026-10-04';
+var DOBOKU2JI_MINI_COMPLETION_CUTOFF_PROPERTY_ = 'DOBOKU2JI_MINI_COMPLETION_CUTOFF_AT';
+
+function getDobokuMiniCompletionLegacyCutoffMs_() {
+  var props = PropertiesService.getScriptProperties();
+  var value = String(props.getProperty(DOBOKU2JI_MINI_COMPLETION_CUTOFF_PROPERTY_) || '').trim();
+  if (!value) {
+    var lock = LockService.getScriptLock();
+    lock.waitLock(10000);
+    try {
+      value = String(props.getProperty(DOBOKU2JI_MINI_COMPLETION_CUTOFF_PROPERTY_) || '').trim();
+      if (!value) {
+        value = new Date().toISOString();
+        props.setProperty(DOBOKU2JI_MINI_COMPLETION_CUTOFF_PROPERTY_, value);
+      }
+    } finally {
+      lock.releaseLock();
+    }
+  }
+  var cutoffMs = new Date(value).getTime();
+  if (isNaN(cutoffMs)) throw new Error('ミニテスト受講回数の切替時刻が不正です');
+  return cutoffMs;
+}
+
+function requireDobokuActiveMiniUser_(clientUserKey) {
+  var requestedKey = String(clientUserKey || '').trim();
+  var ctx = getUserContextByKey_(requestedKey);
+  if (!requestedKey || !ctx.userKey || String(ctx.userKey) !== requestedKey || !ctx.active) {
+    throw new Error('有効なログイン情報が見つかりません');
+  }
+  return ctx;
+}
 
 function parseDobokuMiniDateUtc_(value) {
   var m = String(value || '').trim().match(/^(\d{4})-(\d{2})-(\d{2})$/);
@@ -28,6 +59,7 @@ function formatDobokuMiniDateRange_(unlockWeek) {
   var weekStart = startUtc + Number(unlockWeek || 0) * 7 * 86400000;
   var weekEnd = weekStart + 6 * 86400000;
   var examUtc = parseDobokuMiniDateUtc_(DOBOKU2JI_EXAM_DATE_);
+  if (examUtc !== null && weekStart >= examUtc) return '';
   if (examUtc !== null && weekEnd >= examUtc) weekEnd = examUtc - 86400000;
   var s = new Date(weekStart);
   var e = new Date(weekEnd);
@@ -55,34 +87,62 @@ function formatDobokuRangePart_(part) {
   return part.year + ' 問' + part.from + '〜' + part.to;
 }
 
+function getDobokuMiniRangeTemplates_() {
+  return [
+    { from: 1, to: 1 },
+    { from: 2, to: 5 },
+    { from: 6, to: 8 },
+    { from: 9, to: 11 }
+  ];
+}
+
+function buildDobokuMiniPlanFromRefs_(refs) {
+  var byYear = {};
+  (refs || []).forEach(function(ref) {
+    var year = String(ref.year || '').trim().toUpperCase();
+    var no = Number(ref.number || 0);
+    if (!year || no <= 0) return;
+    if (!byYear[year]) byYear[year] = {};
+    byYear[year][no] = true;
+  });
+
+  var templates = getDobokuMiniRangeTemplates_();
+  var rows = [];
+  Object.keys(byYear).sort(function(a, b) {
+    return yearOrderForDoboku_(b) - yearOrderForDoboku_(a);
+  }).forEach(function(year) {
+    templates.forEach(function(range) {
+      var chunk = [];
+      for (var no = range.from; no <= range.to; no++) {
+        if (byYear[year][no]) chunk.push({ year: year, number: no });
+      }
+      if (!chunk.length) return;
+      var parts = buildDobokuRangeParts_(chunk);
+      var key = parts.map(function(part) {
+        return 'range:' + part.year + ':' + part.from + '-' + part.to;
+      }).join(',');
+      var idx = rows.length + 1;
+      rows.push({
+        testIndex: idx,
+        label: '第' + idx + '回 ' + parts.map(formatDobokuRangePart_).join('・'),
+        key: key,
+        questionsPerTest: chunk.length,
+        unlockWeek: idx - 1,
+        recommended: false,
+        dateRange: formatDobokuMiniDateRange_(idx - 1)
+      });
+    });
+  });
+  return rows;
+}
+
 function buildDobokuMiniPlan_() {
-  var years = ['R7', 'R6', 'R5', 'R4', 'R3'];
+  var years = ['R7', 'R6', 'R5', 'R4', 'R3', 'R2', 'R1', 'H30', 'H29', 'H28'];
   var refs = [];
   years.forEach(function(year) {
     for (var no = 1; no <= 11; no++) refs.push({ year: year, number: no });
   });
-  var chunkSizes = [5, 5, 5, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4];
-  var rows = [];
-  var pos = 0;
-  for (var i = 0; i < chunkSizes.length; i++) {
-    var chunk = refs.slice(pos, pos + chunkSizes[i]);
-    pos += chunkSizes[i];
-    var parts = buildDobokuRangeParts_(chunk);
-    var key = parts.map(function(part) {
-      return 'range:' + part.year + ':' + part.from + '-' + part.to;
-    }).join(',');
-    var label = '第' + (i + 1) + '回 ' + parts.map(formatDobokuRangePart_).join('・');
-    rows.push({
-      testIndex: i + 1,
-      label: label,
-      key: key,
-      questionsPerTest: chunk.length,
-      unlockWeek: i,
-      recommended: false,
-      dateRange: formatDobokuMiniDateRange_(i)
-    });
-  }
-  return rows;
+  return buildDobokuMiniPlanFromRefs_(refs);
 }
 
 function markDobokuMiniPlanForThisWeek_(plan) {
@@ -132,31 +192,7 @@ function buildDobokuMiniPlanForQuestions_(questions) {
   }).filter(function(ref) {
     return ref.year && ref.number > 0;
   });
-  refs.sort(function(a, b) {
-    var ay = yearOrderForDoboku_(a.year);
-    var by = yearOrderForDoboku_(b.year);
-    if (ay !== by) return by - ay;
-    return a.number - b.number;
-  });
-  var chunkSize = refs.length <= 20 ? 2 : 5;
-  var rows = [];
-  for (var pos = 0; pos < refs.length; pos += chunkSize) {
-    var chunk = refs.slice(pos, pos + chunkSize);
-    var parts = buildDobokuRangeParts_(chunk);
-    var key = parts.map(function(part) {
-      return 'range:' + part.year + ':' + part.from + '-' + part.to;
-    }).join(',');
-    rows.push({
-      testIndex: rows.length + 1,
-      label: '第' + (rows.length + 1) + '回 ' + parts.map(formatDobokuRangePart_).join('・'),
-      key: key,
-      questionsPerTest: chunk.length,
-      unlockWeek: rows.length,
-      recommended: false,
-      dateRange: formatDobokuMiniDateRange_(rows.length)
-    });
-  }
-  return rows;
+  return buildDobokuMiniPlanFromRefs_(refs);
 }
 
 function getDobokuGradableQuestions_(questions) {
@@ -211,6 +247,7 @@ function toSerializable_(obj) {
 function apiGetHome(clientUserKey) {
   __clientUserKey = clientUserKey || '';
   try {
+    getDobokuMiniCompletionLegacyCutoffMs_();
     var publishedQuestions = getCachedQuestions_();
     var gradableQuestions = getDobokuGradableQuestions_(publishedQuestions);
     var years = getDobokuYearSummaryForQuestions_(gradableQuestions);
@@ -349,10 +386,197 @@ function apiGetPracticeQuestions(kind, key, title, clientUserKey) {
 
     qs.sort(sortDobokuPracticeQuestions_);
     var statusMap = getDobokuRubricStatusMap_();
-    return toSerializable_({
+    var response = {
       title: String(title || getDobokuPracticeTitle_(kind, key)),
       questions: qs.map(function(q) { return toDobokuQuestionListItem_(q, submittedMap, statusMap); })
+    };
+    if (String(kind) === 'mini' && userKey) {
+      requireDobokuActiveMiniUser_(userKey);
+      getDobokuMiniCompletionLegacyCutoffMs_();
+      response.miniAttempt = startDobokuMiniTestAttempt_(userKey, key);
+    }
+    return toSerializable_(response);
+  } catch (e) {
+    return { _error: true, message: String(e.message || e) };
+  }
+}
+
+function getDobokuMiniCompletionSheet_(createIfMissing) {
+  var ss = getDb_();
+  var sh = ss.getSheetByName(SHEETS.MiniTestCompletions);
+  if (!sh && createIfMissing) sh = ss.insertSheet(SHEETS.MiniTestCompletions);
+  if (sh) ensureSheetColumns_(sh, HEADERS[SHEETS.MiniTestCompletions]);
+  return sh;
+}
+
+function getDobokuMiniPlanItemByKey_(testKey) {
+  var key = String(testKey || '').trim();
+  if (!key) return null;
+  var questions = getDobokuGradableQuestions_(getCachedQuestions_());
+  var plan = buildDobokuMiniPlanForQuestions_(questions);
+  for (var i = 0; i < plan.length; i++) {
+    if (String(plan[i].key || '') === key) return plan[i];
+  }
+  return null;
+}
+
+function getDobokuMiniQuestionIdsForKey_(testKey) {
+  return getDobokuGradableQuestions_(getCachedQuestions_())
+    .filter(function(q) { return matchesDobokuPractice_(q, testKey); })
+    .sort(sortDobokuPracticeQuestions_)
+    .map(function(q) { return String(q.qId || '').trim(); })
+    .filter(function(qId) { return !!qId; });
+}
+
+function startDobokuMiniTestAttempt_(userKey, testKey) {
+  var key = String(testKey || '').trim();
+  var planItem = getDobokuMiniPlanItemByKey_(key);
+  if (!planItem) throw new Error('対象のミニテストが見つかりません');
+  var expected = getDobokuMiniQuestionIdsForKey_(key);
+  if (!expected.length) throw new Error('ミニテストの問題が見つかりません');
+  var normalizedUserKey = String(userKey || '').trim();
+  var lock = LockService.getScriptLock();
+  lock.waitLock(10000);
+  try {
+    var sh = getDobokuMiniCompletionSheet_(true);
+    var openAttempt = findDobokuOpenMiniAttempt_(sh, normalizedUserKey, key);
+    if (openAttempt) {
+      return {
+        completionId: String(openAttempt.completionId || ''),
+        startedAt: openAttempt.startedAt,
+        reused: true
+      };
+    }
+    var startedAt = new Date().toISOString();
+    var completionId = 'MT_' + Utilities.getUuid();
+    appendRows_(sh, [[
+      completionId,
+      normalizedUserKey,
+      key,
+      String(planItem.label || ''),
+      expected.length,
+      startedAt,
+      ''
+    ]]);
+    return {
+      completionId: completionId,
+      startedAt: startedAt,
+      reused: false
+    };
+  } finally {
+    lock.releaseLock();
+  }
+}
+
+function findDobokuMiniAttempt_(sheet, completionId, userKey, testKey) {
+  var values = sheet.getDataRange().getValues();
+  if (values.length <= 1) return null;
+  var headers = values[0].map(function(h, i) { return normalizeHeader_(h, i); });
+  var idCol = headers.indexOf('completionId');
+  var userCol = headers.indexOf('userKey');
+  var keyCol = headers.indexOf('testKey');
+  for (var i = 1; i < values.length; i++) {
+    if (String(values[i][idCol] || '') !== String(completionId || '')) continue;
+    if (String(values[i][userCol] || '') !== String(userKey || '')) continue;
+    if (String(values[i][keyCol] || '') !== String(testKey || '')) continue;
+    var row = {};
+    headers.forEach(function(header, col) { row[header] = values[i][col]; });
+    row._rowNumber = i + 1;
+    row._completedAtCol = headers.indexOf('completedAt') + 1;
+    return row;
+  }
+  return null;
+}
+
+function findDobokuOpenMiniAttempt_(sheet, userKey, testKey) {
+  var values = sheet.getDataRange().getValues();
+  if (values.length <= 1) return null;
+  var headers = values[0].map(function(h, i) { return normalizeHeader_(h, i); });
+  var idCol = headers.indexOf('completionId');
+  var userCol = headers.indexOf('userKey');
+  var keyCol = headers.indexOf('testKey');
+  var startedCol = headers.indexOf('startedAt');
+  var completedCol = headers.indexOf('completedAt');
+  for (var i = values.length - 1; i >= 1; i--) {
+    if (String(values[i][userCol] || '') !== String(userKey || '')) continue;
+    if (String(values[i][keyCol] || '') !== String(testKey || '')) continue;
+    if (String(values[i][completedCol] || '').trim()) continue;
+    var completionId = String(values[i][idCol] || '').trim();
+    if (!completionId) continue;
+    return {
+      completionId: completionId,
+      startedAt: values[i][startedCol]
+    };
+  }
+  return null;
+}
+
+function hasDobokuMiniAttemptSubmissions_(userKey, questionIds, startedAt) {
+  var startedMs = new Date(startedAt).getTime();
+  if (isNaN(startedMs)) return false;
+  var submitted = {};
+  var expected = {};
+  (questionIds || []).forEach(function(qId) { expected[String(qId || '')] = true; });
+  readRecords_(getSheet_(SHEETS.Notes)).forEach(function(note) {
+    var qId = String(note.qId || '');
+    if (!expected[qId] || String(note.userKey || '') !== String(userKey || '')) return;
+    if (!String(note.noteText || '').trim()) return;
+    var submittedMs = new Date(note.createdAt || note.updatedAt).getTime();
+    if (!isNaN(submittedMs) && submittedMs >= startedMs) submitted[qId] = true;
+  });
+  return (questionIds || []).every(function(qId) { return !!submitted[String(qId || '')]; });
+}
+
+function countDobokuCompletedMiniTests_(sheet, userKey, testKey) {
+  return readRecords_(sheet).filter(function(row) {
+    return String(row.userKey || '') === String(userKey || '')
+      && String(row.testKey || '') === String(testKey || '')
+      && !!String(row.completedAt || '').trim();
+  }).length;
+}
+
+function apiRecordMiniTestCompletion(testKey, questionIds, completionId, clientUserKey) {
+  __clientUserKey = clientUserKey || '';
+  try {
+    var userKey = String(clientUserKey || '').trim();
+    var key = String(testKey || '').trim();
+    var id = String(completionId || '').trim();
+    requireDobokuActiveMiniUser_(userKey);
+    if (!key || !id) throw new Error('ミニテストの受講情報が不足しています');
+    getDobokuMiniCompletionLegacyCutoffMs_();
+
+    var planItem = getDobokuMiniPlanItemByKey_(key);
+    if (!planItem) throw new Error('対象のミニテストが見つかりません');
+    var expected = getDobokuMiniQuestionIdsForKey_(key).sort();
+    var suppliedMap = {};
+    (Array.isArray(questionIds) ? questionIds : []).forEach(function(qId) {
+      var normalized = String(qId || '').trim();
+      if (normalized) suppliedMap[normalized] = true;
     });
+    var supplied = Object.keys(suppliedMap).sort();
+    if (!expected.length || expected.join('\n') !== supplied.join('\n')) {
+      throw new Error('ミニテストの全問題を終了してから受講完了を記録してください');
+    }
+
+    var lock = LockService.getScriptLock();
+    lock.waitLock(10000);
+    try {
+      var sh = getDobokuMiniCompletionSheet_(true);
+      var attempt = findDobokuMiniAttempt_(sh, id, userKey, key);
+      if (!attempt) throw new Error('サーバーで開始されたミニテストが見つかりません');
+      var sameTestCount = countDobokuCompletedMiniTests_(sh, userKey, key);
+      if (String(attempt.completedAt || '').trim()) {
+        return toSerializable_({ success: true, deduplicated: true, completionCount: sameTestCount });
+      }
+      if (!hasDobokuMiniAttemptSubmissions_(userKey, expected, attempt.startedAt)) {
+        throw new Error('この受講で全問題の採点・提出が確認できません');
+      }
+      var completedAt = new Date().toISOString();
+      sh.getRange(attempt._rowNumber, attempt._completedAtCol).setValue(completedAt);
+      return toSerializable_({ success: true, deduplicated: false, completionCount: sameTestCount + 1, completedAt: completedAt });
+    } finally {
+      lock.releaseLock();
+    }
   } catch (e) {
     return { _error: true, message: String(e.message || e) };
   }
@@ -758,6 +982,7 @@ function apiSubmitAnswer(qId, answerText, selfScore, clientUserKey) {
     var answer = String(answerText || '').trim();
     if (!userKey) return { _error: true, message: 'ログイン情報が見つかりません' };
     if (!answer) return { _error: true, message: '答案を入力してください' };
+    getDobokuMiniCompletionLegacyCutoffMs_();
     return toSerializable_({ success: true, submission: appendDobokuSubmission_(userKey, qId, answerText, selfScore, true) });
   } catch (e) {
     return { _error: true, message: String(e.message || e) };
@@ -1993,9 +2218,78 @@ function apiUpdateModelAnswers(items, clientUserKey) {
   }
 }
 
+function buildDobokuAdminMiniMeta_(questions) {
+  var gradable = getDobokuGradableQuestions_(questions || []);
+  var plan = buildDobokuMiniPlanForQuestions_(gradable);
+  var questionIdsByKey = {};
+  var columns = plan.map(function(item) {
+    var key = String(item.key || '');
+    questionIdsByKey[key] = gradable
+      .filter(function(q) { return matchesDobokuPractice_(q, key); })
+      .map(function(q) { return String(q.qId || '').trim(); })
+      .filter(function(qId) { return !!qId; });
+    return {
+      key: key,
+      label: String(item.label || ''),
+      testIndex: Number(item.testIndex || 0),
+      total: questionIdsByKey[key].length
+    };
+  });
+  return { columns: columns, questionIdsByKey: questionIdsByKey };
+}
+
+function getDobokuMiniCompletionTrackingByUser_() {
+  var byUser = {};
+  var sh = getDobokuMiniCompletionSheet_(false);
+  if (!sh) return byUser;
+  readRecords_(sh).forEach(function(row) {
+    var userKey = String(row.userKey || '').trim();
+    var testKey = String(row.testKey || '').trim();
+    if (!userKey || !testKey || !String(row.completedAt || '').trim()) return;
+    if (!byUser[userKey]) byUser[userKey] = {};
+    var rec = byUser[userKey][testKey] || {
+      count: 0,
+      lastCompletedAt: ''
+    };
+    rec.count += 1;
+    var completedAt = formatAdminDate_(row.completedAt);
+    if (completedAt && completedAt > rec.lastCompletedAt) rec.lastCompletedAt = completedAt;
+    byUser[userKey][testKey] = rec;
+  });
+  return byUser;
+}
+
+function buildDobokuMiniCompletionCounts_(stats, tracking, miniMeta) {
+  var result = {};
+  var totalCompletions = 0;
+  var legacyCutoffMs = getDobokuMiniCompletionLegacyCutoffMs_();
+  (miniMeta.columns || []).forEach(function(col) {
+    var key = String(col.key || '');
+    var qIds = miniMeta.questionIdsByKey[key] || [];
+    var tracked = (tracking || {})[key] || { count: 0, lastCompletedAt: '' };
+    var earliest = stats.firstAnsweredAtByQid || {};
+    var legacyComplete = qIds.length > 0 && qIds.every(function(qId) {
+      var answeredAtMs = Number(earliest[qId] || 0);
+      return answeredAtMs > 0 && answeredAtMs < legacyCutoffMs;
+    });
+    var baseline = legacyComplete ? 1 : 0;
+    var count = Number(tracked.count || 0) + baseline;
+    if (count > 0) {
+      result[key] = {
+        count: count,
+        lastCompletedAt: String(tracked.lastCompletedAt || ''),
+        estimatedBaseline: baseline > 0
+      };
+      totalCompletions += count;
+    }
+  });
+  return { byTest: result, totalCompletions: totalCompletions };
+}
+
 function apiAdminDashboard(clientUserKey) {
   __clientUserKey = clientUserKey || '';
   try {
+    getDobokuMiniCompletionLegacyCutoffMs_();
     var ctx = requireManager_(clientUserKey);
     var questions = getCachedQuestions_();
     var questionMetaById = {};
@@ -2010,6 +2304,9 @@ function apiAdminDashboard(clientUserKey) {
     var completionColumns = getYearSummary_().map(function(y) {
       return { key: String(y.year || ''), label: String(y.year || ''), total: Number(y.count || 0) };
     });
+    var miniMeta = buildDobokuAdminMiniMeta_(questions);
+    var miniCompletionColumns = miniMeta.columns;
+    var miniTrackingByUser = getDobokuMiniCompletionTrackingByUser_();
     var users = readRecords_(getSheet_(SHEETS.Users));
     var usersByEmail = {};
     users.forEach(function(u) {
@@ -2030,12 +2327,19 @@ function apiAdminDashboard(clientUserKey) {
         scorePctSum: 0,
         scoreCount: 0,
         last7DaysCount: 0,
-        typeStats: {}
+        typeStats: {},
+        firstAnsweredAtByQid: {}
       };
       var st = statsByUserKey[key];
       var hasAnswer = String(n.noteText || '').trim() !== '';
       if (hasAnswer) st.noteCount += 1;
       var qId = String(n.qId || '').trim();
+      if (hasAnswer && qId) {
+        var answerMs = new Date(n.createdAt || n.updatedAt).getTime();
+        if (!isNaN(answerMs) && (!st.firstAnsweredAtByQid[qId] || answerMs < st.firstAnsweredAtByQid[qId])) {
+          st.firstAnsweredAtByQid[qId] = answerMs;
+        }
+      }
       if (hasAnswer && qId && !st.answeredQids[qId]) {
         st.answeredQids[qId] = true;
         st.answeredCount += 1;
@@ -2075,7 +2379,8 @@ function apiAdminDashboard(clientUserKey) {
         scorePctSum: 0,
         scoreCount: 0,
         last7DaysCount: 0,
-        typeStats: {}
+        typeStats: {},
+        firstAnsweredAtByQid: {}
       };
       var completedByUnit = {};
       var unitProgress = {};
@@ -2087,6 +2392,11 @@ function apiAdminDashboard(clientUserKey) {
         unitProgress[key] = { answered: answered, total: total };
         if (total > 0 && answered >= total) completedByUnit[key] = true;
       });
+      var miniCounts = buildDobokuMiniCompletionCounts_(
+        stats,
+        miniTrackingByUser[String(u.userKey || '')] || {},
+        miniMeta
+      );
       rows.push({
         email: email,
         displayName: String(access.displayName || u.displayName || email).trim(),
@@ -2101,11 +2411,19 @@ function apiAdminDashboard(clientUserKey) {
         last7DaysCount: stats.last7DaysCount || 0,
         typeStats: buildAdminTypeStats_(typeTotals, stats.typeStats),
         completedByUnit: completedByUnit,
-        unitProgress: unitProgress
+        unitProgress: unitProgress,
+        miniCompletionCounts: miniCounts.byTest,
+        miniCompletionTotal: miniCounts.totalCompletions
       });
     });
 
-    return toSerializable_({ auth: getCurrentAuthInfo_(clientUserKey), totalQuestions: questions.length, completionColumns: completionColumns, users: rows });
+    return toSerializable_({
+      auth: getCurrentAuthInfo_(clientUserKey),
+      totalQuestions: questions.length,
+      completionColumns: completionColumns,
+      miniCompletionColumns: miniCompletionColumns,
+      users: rows
+    });
   } catch (e) {
     return { _error: true, message: String(e.message || e) };
   }

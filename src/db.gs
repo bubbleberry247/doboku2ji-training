@@ -9,7 +9,8 @@ var SHEETS = {
   ScoringRubrics: 'ScoringRubrics',
   AiGradings: 'AiGradings',
   SelfScores: 'SelfScores',
-  UserAccess: 'UserAccess'
+  UserAccess: 'UserAccess',
+  MiniTestCompletions: 'MiniTestCompletions'
 };
 
 var HEADERS = {};
@@ -41,6 +42,10 @@ HEADERS[SHEETS.SelfScores] = [
   'scoreId', 'userKey', 'qId', 'score', 'updatedAt'
 ];
 HEADERS[SHEETS.UserAccess] = ['email', 'role', 'managerEmail', 'active', 'updatedAt', 'displayName', 'showInDashboard'];
+HEADERS[SHEETS.MiniTestCompletions] = [
+  'completionId', 'userKey', 'testKey', 'testLabel',
+  'questionCount', 'startedAt', 'completedAt'
+];
 
 // ============================================================
 // DB ID management
