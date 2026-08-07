@@ -650,11 +650,16 @@ function matchesDobokuPractice_(q, key) {
   var rangeMatch = matchesDobokuRangePractice_(q, key);
   if (rangeMatch !== null) return rangeMatch;
   if (key === 'experience') return n === 1 || text.indexOf('経験') >= 0;
-  if (key === 'required') return n >= 1 && n <= 3;
-  if (key === 'selectionA') return n >= 4 && n <= 7;
-  if (key === 'selectionB') return n >= 8 && n <= 11;
-  if (key === 'management') return n === 2 || n === 3 || n >= 8 && n <= 11 || /安全|品質|工程|施工管理/.test(text);
-  if (key === 'civil') return n >= 4 && n <= 7 || /土工|土木|コンクリート|基礎|舗装|河川/.test(text);
+  var examSectionKey = getDobokuExamSectionKeyForQuestion_(q.year, n);
+  if (key === 'required') return examSectionKey === 'required';
+  if (key === 'selectionA') return examSectionKey === 'selectionA';
+  if (key === 'selectionB') return examSectionKey === 'selectionB';
+  if (key === 'management') {
+    return examSectionKey === 'selectionB' ||
+      getDobokuExamRuleSetKey_(q.year) === 'modern' && n >= 2 && n <= 3 ||
+      /安全|品質|工程|施工管理/.test(text);
+  }
+  if (key === 'civil') return examSectionKey === 'selectionA' || /土工|土木|コンクリート|基礎|舗装|河川/.test(text);
   return true;
 }
 
@@ -1134,6 +1139,7 @@ function apiImportQuestionImages(imagesJson, clientUserKey, replaceExisting) {
     if (!items || !Array.isArray(items)) return { _error: true, message: 'imagesJson は配列JSONで指定してください' };
     var folder = getDobokuQuestionImageFolder_();
     var urlsByQid = {};
+    var imageRequiredByQid = {};
     var imported = 0;
     var skipped = 0;
     var errors = [];
@@ -1141,6 +1147,10 @@ function apiImportQuestionImages(imagesJson, clientUserKey, replaceExisting) {
       var qId = String(item && item.qId || '').trim();
       var b64 = String(item && item.base64Data || '').trim();
       if (!qId || !b64) { skipped += 1; return; }
+      if (!Object.prototype.hasOwnProperty.call(imageRequiredByQid, qId)) {
+        var requestedRequired = parseDobokuBoolean_(item && item.imageRequired);
+        imageRequiredByQid[qId] = requestedRequired === null ? true : requestedRequired;
+      }
       try {
         var mimeType = normalizeDobokuImageMimeType_(item.mimeType);
         var filename = sanitizeDobokuImageFilename_(item.filename || (qId + '_' + Date.now() + '.png'));
@@ -1162,7 +1172,7 @@ function apiImportQuestionImages(imagesJson, clientUserKey, replaceExisting) {
       if (replaceExisting === false || String(replaceExisting).toLowerCase() === 'false') {
         urls = mergeDobokuQuestionImageUrls_(getDobokuQuestionImageUrlsByQId_(qId), urls);
       }
-      if (updateDobokuQuestionImageUrls_(qId, urls)) updated += 1;
+      if (updateDobokuQuestionImageUrls_(qId, urls, imageRequiredByQid[qId])) updated += 1;
     });
     clearQuestionsCache_();
     return { success: true, imported: imported, updated: updated, skipped: skipped, imageUrlsByQId: urlsByQid, errors: errors };
@@ -1525,7 +1535,7 @@ function mergeDobokuQuestionImageUrls_(existing, incoming) {
   return normalizeDobokuQuestionImageUrlList_((existing || []).concat(incoming || []));
 }
 
-function updateDobokuQuestionImageUrls_(qId, imageUrls) {
+function updateDobokuQuestionImageUrls_(qId, imageUrls, imageRequired) {
   var sh = getSheet_(SHEETS.QuestionBank);
   ensureSheetColumns_(sh, HEADERS[SHEETS.QuestionBank]);
   var values = sh.getDataRange().getValues();
@@ -1538,7 +1548,7 @@ function updateDobokuQuestionImageUrls_(qId, imageUrls) {
   if (qIdCol < 0 || imageRequiredCol < 0 || imageUrlsCol < 0) throw new Error('QuestionBankに qId/imageRequired/imageUrls ヘッダーがありません');
   for (var r = 1; r < values.length; r++) {
     if (String(values[r][qIdCol] || '').trim() !== String(qId || '').trim()) continue;
-    sh.getRange(r + 1, imageRequiredCol + 1).setValue('true');
+    sh.getRange(r + 1, imageRequiredCol + 1).setValue(imageRequired === false ? '' : 'true');
     sh.getRange(r + 1, imageUrlsCol + 1).setValue(JSON.stringify(imageUrls || []));
     if (updatedCol >= 0) sh.getRange(r + 1, updatedCol + 1).setValue(new Date().toISOString());
     return true;
@@ -2496,9 +2506,10 @@ function getDobokuAdminTypeLabel_(q) {
     q && q.stem || ''
   ].join(' ');
   if (n === 1 || text.indexOf('経験') >= 0) return '経験記述';
-  if (n >= 2 && n <= 3) return '必須問題';
-  if (n >= 4 && n <= 7) return '選択(1)';
-  if (n >= 8 && n <= 11) return '選択(2)';
+  var examSectionKey = getDobokuExamSectionKeyForQuestion_(q && q.year, n);
+  if (examSectionKey === 'required') return '必須問題';
+  if (examSectionKey === 'selectionA') return '選択(1)';
+  if (examSectionKey === 'selectionB') return '選択(2)';
   if (/安全|品質|工程|施工管理/.test(text)) return '施工管理';
   if (/土工|土木|コンクリート|基礎|舗装|河川/.test(text)) return '土木一般';
   return 'その他';

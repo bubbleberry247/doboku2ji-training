@@ -33,6 +33,7 @@ if hasattr(sys.stdout, "reconfigure"):
 REPO_ROOT = Path(__file__).resolve().parent.parent
 DATA_FILE = REPO_ROOT / "data" / "doboku2ji_questions.csv"
 DEFAULT_OUTPUT_DIR = REPO_ROOT / "output" / "question-images"
+R7_Q10_REFERENCE_URL = "https://raw.githubusercontent.com/bubbleberry247/doboku2ji-training/main/images/doboku2ji/Q_R7_10_reference.png"
 
 IMAGE_SPECS = [
     {
@@ -113,6 +114,17 @@ IMAGE_SPECS = [
         "crop": [0.34, 0.27, 0.66, 0.43],
     },
     {
+        "qId": "Q_R7_10",
+        "pdfUrl": "https://www.jctc.jp/wjctcp/wp-content/uploads/2025/10/20251006d_mondai.pdf",
+        "pdfName": "20251006d_mondai.pdf",
+        "pages": [10],
+        "crop": [0.08, 0.25, 0.92, 0.87],
+        "repoOutputPath": "images/doboku2ji/Q_R7_10_reference.png",
+        "publicUrl": R7_Q10_REFERENCE_URL,
+        # 問題文で参照されない状況図。表示はするが、未登録でも解答を妨げない。
+        "imageRequired": False,
+    },
+    {
         "qId": "Q_R7_11",
         "pdfUrl": "https://www.jctc.jp/wjctcp/wp-content/uploads/2025/10/20251006d_mondai.pdf",
         "pdfName": "20251006d_mondai.pdf",
@@ -159,7 +171,7 @@ def resolve_pdf(spec: dict, pdf_dir: Path, cache_dir: Path, download: bool) -> P
         pdf_dir / f"{spec['qId']}.pdf",
         cache_dir / spec["pdfName"],
     ]
-    if spec["qId"] == "Q_R7_11":
+    if spec["qId"] in {"Q_R7_10", "Q_R7_11"}:
         candidates.append(REPO_ROOT / "output" / "source-pdfs" / "r07_doboku2ji_mondai.pdf")
     for candidate in candidates:
         if candidate.exists():
@@ -214,10 +226,17 @@ def render_pages(pdf_path: Path, spec: dict, pages: list[int], output_dir: Path,
                 raise ValueError(f"{spec['qId']}: page {page_no} はPDF範囲外です")
             page = doc.load_page(page_no - 1)
             pix = page.get_pixmap(matrix=fitz.Matrix(scale, scale), alpha=False)
-            suffix = "figure" if crop else "page"
-            out = qid_dir / f"{spec['qId']}_{suffix}_p{page_no:02d}.png"
-            if out.exists():
-                out = qid_dir / f"{spec['qId']}_{suffix}_p{page_no:02d}_{int(time.time())}.png"
+            repo_output_path = str(spec.get("repoOutputPath") or "").strip() if crop else ""
+            if repo_output_path:
+                if len(pages) != 1:
+                    raise ValueError(f"{spec['qId']}: repoOutputPath は単一ページ指定のみ対応です")
+                out = REPO_ROOT / repo_output_path
+                out.parent.mkdir(parents=True, exist_ok=True)
+            else:
+                suffix = "figure" if crop else "page"
+                out = qid_dir / f"{spec['qId']}_{suffix}_p{page_no:02d}.png"
+                if out.exists():
+                    out = qid_dir / f"{spec['qId']}_{suffix}_p{page_no:02d}_{int(time.time())}.png"
             pix.save(out)
             if crop:
                 crop_rendered_image(out, spec.get("crop"))
@@ -227,7 +246,7 @@ def render_pages(pdf_path: Path, spec: dict, pages: list[int], output_dir: Path,
         doc.close()
 
 
-def upload_images(exec_url: str, token: str, qid: str, paths: list[Path]) -> list[str]:
+def build_upload_items(qid: str, paths: list[Path], image_required: bool = True) -> list[dict]:
     items = []
     for path in paths:
         items.append({
@@ -235,7 +254,19 @@ def upload_images(exec_url: str, token: str, qid: str, paths: list[Path]) -> lis
             "filename": path.name,
             "mimeType": "image/png",
             "base64Data": base64.b64encode(path.read_bytes()).decode("ascii"),
+            "imageRequired": bool(image_required),
         })
+    return items
+
+
+def upload_images(
+    exec_url: str,
+    token: str,
+    qid: str,
+    paths: list[Path],
+    image_required: bool = True,
+) -> list[str]:
+    items = build_upload_items(qid, paths, image_required)
     data = request_json(exec_url, data={
         "token": token,
         "action": "importQuestionImages",
@@ -249,17 +280,28 @@ def upload_images(exec_url: str, token: str, qid: str, paths: list[Path]) -> lis
     return [str(v) for v in (data.get("imageUrlsByQId", {}).get(qid) or [])]
 
 
-def update_local_csv(urls_by_qid: dict[str, list[str]]) -> None:
+def apply_local_image_updates(
+    rows: list[dict],
+    urls_by_qid: dict[str, list[str]],
+    required_by_qid: dict[str, bool],
+) -> list[dict]:
+    for row in rows:
+        qid = row.get("qId", "")
+        if qid in urls_by_qid:
+            row["imageRequired"] = "true" if required_by_qid.get(qid, True) else ""
+            row["imageUrls"] = json.dumps(urls_by_qid[qid], ensure_ascii=False)
+    return rows
+
+
+def update_local_csv(
+    urls_by_qid: dict[str, list[str]],
+    required_by_qid: dict[str, bool],
+) -> None:
     rows = []
     with DATA_FILE.open(encoding="utf-8-sig", newline="") as f:
         reader = csv.DictReader(f)
         fieldnames = reader.fieldnames or []
-        for row in reader:
-            qid = row.get("qId", "")
-            if qid in urls_by_qid:
-                row["imageRequired"] = "true"
-                row["imageUrls"] = json.dumps(urls_by_qid[qid], ensure_ascii=False)
-            rows.append(row)
+        rows = apply_local_image_updates(list(reader), urls_by_qid, required_by_qid)
     with DATA_FILE.open("w", encoding="utf-8-sig", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames)
         writer.writeheader()
@@ -306,13 +348,17 @@ def main() -> int:
 
     token = get_import_token(args.url, maintenance_token)
     urls_by_qid: dict[str, list[str]] = {}
+    required_by_qid = {
+        spec["qId"]: bool(spec.get("imageRequired", True))
+        for spec in specs
+    }
     for qid, paths in rendered.items():
         print(f"[*] upload {qid}: {len(paths)} image(s)")
-        urls = upload_images(args.url, token, qid, paths)
+        urls = upload_images(args.url, token, qid, paths, required_by_qid[qid])
         urls_by_qid[qid] = urls
         print(f"[+] {qid}: {len(urls)} url(s)")
     if not args.no_update_data:
-        update_local_csv(urls_by_qid)
+        update_local_csv(urls_by_qid, required_by_qid)
     print("[OK] question images imported")
     return 0
 

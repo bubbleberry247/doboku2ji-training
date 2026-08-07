@@ -49,6 +49,11 @@ IMAGE_REQUIRED_QIDS = {
     'Q_R6_08',
     'Q_R7_11',
 }
+IMAGE_URLS_BY_QID = {
+    'Q_R7_10': [
+        'https://raw.githubusercontent.com/bubbleberry247/doboku2ji-training/main/images/doboku2ji/Q_R7_10_reference.png'
+    ],
+}
 
 
 def extract_year(filename: str) -> str:
@@ -86,8 +91,17 @@ def find_question_spans(full_text: str) -> list[tuple[int, int, int]]:
     return spans
 
 
-def classify_tags(num: int) -> str:
-    """Classify question by number into standard tag."""
+LEGACY_EXAM_YEARS = {'H28', 'H29', 'H30', 'R1', 'R2'}
+
+
+def classify_tags(year: str, num: int) -> str:
+    """Classify a question using the exam section rules for its year."""
+    if year in LEGACY_EXAM_YEARS:
+        if num == 1:
+            return "必須問題"
+        if num <= 6:
+            return "選択問題(1)"
+        return "選択問題(2)"
     if num <= 3:
         return "必須問題"
     elif num <= 7:
@@ -245,7 +259,7 @@ def parse_questions_from_pages(pages: list[str], year: str) -> list[dict]:
         q_id = f'Q_{year}_{num_int:02d}'
         if num_int == 1:
             stem = normalize_question1_stem(year, stem)
-        tag = classify_tags(num_int)
+        tag = classify_tags(year, num_int)
         tags = f'記述式,{tag}'
         if num_int != 1:
             tags += ',教師データ未整備'
@@ -261,7 +275,7 @@ def parse_questions_from_pages(pages: list[str], year: str) -> list[dict]:
             'tags': tags,
             'status': 'published' if num_int == 1 else 'needs_model_answer',
             'imageRequired': 'true' if q_id in IMAGE_REQUIRED_QIDS else '',
-            'imageUrls': ''
+            'imageUrls': json.dumps(IMAGE_URLS_BY_QID.get(q_id, []), ensure_ascii=False) if q_id in IMAGE_URLS_BY_QID else ''
         })
 
     return questions

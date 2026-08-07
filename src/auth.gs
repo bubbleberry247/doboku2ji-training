@@ -184,6 +184,7 @@ function serveSpa_(authResult) {
   var hasAuth = authResult && typeof authResult === 'object' && authResult.userKey;
   template.serverAuthResult = hasAuth ? toSafeTemplateJson_(authResult) : '';
   template.appExecUrl = toSafeTemplateJson_(getAppExecUrl_());
+  template.examRulesJson = toSafeTemplateJson_(getDobokuExamRulesForClient_());
   return template.evaluate()
     .setTitle(APP_TITLE_)
     .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL)

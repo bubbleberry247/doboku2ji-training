@@ -225,6 +225,7 @@ h2{font-size:1rem;margin:0 0 12px;font-weight:600;letter-spacing:.03em}
 
 <script type="application/json" id="server-auth-result"><?!= serverAuthResult || '' ?></script>
 <script type="application/json" id="app-exec-url"><?!= appExecUrl || '""' ?></script>
+<script type="application/json" id="exam-rules"><?!= examRulesJson || '{}' ?></script>
 <script>
 // ============================================================
 // Server-injected auth result (set after Google OAuth callback)
@@ -248,6 +249,12 @@ try {
   var _appExecUrlEl = document.getElementById('app-exec-url');
   var _appExecUrlRaw = _appExecUrlEl ? _appExecUrlEl.textContent.trim() : '';
   if (_appExecUrlRaw) _appExecUrl = JSON.parse(_appExecUrlRaw);
+} catch(e) {}
+var _examRules = {};
+try {
+  var _examRulesEl = document.getElementById('exam-rules');
+  var _examRulesRaw = _examRulesEl ? _examRulesEl.textContent.trim() : '';
+  if (_examRulesRaw) _examRules = JSON.parse(_examRulesRaw);
 } catch(e) {}
 try {
   if (document.referrer && document.referrer.indexOf('https://script.google.com/macros/s/') === 0) {
@@ -762,7 +769,7 @@ function renderHome() {
 
   html += '<div class="card">' +
     '<div class="section-title">📝 模試（本試験形式）</div>' +
-    '<div class="section-desc">年度ごとに本試験と同じ11大問を表示し、必須3問と選択4問の合計7問を解答します。</div>';
+    '<div class="section-desc">年度ごとに本試験と同じ11大問を表示し、その年度の必須・選択ルールに従って合計7問を解答します。</div>';
   if (state.years.length === 0) {
     html += '<p class="small">問題データがありません。<br>管理者に問い合わせてください。</p>';
   } else {
@@ -785,7 +792,7 @@ function renderHome() {
       renderPracticeCard_('field', 'experience', '経験記述', formatFieldCardMeta_('experience', '問題番号1')) +
       renderPracticeCard_('field', 'management', '施工管理', formatFieldCardMeta_('management', '安全・品質・工程')) +
       renderPracticeCard_('field', 'civil', '土木一般', formatFieldCardMeta_('civil', '土工・コンクリート')) +
-      renderPracticeCard_('field', 'selectionB', '選択(2)', formatFieldCardMeta_('selectionB', '問題番号8〜11')) +
+      renderPracticeCard_('field', 'selectionB', '選択(2)', formatFieldCardMeta_('selectionB', '年度別の選択問題(2)')) +
     '</div>' +
     '</div>';
 
@@ -1590,12 +1597,21 @@ function getQuestionNumber_(q) {
   return isFinite(n) ? n : 0;
 }
 
+function getDobokuExamSectionRulesForClient_(year) {
+  var config = _examRules || {};
+  var byYear = config.ruleSetByYear || {};
+  var ruleSets = config.ruleSets || {};
+  var key = byYear[String(year || '').trim().toUpperCase()] || config.defaultRuleSet;
+  var rules = ruleSets[key] || [];
+  return rules.map(function(rule) {
+    var copy = {};
+    Object.keys(rule || {}).forEach(function(name) { copy[name] = rule[name]; });
+    return copy;
+  });
+}
+
 function getMockSectionRules_() {
-  return [
-    { label: '必須問題', range: '問題1〜3', noFrom: 1, noTo: 3, mode: 'ALL', required: 3, time: '70分目安', instruction: '問題1〜3は全問解答します。' },
-    { label: '選択問題(1)', range: '問題4〜7', noFrom: 4, noTo: 7, mode: 'PICK', required: 2, time: '50分目安', instruction: '問題4〜7の4問から2問を選んで解答します。' },
-    { label: '選択問題(2)', range: '問題8〜11', noFrom: 8, noTo: 11, mode: 'PICK', required: 2, time: '60分目安', instruction: '問題8〜11の4問から2問を選んで解答します。' }
-  ];
+  return getDobokuExamSectionRulesForClient_(state.currentYear);
 }
 
 function getMockRuleForQuestion_(q) {
@@ -1650,7 +1666,7 @@ function renderMockRulesOverview_() {
     '</div>';
   });
   html += '</div>' +
-    '<p class="mock-rule-note">1問平均ではなく、問1を厚めに取り、選択問題は書ける2問に絞って進めます。選択問題で指定数を超えて入力した場合、この模試では結果画面へ進めません。</p>' +
+    '<p class="mock-rule-note">問1を厚めに取り、選択問題は年度ごとの指定数に絞って進めます。選択問題で指定数を超えて入力した場合、この模試では結果画面へ進めません。</p>' +
     '<button type="button" class="btn btn-action" onclick="startMockFromRules_()">模試を開始する</button>' +
   '</div>';
   return html;
