@@ -51,8 +51,65 @@ assert.equal(
   '設置届に関する事項'
 );
 assert.match(server.getDobokuSeedImageUrls_('Q_R7_10', ''), /Q_R7_10_reference\.png/);
-assert.match(seedSource, /DOBOKU2JI_QUESTION_SEED_VERSION_ = "2026-08-07-year-specific-rules-and-media-v1"/);
-assert.match(seedSource, /\[imageUrlsCol, desired\.imageUrls\]/);
+assert.match(seedSource, /DOBOKU2JI_QUESTION_SEED_VERSION_ = "2026-08-07-year-specific-rules-and-media-v2"/);
+const seedColumns = { stem: 4, tags: 6, imageRequired: 9, imageUrls: 10 };
+const seedDesired = { stem: 'corrected', tags: 'retagged', imageRequired: '', imageUrls: '["new"]' };
+assert.equal(
+  JSON.stringify(server.getDobokuExistingSeedUpdatePairs_('Q_H28_02', seedColumns, seedDesired)),
+  JSON.stringify([[6, 'retagged']])
+);
+assert.equal(
+  JSON.stringify(server.getDobokuExistingSeedUpdatePairs_('Q_R7_02', seedColumns, seedDesired)),
+  JSON.stringify([[6, 'retagged'], [4, 'corrected']])
+);
+assert.equal(
+  JSON.stringify(server.getDobokuExistingSeedUpdatePairs_('Q_R7_10', seedColumns, seedDesired)),
+  JSON.stringify([[6, 'retagged'], [9, ''], [10, '["new"]']])
+);
+
+const seedVm = { console, JSON };
+vm.createContext(seedVm);
+vm.runInContext(fs.readFileSync(new URL('../src/examRules.gs', import.meta.url), 'utf8'), seedVm);
+vm.runInContext(seedSource, seedVm);
+const seedHeaders = ['qId', 'year', 'number', 'questionType', 'stem', 'modelAnswer', 'tags', 'status', 'updatedAt', 'imageRequired', 'imageUrls'];
+const seedValues = [
+  seedHeaders.slice(),
+  ['Q_H28_02', 'H28', 2, 'custom_type', '既存の設問本文', '既存の模範解答', '記述式,必須問題,独自タグ', 'published', 'old', true, '["https://example.com/original.png"]'],
+  ['Q_R7_02', 'R7', 2, 'custom_type', '設置、届に関する既存本文', 'R7既存解答', '記述式,選択問題(1)', 'published', 'old', '', ''],
+  ['Q_R7_10', 'R7', 10, 'custom_type', '既存のR7問10本文', 'R7問10既存解答', '記述式,選択問題(2)', 'published', 'old', true, '["https://example.com/old.png"]']
+];
+const seedSheet = {
+  getDataRange: () => ({ getValues: () => seedValues.map((row) => row.slice()) }),
+  getRange: (row) => ({ setValues: (rows) => { seedValues[row - 1] = rows[0].slice(); } })
+};
+seedVm.SHEETS = { QuestionBank: 'QuestionBank' };
+seedVm.HEADERS = { QuestionBank: seedHeaders };
+seedVm.getConfigMap_ = () => ({ QUESTION_SEED_VERSION: 'old-version' });
+seedVm.getConfigValue_ = (map, key, fallback) => Object.prototype.hasOwnProperty.call(map, key) ? map[key] : fallback;
+seedVm.getSheet_ = () => seedSheet;
+seedVm.ensureSheetColumns_ = () => {};
+seedVm.normalizeHeader_ = (value) => String(value);
+seedVm.appendRows_ = (_sheet, rows) => rows.forEach((row) => seedValues.push(row.slice()));
+seedVm.clearQuestionsCache_ = () => {};
+seedVm.setConfigValue_ = () => {};
+const seedRun = seedVm.ensureDoboku2jiQuestionSeed_();
+const seededByQid = new Map(seedValues.slice(1).map((row) => [String(row[0]), row]));
+const seededH28 = seededByQid.get('Q_H28_02');
+assert.equal(seedRun.version, '2026-08-07-year-specific-rules-and-media-v2');
+assert.equal(seededH28[3], 'custom_type');
+assert.equal(seededH28[4], '既存の設問本文');
+assert.equal(seededH28[5], '既存の模範解答');
+assert.equal(seededH28[7], 'published');
+assert.equal(seededH28[9], true);
+assert.equal(seededH28[10], '["https://example.com/original.png"]');
+assert.match(seededH28[6], /独自タグ/);
+assert.match(seededH28[6], /選択問題\(1\)/);
+assert.doesNotMatch(seededH28[6], /必須問題/);
+assert.equal(seededByQid.get('Q_R7_02')[4], '設置届に関する既存本文');
+assert.equal(seededByQid.get('Q_R7_02')[5], 'R7既存解答');
+assert.equal(seededByQid.get('Q_R7_10')[7], 'published');
+assert.equal(seededByQid.get('Q_R7_10')[9], '');
+assert.match(seededByQid.get('Q_R7_10')[10], /Q_R7_10_reference\.png/);
 
 const imageWrites = [];
 const imageSheet = {
@@ -139,4 +196,4 @@ assert.match(auth, /template\.examRulesJson = toSafeTemplateJson_\(getDobokuExam
 assert.match(html, /getDobokuExamSectionRulesForClient_\(state\.currentYear\)/);
 assert.match(html, /if \(q && Array\.isArray\(q\.imageUrls\)\)/);
 
-console.log('doboku exam rules and optional image handling: 32 assertions passed');
+console.log('doboku exam rules, preservation, and optional image handling: 49 assertions passed');

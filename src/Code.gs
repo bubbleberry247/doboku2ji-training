@@ -1,6 +1,6 @@
 // Code.gs — entry point for doboku2ji-training GAS webapp
 
-var DOBOKU2JI_BUILD_VERSION_ = '2026-08-07-year-specific-mock-rules-v1';
+var DOBOKU2JI_BUILD_VERSION_ = '2026-08-07-year-specific-mock-rules-v2';
 
 function doGet(e) {
   // Auto-setup on first access
