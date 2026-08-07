@@ -1090,6 +1090,15 @@ function toDobokuSubmission_(n) {
 function apiImportRubrics(rubricsJson, clientUserKey) {
   __clientUserKey = clientUserKey || '';
   try {
+    requireAdmin_(clientUserKey);
+    return apiImportRubricsCore_(rubricsJson);
+  } catch (e) {
+    return { _error: true, message: '採点ルーブリック取り込みエラー: ' + String(e.message || e) };
+  }
+}
+
+function apiImportRubricsCore_(rubricsJson) {
+  try {
     var items = typeof rubricsJson === 'string' ? JSON.parse(rubricsJson) : rubricsJson;
     if (!items || !Array.isArray(items)) return { _error: true, message: 'rubricsJson は配列JSONで指定してください' };
     var sh = getSheet_(SHEETS.ScoringRubrics);
@@ -1134,6 +1143,15 @@ function apiImportRubrics(rubricsJson, clientUserKey) {
 
 function apiImportQuestionImages(imagesJson, clientUserKey, replaceExisting) {
   __clientUserKey = clientUserKey || '';
+  try {
+    requireAdmin_(clientUserKey);
+    return apiImportQuestionImagesCore_(imagesJson, replaceExisting);
+  } catch (e) {
+    return { _error: true, message: '問題図表画像取り込みエラー: ' + String(e.message || e) };
+  }
+}
+
+function apiImportQuestionImagesCore_(imagesJson, replaceExisting) {
   try {
     var items = typeof imagesJson === 'string' ? JSON.parse(imagesJson) : imagesJson;
     if (!items || !Array.isArray(items)) return { _error: true, message: 'imagesJson は配列JSONで指定してください' };
@@ -2131,6 +2149,15 @@ function setDobokuQuestionField_(row, headers, key, value) {
 function apiImportQuestions(rows, clientUserKey) {
   __clientUserKey = clientUserKey || '';
   try {
+    requireAdmin_(clientUserKey);
+    return apiImportQuestionsCore_(rows);
+  } catch (e) {
+    return { _error: true, message: 'インポートエラー: ' + String(e.message || e) };
+  }
+}
+
+function apiImportQuestionsCore_(rows) {
+  try {
     if (!rows || !Array.isArray(rows) || rows.length === 0) {
       return { _error: true, message: 'データが空です' };
     }
@@ -2222,6 +2249,15 @@ function apiImportQuestions(rows, clientUserKey) {
 // Each item: { qId, modelAnswer }
 function apiUpdateModelAnswers(items, clientUserKey) {
   __clientUserKey = clientUserKey || '';
+  try {
+    requireAdmin_(clientUserKey);
+    return apiUpdateModelAnswersCore_(items);
+  } catch (e) {
+    return { _error: true, message: '模範解答更新エラー: ' + String(e.message || e) };
+  }
+}
+
+function apiUpdateModelAnswersCore_(items) {
   try {
     if (!items || !Array.isArray(items) || items.length === 0) {
       return { _error: true, message: '更新データが空です' };

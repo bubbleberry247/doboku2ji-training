@@ -75,6 +75,7 @@ h2{font-size:1rem;margin:0 0 12px;font-weight:600;letter-spacing:.03em}
 .draft-status{font-size:.8rem;color:var(--text-2);margin:0 1vw 8px;line-height:1.6}
 .ai-panel{background:#fff;border:1px solid var(--border);border-radius:10px;margin:1vw;padding:3.4vw 3vw}
 .ai-notice{background:var(--warn-lt);border:1px solid var(--warn);border-radius:8px;color:#7c4a03;padding:10px;margin-bottom:10px;font-size:.82rem;line-height:1.55;white-space:pre-wrap}
+.content-notice{background:var(--warn-lt);border:1px solid var(--warn);border-radius:8px;color:#7c4a03;padding:10px;margin:8px 1vw 10px;font-size:.82rem;line-height:1.55}
 .ai-result{border-top:1px solid var(--border);margin-top:12px;padding-top:12px}
 .ai-score{font-size:1.55rem;font-weight:800;color:var(--accent)}
 .ai-meta,.ai-usage{font-size:.75rem;color:var(--text-2);margin-top:2px}
@@ -331,6 +332,9 @@ function hideLoading() { document.getElementById('loading').style.display = 'non
 
 function setHeader(text) {
   document.getElementById('app-header').querySelector('span').textContent = text;
+}
+function renderContentNotice_() {
+  return '<div class="content-notice">本サイトの問題は、各年度の出題当時の法令・基準・試験形式に基づいています。現在の法令・基準とは異なる場合があります。</div>';
 }
 function setHeaderUser(name) {
   var el = document.getElementById('header-user');
@@ -758,6 +762,7 @@ function renderHome() {
     '<span class="summary-user">' + escapeHtml(DISPLAY_NAME ? DISPLAY_NAME + ' さん' : '') + '</span>' +
     '<button type="button" class="logout-btn" onclick="logout_()">ログアウト</button>' +
     '</div>';
+  html += renderContentNotice_();
   html += renderNextActionCard_(state.nextAction, miniPlan);
   html += '<div class="card">' +
     '<div class="section-title">🧭 30-60分ミニテスト</div>' +
@@ -1881,6 +1886,7 @@ function renderPracticeResult() {
     ? formatAiCostJpy_(Number(result.estimatedCostJpy || 0), Number(result.estimatedCostUsd || 0))
     : '-';
   var html =
+    renderContentNotice_() +
     '<div class="card">' +
       '<div class="section-title">' + escapeHtml(result.title || '演習結果') + '</div>' +
       '<div class="kpi-grid">' +
@@ -2040,7 +2046,8 @@ function renderQuestion() {
     desktopMediaHtml +
     '</div>';
 
-  var html = '<button class="back-btn" onclick="backToYear()">← ' + escapeHtml(formatListTitle_(state.currentYear)) + '</button>' +
+  var html = renderContentNotice_() +
+    '<button class="back-btn" onclick="backToYear()">← ' + escapeHtml(formatListTitle_(state.currentYear)) + '</button>' +
     '<div class="section-label">' + escapeHtml(String(q.year)) + '年度 問題' + escapeHtml(String(q.number)) + '</div>' +
     detailHtml;
 

@@ -123,22 +123,22 @@ function doPost(e) {
     }
     var action = params.action || '';
     if (action === 'importQuestions') {
-      var result = apiImportQuestions(params.rows, '');
+      var result = apiImportQuestionsCore_(params.rows);
       return ContentService.createTextOutput(JSON.stringify(result))
         .setMimeType(ContentService.MimeType.JSON);
     }
     if (action === 'updateModelAnswers') {
-      var updateResult = apiUpdateModelAnswers(params.answers || [], '');
+      var updateResult = apiUpdateModelAnswersCore_(params.answers || []);
       return ContentService.createTextOutput(JSON.stringify(updateResult))
         .setMimeType(ContentService.MimeType.JSON);
     }
     if (action === 'importRubrics') {
-      var rubricResult = apiImportRubrics(params.rubrics || params.rows || [], '');
+      var rubricResult = apiImportRubricsCore_(params.rubrics || params.rows || []);
       return ContentService.createTextOutput(JSON.stringify(rubricResult))
         .setMimeType(ContentService.MimeType.JSON);
     }
     if (action === 'importQuestionImages') {
-      var imageResult = apiImportQuestionImages(params.images || params.rows || [], '', params.replaceExisting);
+      var imageResult = apiImportQuestionImagesCore_(params.images || params.rows || [], params.replaceExisting);
       return ContentService.createTextOutput(JSON.stringify(imageResult))
         .setMimeType(ContentService.MimeType.JSON);
     }
