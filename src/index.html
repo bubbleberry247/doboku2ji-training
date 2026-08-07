@@ -348,7 +348,12 @@ function callApi(funcName, args) {
     google.script.run
       .withSuccessHandler(function(res) {
         if (res && res._error) {
-          reject(new Error(res.message || 'APIエラー'));
+          var apiError = new Error(res.message || 'APIエラー');
+          apiError.errorCode = res.errorCode || '';
+          apiError.fatal = !!res.fatal;
+          apiError.retryable = !!res.retryable;
+          apiError.stopBatch = !!res.stopBatch;
+          reject(apiError);
         } else {
           resolve(res);
         }
@@ -1826,26 +1831,27 @@ function gradeSessionAnswersForResult_(qIds, title) {
   state.resultGradeErrors = [];
   if (!tasks.length) return Promise.resolve([]);
   renderResultGradingProgress_(0, tasks.length, title, []);
-  var chain = Promise.resolve();
-  tasks.forEach(function(task, idx) {
-    chain = chain.then(function() {
-      return callApi('apiGradeAnswer', [task.qId, task.answer])
-        .then(function(res) {
-          if (res && res.skipped) {
-            state.resultGradeErrors.push({ qId: task.qId, message: res.message || '採点対象外' });
-            return;
-          }
-          rememberGradedAnswer_(task.qId, task.answer);
-        })
-        .catch(function(err) {
-          state.resultGradeErrors.push({ qId: task.qId, message: err.message || String(err) });
-        })
-        .then(function() {
-          renderResultGradingProgress_(idx + 1, tasks.length, title, state.resultGradeErrors);
-        });
-    });
-  });
-  return chain.then(function() { return state.resultGradeErrors; });
+  var idx = 0;
+  var step = function() {
+    if (idx >= tasks.length) return Promise.resolve(state.resultGradeErrors);
+    var task = tasks[idx];
+    return callApi('apiGradeAnswer', [task.qId, task.answer])
+      .then(function(res) {
+        if (res && res.skipped) state.resultGradeErrors.push({ qId: task.qId, message: res.message || '採点対象外' });
+        else rememberGradedAnswer_(task.qId, task.answer);
+        return false;
+      })
+      .catch(function(err) {
+        state.resultGradeErrors.push({ qId: task.qId, message: err.message || String(err) });
+        return !!err.stopBatch;
+      })
+      .then(function(stopBatch) {
+        idx += 1;
+        renderResultGradingProgress_(idx, tasks.length, title, state.resultGradeErrors);
+        return stopBatch ? state.resultGradeErrors : step();
+      });
+  };
+  return step();
 }
 
 function renderPracticeResult() {

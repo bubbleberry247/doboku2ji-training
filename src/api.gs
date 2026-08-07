@@ -1171,6 +1171,48 @@ function apiImportQuestionImages(imagesJson, clientUserKey, replaceExisting) {
   }
 }
 
+function classifyDobokuGradingError_(error) {
+  var message = String((error && error.message) || error || '');
+  var openaiCode = String(error && error.openaiCode || '');
+  var httpStatus = Number(error && error.httpStatus || 0);
+  if (/insufficient_quota|billing_hard_limit/i.test(openaiCode + ' ' + message)) {
+    return { errorCode: 'AI_QUOTA', fatal: true, retryable: false, stopBatch: true, message: '現在、AI採点の利用枠が不足しているため採点できません。入力した答案は保持されています。管理者へお問い合わせください。' };
+  }
+  if (httpStatus === 429 || /OpenAI API error 429|rate_limit_exceeded|rate limit/i.test(openaiCode + ' ' + message)) {
+    return { errorCode: 'AI_RATE_LIMIT', fatal: false, retryable: true, stopBatch: true, message: 'AI採点サービスが一時的に混み合っています。入力した答案は保持されています。少し時間をおいて再度お試しください。' };
+  }
+  if (httpStatus === 401 || /OpenAI API error 401|invalid.*api.*key|incorrect api key/i.test(message)) {
+    return { errorCode: 'AI_AUTH', fatal: true, retryable: false, stopBatch: true, message: 'AI採点の認証設定を確認できないため採点できません。入力した答案は保持されています。管理者へお問い合わせください。' };
+  }
+  if (httpStatus >= 500 || /OpenAI API error 5\d\d|timed? ?out|timeout/i.test(message)) {
+    return { errorCode: 'AI_TEMPORARY', fatal: false, retryable: true, stopBatch: true, message: 'AI採点サービスが一時的に利用できません。入力した答案は保持されています。少し時間をおいて再度お試しください。' };
+  }
+  return { errorCode: 'AI_UNKNOWN', fatal: false, retryable: false, stopBatch: false, message: message || 'AI採点に失敗しました' };
+}
+
+function getDobokuAiCircuit_() {
+  try {
+    var raw = CacheService.getScriptCache().get('DOBOKU_AI_GRADING_CIRCUIT');
+    return raw ? JSON.parse(raw) : null;
+  } catch (e) {
+    return null;
+  }
+}
+
+function setDobokuAiCircuit_(info) {
+  if (!info || !info.stopBatch) return;
+  try {
+    var ttl = info.fatal ? 900 : 60;
+    CacheService.getScriptCache().put('DOBOKU_AI_GRADING_CIRCUIT', JSON.stringify(info), ttl);
+  } catch (e) {}
+}
+
+function buildDobokuGradingErrorResponse_(error) {
+  var info = classifyDobokuGradingError_(error);
+  setDobokuAiCircuit_(info);
+  return { _error: true, errorCode: info.errorCode, fatal: info.fatal, retryable: info.retryable, stopBatch: info.stopBatch, message: info.message };
+}
+
 function apiGradeAnswer(qId, answerText, clientUserKey) {
   __clientUserKey = clientUserKey || '';
   try {
@@ -1187,8 +1229,13 @@ function apiGradeAnswer(qId, answerText, clientUserKey) {
       return { success: false, skipped: true, message: status.displayNotice || 'この問題は採点対象外です', rubricStatus: status };
     }
     var props = PropertiesService.getScriptProperties();
+    if (String(props.getProperty('AI_GRADING_ENABLED') || 'true').toLowerCase() === 'false') {
+      return { _error: true, errorCode: 'AI_DISABLED', fatal: true, retryable: false, stopBatch: true, message: '現在、AI採点は管理者により一時停止されています。入力した答案は保持されています。' };
+    }
+    var circuit = getDobokuAiCircuit_();
+    if (circuit) return { _error: true, errorCode: circuit.errorCode, fatal: !!circuit.fatal, retryable: !!circuit.retryable, stopBatch: true, message: circuit.message };
     var apiKey = props.getProperty('OPENAI_API_KEY');
-    if (!apiKey) return { _error: true, message: 'OPENAI_API_KEY が未設定です' };
+    if (!apiKey) return { _error: true, errorCode: 'AI_AUTH', fatal: true, retryable: false, stopBatch: true, message: 'AI採点の認証設定を確認できないため採点できません。入力した答案は保持されています。管理者へお問い合わせください。' };
     var model = String(props.getProperty('OPENAI_MODEL') || 'gpt-5.4-mini').trim();
     var result = gradeDobokuWithOpenAI_(q, rubric, answer, model, apiKey);
     result = applyDobokuAnswerComplianceGuardrails_(q, rubric, answer, result);
@@ -1198,7 +1245,7 @@ function apiGradeAnswer(qId, answerText, clientUserKey) {
     var submission = userKey ? appendDobokuSubmission_(userKey, qId, answer, 0, true) : null;
     return toSerializable_({ success: true, rubricStatus: status, grading: saved, submission: submission, autoSubmitted: !!submission });
   } catch (e) {
-    return { _error: true, message: String(e.message || e) };
+    return buildDobokuGradingErrorResponse_(e);
   }
 }
 
@@ -1794,7 +1841,10 @@ function gradeDobokuWithOpenAI_(question, rubric, answerText, model, apiKey) {
   var data = parseDobokuJson_(text, {});
   if (code < 200 || code >= 300) {
     var msg = data && data.error && data.error.message ? data.error.message : text;
-    throw new Error('OpenAI API error ' + code + ': ' + msg);
+    var apiError = new Error('OpenAI API error ' + code + ': ' + msg);
+    apiError.httpStatus = code;
+    apiError.openaiCode = data && data.error && (data.error.code || data.error.type) || '';
+    throw apiError;
   }
   if (data && data.status === 'incomplete') {
     var reason = data.incomplete_details && data.incomplete_details.reason ? data.incomplete_details.reason : 'unknown';
