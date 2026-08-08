@@ -14,7 +14,11 @@
 
 ## 実装状況
 - 年度別一覧、問題一覧、問題詳細、模範解答表示、メモ、自己採点を実装済み
-- AI採点の標準設定: `OPENAI_MODEL=gpt-5.4-mini`, `OPENAI_REASONING_EFFORT=low`, `OPENAI_MAX_OUTPUT_TOKENS=1800`
+- AI接続設定はGASのScript Propertiesで管理し、`AI_PROVIDER` 未設定時は従来どおり `openai` を使用する
+- OpenAI設定: `OPENAI_API_KEY`, `OPENAI_MODEL=gpt-5.4-mini`
+- Azure OpenAI設定: `AI_PROVIDER=azure`, `AZURE_OPENAI_ENDPOINT`, `AZURE_OPENAI_DEPLOYMENT`, `AZURE_OPENAI_API_KEY`。必要な場合だけ完全URLを `AZURE_OPENAI_RESPONSES_URL` に設定する
+- 共通設定: `OPENAI_REASONING_EFFORT=low`, `OPENAI_MAX_OUTPUT_TOKENS=1800`。Azureのデプロイ名から基盤モデルを判定できない場合は `AZURE_OPENAI_MODEL=gpt-5.4-mini` を設定する
+- APIキーはソースコード・Git・READMEへ記録しない。`AI_PROVIDER=azure` でAzure設定が不足している場合、OpenAIへ自動フォールバックせず採点を停止する
 - 2026-06-17: 既存公開IDを @12 に更新し、DB投入済み55問を確認
 - 2026-06-17: UserAccess（既存 建築/土木 一次系と同じ26名）と管理画面を追加し、公開IDを @13 に更新
 - 2026-06-18: 55問すべてに学習用の参考答案・採点観点を投入し、公開IDを @14 に更新
