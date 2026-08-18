@@ -15,6 +15,7 @@ from generate_seed_questions import (  # noqa: E402
     SEED_PATH,
     canonical_version,
     load_canonical_rows,
+    normalize_seed_for_check,
     render_seed,
 )
 
@@ -133,6 +134,22 @@ def assert_generator_matches_seed(canonical: list[list[str]], version_line: str)
     return version
 
 
+def run_generator_comparison_contract_tests(canonical: list[list[str]]) -> None:
+    """Prove generator --check tolerates line endings but rejects one-character data changes."""
+    existing = SEED_PATH.read_text(encoding="utf-8")
+    rendered = render_seed(canonical, canonical_version(canonical), existing)
+    expected_version = canonical_version(rows_with_newline(canonical, "\n"))
+    normalized_existing = normalize_seed_for_check(existing, expected_version)
+    normalized_rendered = normalize_seed_for_check(rendered, expected_version)
+    assert normalized_existing == normalized_rendered
+    assert normalize_seed_for_check(
+        rendered.replace("\n", "\r\n"), expected_version
+    ) == normalized_rendered
+
+    mutated = rendered.replace('"Q_H28_01"', '"Q_H28_0X"', 1)
+    assert normalize_seed_for_check(mutated, expected_version) != normalized_rendered
+
+
 def main() -> None:
     canonical = load_canonical_rows()
     seed = load_seed_rows()
@@ -140,6 +157,7 @@ def main() -> None:
     assert all(len(row) == len(FIELDNAMES) for row in seed)
     run_comparison_contract_tests()
     assert_seed_matches_canonical(seed, canonical)
+    run_generator_comparison_contract_tests(canonical)
 
     version_line = next(
         line

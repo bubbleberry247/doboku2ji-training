@@ -36,7 +36,7 @@ FIELDNAMES = [
     "imageUrls",
 ]
 SEED_VERSION_RE = re.compile(
-    r'var DOBOKU2JI_QUESTION_SEED_VERSION_ = "[^"]*";'
+    r'var DOBOKU2JI_QUESTION_SEED_VERSION_ = "(?P<version>[^"]*)";'
 )
 SEED_ARRAY_RE = re.compile(
     r"var DOBOKU2JI_QUESTION_SEED_ROWS_ = \[.*?^\];(?=\s*\nvar DOBOKU2JI_IMAGE_REQUIRED_QIDS_)",
@@ -83,6 +83,46 @@ def canonical_version(rows: list[list[str]]) -> str:
     return f"canonical-csv-{digest}"
 
 
+def normalize_newlines(value: str) -> str:
+    """Normalize line endings without changing any other character."""
+    return value.replace("\r\n", "\n").replace("\r", "\n")
+
+
+def rows_with_newline(rows: list[list[str]], newline: str) -> list[list[str]]:
+    return [
+        [normalize_newlines(value).replace("\n", newline) for value in row]
+        for row in rows
+    ]
+
+
+def canonical_version_variants(rows: list[list[str]]) -> dict[str, list[list[str]]]:
+    """Return hashes for LF and CRLF-only representations of the same data."""
+    variants = {}
+    for newline in ("\n", "\r\n"):
+        variant_rows = rows_with_newline(rows, newline)
+        variants[canonical_version(variant_rows)] = variant_rows
+    return variants
+
+
+def normalize_seed_for_check(text: str, canonical_version_lf: str) -> str:
+    """Normalize only representation differences before a --check comparison."""
+    normalized = normalize_newlines(text)
+
+    def normalize_array(match: re.Match[str]) -> str:
+        array = match.group(0)
+        return array.replace("\\r\\n", "\\n").replace("\\r", "\\n")
+
+    normalized = SEED_ARRAY_RE.sub(normalize_array, normalized, count=1)
+    return SEED_VERSION_RE.sub(
+        lambda match: (
+            'var DOBOKU2JI_QUESTION_SEED_VERSION_ = '
+            f'"{canonical_version_lf}";'
+        ),
+        normalized,
+        count=1,
+    )
+
+
 def render_seed(rows: list[list[str]], version: str, existing: str) -> str:
     version_line = f'var DOBOKU2JI_QUESTION_SEED_VERSION_ = "{version}";'
     if not SEED_VERSION_RE.search(existing):
@@ -108,7 +148,15 @@ def generate(*, check: bool = False) -> bool:
     existing = SEED_PATH.read_text(encoding="utf-8")
     rendered = render_seed(rows, canonical_version(rows), existing)
     if check:
-        if rendered != existing:
+        versions = canonical_version_variants(rows)
+        existing_version_match = SEED_VERSION_RE.search(existing)
+        expected_version = canonical_version(rows_with_newline(rows, "\n"))
+        if (
+            not existing_version_match
+            or existing_version_match.group("version") not in versions
+            or normalize_seed_for_check(rendered, expected_version)
+            != normalize_seed_for_check(existing, expected_version)
+        ):
             raise SystemExit(
                 "seedQuestions.gs is out of date; run "
                 "python tools/generate_seed_questions.py"
