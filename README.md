@@ -11,6 +11,18 @@
 ## データ
 - `data/doboku2ji_XX_text.json`: 年度別テキスト抽出済み問題
 - `data/doboku2ji_questions.csv`: QuestionBank投入用CSV
+- `src/seedQuestions.gs`: CSVから生成される初期投入用シード（手編集禁止）
+
+### QuestionBankシードの再生成・検証
+
+QuestionBankの正本は `data/doboku2ji_questions.csv` です。CSVを更新した場合は、次のコマンドでGAS用シードを再生成してください。既存のシード同期ロジックは保持され、現在の本番QuestionBankや受講履歴はこのコマンドでは変更されません。
+
+```text
+python tools/generate_seed_questions.py
+python tools/test_seed_questions.py
+```
+
+`test_seed_questions.py` は、110問すべての `qId`、年度・番号、設問形式、設問文、参考答案、タグ、公開状態、図表要否、画像URLがCSVと完全一致することと、生成結果が再現可能であることを検証します。
 
 ## 実装状況
 - 年度別一覧、問題一覧、問題詳細、模範解答表示、メモ、自己採点を実装済み
