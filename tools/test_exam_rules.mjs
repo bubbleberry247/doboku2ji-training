@@ -51,7 +51,7 @@ assert.equal(
   '設置届に関する事項'
 );
 assert.match(server.getDobokuSeedImageUrls_('Q_R7_10', ''), /Q_R7_10_reference\.png/);
-assert.match(seedSource, /DOBOKU2JI_QUESTION_SEED_VERSION_ = "2026-08-07-year-specific-rules-and-media-v2"/);
+assert.match(seedSource, /DOBOKU2JI_QUESTION_SEED_VERSION_ = "canonical-csv-[0-9a-f]{12}"/);
 const seedColumns = { stem: 4, tags: 6, imageRequired: 9, imageUrls: 10 };
 const seedDesired = { stem: 'corrected', tags: 'retagged', imageRequired: '', imageUrls: '["new"]' };
 assert.equal(
@@ -95,7 +95,7 @@ seedVm.setConfigValue_ = () => {};
 const seedRun = seedVm.ensureDoboku2jiQuestionSeed_();
 const seededByQid = new Map(seedValues.slice(1).map((row) => [String(row[0]), row]));
 const seededH28 = seededByQid.get('Q_H28_02');
-assert.equal(seedRun.version, '2026-08-07-year-specific-rules-and-media-v2');
+assert.match(seedRun.version, /^canonical-csv-[0-9a-f]{12}$/);
 assert.equal(seededH28[3], 'custom_type');
 assert.equal(seededH28[4], '既存の設問本文');
 assert.equal(seededH28[5], '既存の模範解答');
