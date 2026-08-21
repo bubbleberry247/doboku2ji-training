@@ -2437,7 +2437,9 @@ function apiAdminDashboard(clientUserKey) {
   __clientUserKey = clientUserKey || '';
   try {
     getDobokuMiniCompletionLegacyCutoffMs_();
-    var ctx = requireManager_(clientUserKey);
+    var ctx = getUserContextByKey_(clientUserKey);
+    if (!ctx.userKey || !ctx.active) throw new Error('ログインが必要です');
+    var canViewAllDashboardUsers = ctx.isManager === true;
     var questions = getCachedQuestions_();
     var questionMetaById = {};
     var typeTotals = {};
@@ -2514,9 +2516,15 @@ function apiAdminDashboard(clientUserKey) {
       if (!email) return;
       var active = normalizeUserAccessBoolean_(access.active, true) !== 'false';
       var showInDashboard = normalizeUserAccessBoolean_(access.showInDashboard, true) !== 'false';
-      if (!active || !showInDashboard) return;
-      if (ctx.role === 'manager' && String(access.managerEmail || '').trim().toLowerCase() !== ctx.email) return;
       var u = usersByEmail[email] || {};
+      var isSelf = String(email || '') === String(ctx.email || '') ||
+        (String(ctx.userKey || '') !== '' && String(u.userKey || '') === String(ctx.userKey || ''));
+      // Regular learners receive exactly their own row.  The self row is
+      // intentionally included even when hidden from manager rosters.
+      var forceSelfVisibility = !canViewAllDashboardUsers && isSelf;
+      if (!active || (!forceSelfVisibility && !showInDashboard)) return;
+      if (!canViewAllDashboardUsers && !isSelf) return;
+      if (ctx.role === 'manager' && !isSelf && String(access.managerEmail || '').trim().toLowerCase() !== ctx.email) return;
       var stats = statsByUserKey[String(u.userKey || '')] || {
         noteCount: 0,
         answeredCount: 0,
@@ -2569,7 +2577,8 @@ function apiAdminDashboard(clientUserKey) {
       totalQuestions: questions.length,
       completionColumns: completionColumns,
       miniCompletionColumns: miniCompletionColumns,
-      users: rows
+      users: rows,
+      dashboardScope: canViewAllDashboardUsers ? (ctx.role === 'manager' ? 'team' : 'all') : 'self'
     });
   } catch (e) {
     return { _error: true, message: String(e.message || e) };

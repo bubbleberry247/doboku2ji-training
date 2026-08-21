@@ -122,6 +122,10 @@ h2{font-size:1rem;margin:0 0 12px;font-weight:600;letter-spacing:.03em}
 .admin-row:last-child{border-bottom:none}
 .admin-name{font-size:.9rem;font-weight:700}
 .admin-progress{text-align:right;font-size:.78rem;color:var(--text-2);white-space:nowrap}
+.dashboard-status-help{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:0 4px 14px;padding:10px;border:1px solid var(--border);border-radius:12px;background:var(--surface-2)}
+.dashboard-status-help-item{min-width:0;padding:7px 8px;border-radius:8px;background:var(--surface);font-size:.72rem;line-height:1.5;color:var(--text-2)}
+.dashboard-status-help-item strong{display:block;color:var(--text-1);font-size:.76rem;margin-bottom:2px}
+@media (min-width:720px){.dashboard-status-help{grid-template-columns:repeat(4,minmax(0,1fr))}}
 .tab-nav{display:flex;gap:0;background:#fff;border-bottom:1px solid var(--border);margin:0;position:sticky;top:11.7vw;z-index:99}
 .tab-btn{background:none;border:none;padding:10px 16px;cursor:pointer;font-size:.9rem;color:#9ca3af;border-bottom:3px solid transparent;margin-bottom:-1px;font-weight:500;min-height:40px}
 .tab-btn.active{color:var(--accent);border-bottom-color:var(--accent);font-weight:700}
@@ -734,10 +738,10 @@ function renderExamOverview_() {
 
 function renderHomeNav_(active) {
   active = active || 'home';
-  var canAdmin = USER_ROLE === 'admin' || USER_ROLE === 'manager';
+  var canDashboard = !!USER_KEY;
   return '<nav class="tab-nav">' +
     '<button type="button" class="tab-btn' + (active === 'home' ? ' active' : '') + '" onclick="goHome()">🏠 Home</button>' +
-    (canAdmin ? '<button type="button" class="tab-btn' + (active === 'admin' ? ' active' : '') + '" onclick="showAdmin()">📊 ダッシュボード</button>' : '<button type="button" class="tab-btn disabled" disabled>📊 ダッシュボード</button>') +
+    (canDashboard ? '<button type="button" class="tab-btn' + (active === 'admin' ? ' active' : '') + '" onclick="showAdmin()">📊 ダッシュボード</button>' : '<button type="button" class="tab-btn disabled" disabled>📊 ダッシュボード</button>') +
     '<button type="button" class="tab-btn disabled" disabled>⚙️ 管理</button>' +
     '</nav>';
 }
@@ -755,7 +759,7 @@ function renderHome() {
   var totals = getHomeTotals_();
   var nextYear = getNextYear_();
   var miniPlan = normalizeMiniPlan_(state.miniPlan);
-  var canAdmin = USER_ROLE === 'admin' || USER_ROLE === 'manager';
+  var canDashboard = !!USER_KEY;
   var html = renderHomeNav_();
   html += '<div class="summary-bar">' +
     '<span class="exam-badge">' + escapeHtml(formatExamBadge_(state.config)) + '</span>' +
@@ -817,7 +821,7 @@ function renderHome() {
       '<div class="kpi-card"><div class="kpi-label">演習済み</div><div class="kpi-value">' + escapeHtml(String(totals.answered)) + '</div><div class="small">/' + escapeHtml(String(totals.total)) + '大問</div></div>' +
       '<div class="kpi-card"><div class="kpi-label">進捗率</div><div class="kpi-value">' + escapeHtml(String(totals.pct)) + '%</div></div>' +
       '<div class="kpi-card"><div class="kpi-label">収録年度</div><div class="kpi-value">' + escapeHtml(String(years.length)) + '</div><div class="small">年度</div></div>' +
-      '<div class="kpi-card"><div class="kpi-label">管理画面</div><div class="kpi-value">' + (canAdmin ? '可' : '-') + '</div></div>' +
+      '<div class="kpi-card"><div class="kpi-label">ダッシュボード</div><div class="kpi-value">' + (canDashboard ? '可' : '-') + '</div></div>' +
     '</div>' +
     '</div>';
   html += renderExamOverview_();
@@ -829,6 +833,10 @@ function renderHome() {
 // Admin dashboard
 // ============================================================
 function showAdmin() {
+  if (!USER_KEY) {
+    showScreen('login');
+    return;
+  }
   state.screen = 'admin';
   renderAdmin();
 }
@@ -1130,6 +1138,12 @@ function buildAdminStatusCards_(users, totalQuestions) {
     '<div class="kpi-card" style="border:1px solid #a7f3d0;background:#f7fffb;text-align:center"><div style="font-size:1.4rem">📈</div><div class="kpi-value" style="font-size:1.35rem;color:#10b981">' + growth + '<span style="font-size:.75rem">名</span></div><div class="kpi-label">急成長</div></div>' +
     '<div class="kpi-card" style="border:1px solid #fed7aa;background:#fffaf7;text-align:center"><div style="font-size:1.4rem">🔄</div><div class="kpi-value" style="font-size:1.35rem;color:#f97316">' + support + '<span style="font-size:.75rem">名</span></div><div class="kpi-label">要サポート</div></div>' +
     '<div class="kpi-card" style="border:1px solid #d1d5db;background:#f8fafc;text-align:center"><div style="font-size:1.4rem">💤</div><div class="kpi-value" style="font-size:1.35rem;color:#94a3b8">' + stalled + '<span style="font-size:.75rem">名</span></div><div class="kpi-label">停滞中</div></div>' +
+    '</div>' +
+    '<div class="dashboard-status-help" role="note" aria-label="ステータス判定の説明">' +
+      '<div class="dashboard-status-help-item"><strong>⭐ 優秀</strong>進捗率 ≥ 80%</div>' +
+      '<div class="dashboard-status-help-item"><strong>📈 急成長</strong>直近7日以内の活動 &gt; 0 かつ進捗率 &lt; 80%</div>' +
+      '<div class="dashboard-status-help-item"><strong>🔄 要サポート</strong>進捗率 &gt; 0% かつ &lt; 30%</div>' +
+      '<div class="dashboard-status-help-item"><strong>💤 停滞中</strong>進捗率 = 0% または直近7日以内の活動 = 0</div>' +
     '</div>';
 }
 
@@ -1275,10 +1289,12 @@ function buildAdminInsights_(users, totalQuestions) {
 function drawAdmin(data) {
   var users = (data.users || []).filter(shouldShowDashboardMember_);
   var totalQuestions = data.totalQuestions || 0;
+  var canManageDashboard = !!(data.auth && (data.auth.isAdmin || data.auth.isManager));
+  var isSelfDashboard = String(data.dashboardScope || '') === 'self';
   var html = renderHomeNav_('admin') +
     '<div class="card">' +
-    '<div class="section-title">📊 ダッシュボード</div>' +
-    '<div class="section-desc">メンバーの学習進捗（進捗 = 提出済み問題数 / 全問題数）</div>';
+    '<div class="section-title">📊 ' + (isSelfDashboard ? 'あなたの学習ダッシュボード' : 'ダッシュボード') + '</div>' +
+    '<div class="section-desc">' + (isSelfDashboard ? 'ログイン中の受講者本人の学習進捗です。' : 'メンバーの学習進捗です。') + '（進捗 = 提出済み問題数 / 全問題数）</div>';
   html += buildMiniCompletionMatrix_(data);
   html += buildCompletionMatrix_(data);
   html += buildAdminInsights_(users, totalQuestions);
@@ -1287,9 +1303,7 @@ function drawAdmin(data) {
       '<div class="admin-kpi"><strong>' + users.length + '</strong><span class="small">表示対象</span></div>' +
       '<div class="admin-kpi"><strong>' + totalQuestions + '</strong><span class="small">問題数</span></div>' +
     '</div>' +
-    '<div style="padding:0 4px 8px">' +
-      '<button class="btn secondary btn-sm" onclick="syncRoster_()">名簿を同期</button>' +
-    '</div>';
+    (canManageDashboard ? '<div style="padding:0 4px 8px"><button class="btn secondary btn-sm" onclick="syncRoster_()">名簿を同期</button></div>' : '');
   if (!users.length) {
     html += '<div class="card"><p class="small">表示対象の利用者がいません。</p></div>';
   } else {
